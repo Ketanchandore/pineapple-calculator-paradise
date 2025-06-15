@@ -165,26 +165,24 @@ const IncomeTaxCalculator: React.FC = () => {
       </div>
       <form>
         <div className="space-y-4">
-          <FormItem>
-            <FormLabel>Annual Gross Income (₹)</FormLabel>
-            <FormControl>
-              <Input
-                inputMode="numeric"
-                pattern="[0-9]*"
-                value={income}
-                placeholder="Enter your total income e.g. 1200000"
-                onChange={e =>
-                  /^\d*$/.test(e.target.value) ? setIncome(e.target.value) : undefined
-                }
-                autoFocus
-              />
-            </FormControl>
-            <FormDescription>
+          <div>
+            <label className="block font-medium mb-1">Annual Gross Income (₹)</label>
+            <Input
+              inputMode="numeric"
+              pattern="[0-9]*"
+              value={income}
+              placeholder="Enter your total income e.g. 1200000"
+              onChange={e =>
+                /^\d*$/.test(e.target.value) ? setIncome(e.target.value) : undefined
+              }
+              autoFocus
+            />
+            <div className="text-sm text-muted-foreground mt-1">
               Salary, interest, rent, business etc. Use pre-tax value before deductions.
-            </FormDescription>
-          </FormItem>
-          <FormItem>
-            <FormLabel>Age Group</FormLabel>
+            </div>
+          </div>
+          <div>
+            <label className="block font-medium mb-1">Age Group</label>
             <Select value={age} onValueChange={setAge}>
               <SelectTrigger>
                 <SelectValue placeholder="Select age group" />
@@ -195,9 +193,9 @@ const IncomeTaxCalculator: React.FC = () => {
                 ))}
               </SelectContent>
             </Select>
-          </FormItem>
-          <FormItem>
-            <FormLabel>Tax Regime</FormLabel>
+          </div>
+          <div>
+            <label className="block font-medium mb-1">Tax Regime</label>
             <Select value={regime} onValueChange={v => setRegime(v as RegimeType)}>
               <SelectTrigger>
                 <SelectValue placeholder="Choose regime" />
@@ -207,25 +205,23 @@ const IncomeTaxCalculator: React.FC = () => {
                 <SelectItem value="old">Old Regime</SelectItem>
               </SelectContent>
             </Select>
-          </FormItem>
+          </div>
           {regime === "old" && (
-            <FormItem>
-              <FormLabel>Total Deductions (₹)</FormLabel>
-              <FormControl>
-                <Input
-                  inputMode="numeric"
-                  pattern="[0-9]*"
-                  value={deductions}
-                  placeholder="Claimed under 80C, 80D, HRA, etc"
-                  onChange={e =>
-                    /^\d*$/.test(e.target.value) ? setDeductions(e.target.value) : undefined
-                  }
-                />
-              </FormControl>
-              <FormDescription>
+            <div>
+              <label className="block font-medium mb-1">Total Deductions (₹)</label>
+              <Input
+                inputMode="numeric"
+                pattern="[0-9]*"
+                value={deductions}
+                placeholder="Claimed under 80C, 80D, HRA, etc"
+                onChange={e =>
+                  /^\d*$/.test(e.target.value) ? setDeductions(e.target.value) : undefined
+                }
+              />
+              <div className="text-sm text-muted-foreground mt-1">
                 Sum of all exemptions & deductions (Old regime only)
-              </FormDescription>
-            </FormItem>
+              </div>
+            </div>
           )}
           <div className="flex flex-col md:flex-row gap-3 mt-2 items-center justify-center">
             <Button onClick={handleCalc} type="button" className="w-full md:w-auto">
