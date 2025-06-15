@@ -1,12 +1,20 @@
 
+import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
+import Footer from "@/components/Footer";
+import FDCalculator from "@/components/calculators/FDCalculator";
+
 const FDCalculatorPage = () => (
   <div className="min-h-screen flex flex-col bg-[#FFFDF6]">
-    <div className="flex-1 flex items-center justify-center">
-      <div className="text-center bg-white rounded-2xl border px-8 py-12 border-[#ffe066] shadow-2xl animate-fade-in max-w-xl w-full">
-        <h1 className="text-2xl font-bold text-[#00B86B] mb-4">FD Calculator</h1>
-        <p className="text-[#A8982D] text-lg mb-0">Calculator coming soon!</p>
-      </div>
-    </div>
+    <Header />
+    <main className="flex flex-row flex-1 w-full max-w-[1600px] mx-auto">
+      <Sidebar />
+      <section className="flex-1 px-8 py-8">
+        <h1 className="text-3xl font-display font-bold text-[#00B86B] mb-7">FD Calculator</h1>
+        <FDCalculator />
+      </section>
+    </main>
+    <Footer />
   </div>
 );
 export default FDCalculatorPage;
