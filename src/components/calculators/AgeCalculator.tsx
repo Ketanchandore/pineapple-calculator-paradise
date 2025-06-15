@@ -2,13 +2,19 @@
 import React, { useState } from "react";
 import { toast } from "@/hooks/use-toast";
 
+type AgeResult = {
+  years: number;
+  months: number;
+  days: number;
+  totalDays: number;
+  totalHours: number;
+  totalMinutes: number;
+  totalSeconds: number;
+};
+
 const AgeCalculator = () => {
   const [dob, setDob] = useState<string>("");
-  const [result, setResult] = useState<null | {
-    years: number;
-    months: number;
-    days: number;
-  }>(null);
+  const [result, setResult] = useState<null | AgeResult>(null);
 
   function calculateAge(dobStr: string) {
     if (!dobStr) return;
@@ -18,19 +24,39 @@ const AgeCalculator = () => {
       return;
     }
     const now = new Date();
+
+    // Relative values
     let years = now.getFullYear() - birthDate.getFullYear();
     let months = now.getMonth() - birthDate.getMonth();
     let days = now.getDate() - birthDate.getDate();
 
     if (days < 0) {
       months -= 1;
-      days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+      // Days in previous month
+      const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+      days += prevMonth;
     }
     if (months < 0) {
       years -= 1;
       months += 12;
     }
-    setResult({ years, months, days });
+
+    // Absolute values
+    const diffMs = now.getTime() - birthDate.getTime();
+    const totalSeconds = Math.floor(diffMs / 1000);
+    const totalMinutes = Math.floor(totalSeconds / 60);
+    const totalHours = Math.floor(totalMinutes / 60);
+    const totalDays = Math.floor(totalHours / 24);
+
+    setResult({
+      years,
+      months,
+      days,
+      totalDays,
+      totalHours,
+      totalMinutes,
+      totalSeconds,
+    });
   }
 
   return (
@@ -59,9 +85,27 @@ const AgeCalculator = () => {
       </form>
       {result && (
         <div className="mt-8 text-lg font-semibold text-[#3B4D17] bg-[#FAF9E3] p-4 rounded-lg shadow animate-fade-in">
-          You are <span className="text-[#00B86B] font-bold">{result.years}</span> years,
-          <span className="text-[#00B86B] font-bold"> {result.months}</span> months,
-          and <span className="text-[#00B86B] font-bold">{result.days}</span> days old.
+          <div className="mb-2">
+            <span>
+              <span className="text-[#00B86B] font-bold">{result.years}</span> years,
+              <span className="text-[#00B86B] font-bold"> {result.months}</span> months,
+              <span className="text-[#00B86B] font-bold"> {result.days}</span> days old
+            </span>
+          </div>
+          <ul className="text-base text-[#519232] space-y-1">
+            <li>
+              <b>Total Days:</b> {result.totalDays.toLocaleString()}
+            </li>
+            <li>
+              <b>Total Hours:</b> {result.totalHours.toLocaleString()}
+            </li>
+            <li>
+              <b>Total Minutes:</b> {result.totalMinutes.toLocaleString()}
+            </li>
+            <li>
+              <b>Total Seconds:</b> {result.totalSeconds.toLocaleString()}
+            </li>
+          </ul>
         </div>
       )}
     </div>
