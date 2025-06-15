@@ -1,4 +1,5 @@
 
+import React, { Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,25 +11,27 @@ import AgeCalculatorPage from "./pages/calculators/AgeCalculatorPage";
 import BMICalculatorPage from "./pages/calculators/BMICalculatorPage";
 import EMICalculatorPage from "./pages/calculators/EMICalculatorPage";
 
-// Rapid stub imports, you can copy and extend as needed
-const SipCalculatorPage = () => import("./pages/calculators/SipCalculatorPage").then(m=>m.default).catch(()=><>Coming soon...</>);
-const SwpCalculatorPage = () => import("./pages/calculators/SwpCalculatorPage").then(m=>m.default).catch(()=><>Coming soon...</>);
-const PercentageCalculatorPage = () => import("./pages/calculators/PercentageCalculatorPage").then(m=>m.default).catch(()=><>Coming soon...</>);
-const HomeLoanCalculatorPage = () => import("./pages/calculators/HomeLoanCalculatorPage").then(m=>m.default).catch(()=><>Coming soon...</>);
-const CompoundInterestCalculatorPage = () => import("./pages/calculators/CompoundInterestCalculatorPage").then(m=>m.default).catch(()=><>Coming soon...</>);
-const IncomeTaxCalculatorPage = () => import("./pages/calculators/IncomeTaxCalculatorPage").then(m=>m.default).catch(()=><>Coming soon...</>);
-const FDCalculatorPage = () => import("./pages/calculators/FDCalculatorPage").then(m=>m.default).catch(()=><>Coming soon...</>);
-const DateCalculatorPage = () => import("./pages/calculators/DateCalculatorPage").then(m=>m.default).catch(()=><>Coming soon...</>);
-const CalorieCalculatorPage = () => import("./pages/calculators/CalorieCalculatorPage").then(m=>m.default).catch(()=><>Coming soon...</>);
-const HomeLoanEmiCalculatorPage = () => import("./pages/calculators/HomeLoanEmiCalculatorPage").then(m=>m.default).catch(()=><>Coming soon...</>);
-const LoanCalculatorPage = () => import("./pages/calculators/LoanCalculatorPage").then(m=>m.default).catch(()=><>Coming soon...</>);
-const DaysCalculatorPage = () => import("./pages/calculators/DaysCalculatorPage").then(m=>m.default).catch(()=><>Coming soon...</>);
-const GstCalculatorPage = () => import("./pages/calculators/GstCalculatorPage").then(m=>m.default).catch(()=><>Coming soon...</>);
-const MutualFundCalculatorPage = () => import("./pages/calculators/MutualFundCalculatorPage").then(m=>m.default).catch(()=><>Coming soon...</>);
-const PregnancyCalculatorPage = () => import("./pages/calculators/PregnancyCalculatorPage").then(m=>m.default).catch(()=><>Coming soon...</>);
-const NpsCalculatorPage = () => import("./pages/calculators/NpsCalculatorPage").then(m=>m.default).catch(()=><>Coming soon...</>);
+// Lazy load remaining calculators
+const SipCalculatorPage = React.lazy(() => import("./pages/calculators/SipCalculatorPage"));
+const SwpCalculatorPage = React.lazy(() => import("./pages/calculators/SwpCalculatorPage"));
+const PercentageCalculatorPage = React.lazy(() => import("./pages/calculators/PercentageCalculatorPage"));
+const HomeLoanCalculatorPage = React.lazy(() => import("./pages/calculators/HomeLoanCalculatorPage"));
+const CompoundInterestCalculatorPage = React.lazy(() => import("./pages/calculators/CompoundInterestCalculatorPage"));
+const IncomeTaxCalculatorPage = React.lazy(() => import("./pages/calculators/IncomeTaxCalculatorPage"));
+const FDCalculatorPage = React.lazy(() => import("./pages/calculators/FDCalculatorPage"));
+const DateCalculatorPage = React.lazy(() => import("./pages/calculators/DateCalculatorPage"));
+const CalorieCalculatorPage = React.lazy(() => import("./pages/calculators/CalorieCalculatorPage"));
+const HomeLoanEmiCalculatorPage = React.lazy(() => import("./pages/calculators/HomeLoanEmiCalculatorPage"));
+const LoanCalculatorPage = React.lazy(() => import("./pages/calculators/LoanCalculatorPage"));
+const DaysCalculatorPage = React.lazy(() => import("./pages/calculators/DaysCalculatorPage"));
+const GstCalculatorPage = React.lazy(() => import("./pages/calculators/GstCalculatorPage"));
+const MutualFundCalculatorPage = React.lazy(() => import("./pages/calculators/MutualFundCalculatorPage"));
+const PregnancyCalculatorPage = React.lazy(() => import("./pages/calculators/PregnancyCalculatorPage"));
+const NpsCalculatorPage = React.lazy(() => import("./pages/calculators/NpsCalculatorPage"));
 
 const queryClient = new QueryClient();
+
+const Fallback = <div className="text-center text-[#00B86B] py-12">Loading...</div>;
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -41,23 +44,22 @@ const App = () => (
           <Route path="/calculators/age" element={<AgeCalculatorPage />} />
           <Route path="/calculators/bmi" element={<BMICalculatorPage />} />
           <Route path="/calculators/emi" element={<EMICalculatorPage />} />
-          <Route path="/calculators/sip" element={ <React.Suspense fallback={<>Loading...</>}> <SipCalculatorPage /> </React.Suspense> } />
-          <Route path="/calculators/swp" element={ <React.Suspense fallback={<>Loading...</>}> <SwpCalculatorPage /> </React.Suspense> } />
-          <Route path="/calculators/percentage" element={ <React.Suspense fallback={<>Loading...</>}> <PercentageCalculatorPage /> </React.Suspense> } />
-          <Route path="/calculators/home-loan" element={ <React.Suspense fallback={<>Loading...</>}> <HomeLoanCalculatorPage /> </React.Suspense> } />
-          <Route path="/calculators/compound-interest" element={ <React.Suspense fallback={<>Loading...</>}> <CompoundInterestCalculatorPage /> </React.Suspense> } />
-          <Route path="/calculators/income-tax" element={ <React.Suspense fallback={<>Loading...</>}> <IncomeTaxCalculatorPage /> </React.Suspense> } />
-          <Route path="/calculators/fd" element={ <React.Suspense fallback={<>Loading...</>}> <FDCalculatorPage /> </React.Suspense> } />
-          <Route path="/calculators/date" element={ <React.Suspense fallback={<>Loading...</>}> <DateCalculatorPage /> </React.Suspense> } />
-          <Route path="/calculators/calorie" element={ <React.Suspense fallback={<>Loading...</>}> <CalorieCalculatorPage /> </React.Suspense> } />
-          <Route path="/calculators/home-loan-emi" element={ <React.Suspense fallback={<>Loading...</>}> <HomeLoanEmiCalculatorPage /> </React.Suspense> } />
-          <Route path="/calculators/loan" element={ <React.Suspense fallback={<>Loading...</>}> <LoanCalculatorPage /> </React.Suspense> } />
-          <Route path="/calculators/days" element={ <React.Suspense fallback={<>Loading...</>}> <DaysCalculatorPage /> </React.Suspense> } />
-          <Route path="/calculators/gst" element={ <React.Suspense fallback={<>Loading...</>}> <GstCalculatorPage /> </React.Suspense> } />
-          <Route path="/calculators/mutual-fund" element={ <React.Suspense fallback={<>Loading...</>}> <MutualFundCalculatorPage /> </React.Suspense> } />
-          <Route path="/calculators/pregnancy" element={ <React.Suspense fallback={<>Loading...</>}> <PregnancyCalculatorPage /> </React.Suspense> } />
-          <Route path="/calculators/nps" element={ <React.Suspense fallback={<>Loading...</>}> <NpsCalculatorPage /> </React.Suspense> } />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/calculators/sip" element={<Suspense fallback={Fallback}><SipCalculatorPage /></Suspense>} />
+          <Route path="/calculators/swp" element={<Suspense fallback={Fallback}><SwpCalculatorPage /></Suspense>} />
+          <Route path="/calculators/percentage" element={<Suspense fallback={Fallback}><PercentageCalculatorPage /></Suspense>} />
+          <Route path="/calculators/home-loan" element={<Suspense fallback={Fallback}><HomeLoanCalculatorPage /></Suspense>} />
+          <Route path="/calculators/compound-interest" element={<Suspense fallback={Fallback}><CompoundInterestCalculatorPage /></Suspense>} />
+          <Route path="/calculators/income-tax" element={<Suspense fallback={Fallback}><IncomeTaxCalculatorPage /></Suspense>} />
+          <Route path="/calculators/fd" element={<Suspense fallback={Fallback}><FDCalculatorPage /></Suspense>} />
+          <Route path="/calculators/date" element={<Suspense fallback={Fallback}><DateCalculatorPage /></Suspense>} />
+          <Route path="/calculators/calorie" element={<Suspense fallback={Fallback}><CalorieCalculatorPage /></Suspense>} />
+          <Route path="/calculators/home-loan-emi" element={<Suspense fallback={Fallback}><HomeLoanEmiCalculatorPage /></Suspense>} />
+          <Route path="/calculators/loan" element={<Suspense fallback={Fallback}><LoanCalculatorPage /></Suspense>} />
+          <Route path="/calculators/days" element={<Suspense fallback={Fallback}><DaysCalculatorPage /></Suspense>} />
+          <Route path="/calculators/gst" element={<Suspense fallback={Fallback}><GstCalculatorPage /></Suspense>} />
+          <Route path="/calculators/mutual-fund" element={<Suspense fallback={Fallback}><MutualFundCalculatorPage /></Suspense>} />
+          <Route path="/calculators/pregnancy" element={<Suspense fallback={Fallback}><PregnancyCalculatorPage /></Suspense>} />
+          <Route path="/calculators/nps" element={<Suspense fallback={Fallback}><NpsCalculatorPage /></Suspense>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
