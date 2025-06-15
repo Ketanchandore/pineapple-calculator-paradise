@@ -95,8 +95,10 @@ const DateCalculator: React.FC = () => {
                   onSelect={setFromDate}
                   initialFocus
                   className={cn("p-3 pointer-events-auto")}
-                  max={toDate}
-                  disabled={date => !!toDate && isBefore(date, new Date("1900-01-01"))}
+                  disabled={date => 
+                    (toDate && date > toDate) ||
+                    date < new Date("1900-01-01")
+                  }
                 />
               </PopoverContent>
             </Popover>
@@ -126,8 +128,10 @@ const DateCalculator: React.FC = () => {
                   onSelect={setToDate}
                   initialFocus
                   className={cn("p-3 pointer-events-auto")}
-                  min={fromDate}
-                  disabled={date => !!fromDate && isBefore(date, new Date("1900-01-01"))}
+                  disabled={date =>
+                    (fromDate && date < fromDate) ||
+                    date < new Date("1900-01-01")
+                  }
                 />
               </PopoverContent>
             </Popover>
