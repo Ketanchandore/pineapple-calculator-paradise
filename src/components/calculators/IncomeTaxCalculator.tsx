@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   Form,
@@ -18,7 +17,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
-import { Layer, Printer, Share2, RefreshCcw } from "lucide-react";
+import { Layers, Printer, Share2, RefreshCcw } from "lucide-react";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@radix-ui/react-accordion";
 import { toast } from "@/hooks/use-toast";
 
@@ -159,12 +158,12 @@ const IncomeTaxCalculator: React.FC = () => {
   return (
     <div className="max-w-xl mx-auto bg-white shadow-xl rounded-xl px-6 py-10 animate-fade-in">
       <h2 className="text-2xl md:text-3xl font-bold font-display text-[#00B86B] text-center mb-3 flex items-center gap-2 justify-center">
-        <Layer className="text-[#FFD966]" /> Income Tax Calculator
+        <Layers className="text-[#FFD966]" /> Income Tax Calculator
       </h2>
       <div className="mb-6 text-center text-[#A8982D]">
         Calculate your income tax for FY 2023-24 (AY 2024-25) as per Old & New regime.
       </div>
-      <Form>
+      <form>
         <div className="space-y-4">
           <FormItem>
             <FormLabel>Annual Gross Income (₹)</FormLabel>
@@ -243,7 +242,7 @@ const IncomeTaxCalculator: React.FC = () => {
             </Button>
           </div>
         </div>
-      </Form>
+      </form>
       {lastCalc && (
         <div className="mt-7 p-5 bg-[#f9f7ee] border border-[#ffe066] rounded-lg text-center shadow">
           <div className="text-lg font-bold text-[#2A2605] mb-2">Estimated Tax Payable</div>
