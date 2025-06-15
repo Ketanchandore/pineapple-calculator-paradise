@@ -62,6 +62,18 @@ const AuthPage = () => {
     }
   };
 
+  const handleGoogle = async () => {
+    setLoading(true);
+    setError(null);
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: { redirectTo: window.location.origin + "/" },
+    });
+    setLoading(false);
+    if (error) setError(error.message);
+    // No need to navigate: handled by Supabase redirect
+  };
+
   if (user) return null; // Redirect handled above
 
   return (
@@ -97,6 +109,28 @@ const AuthPage = () => {
             <div className="text-red-600 text-sm text-center">{error}</div>
           )}
         </form>
+        <div className="flex items-center gap-2 my-2">
+          <div className="flex-1 h-px bg-gray-300" />
+          <span className="text-xs text-muted-foreground">OR</span>
+          <div className="flex-1 h-px bg-gray-300" />
+        </div>
+        <Button
+          variant="outline"
+          className="w-full flex gap-2 items-center"
+          onClick={handleGoogle}
+          type="button"
+          disabled={loading}
+        >
+          <svg width="18" height="18" viewBox="0 0 18 18" className="inline" fill="none">
+            <g>
+              <path d="M17.64 9.2045C17.64 8.5665 17.5827 7.95225 17.4764 7.35791H9V10.8505H13.8436C13.632 12.0125 12.9404 12.9882 11.8945 13.6543V15.6385H14.6682C16.2382 14.2111 17.64 11.9731 17.64 9.2045Z" fill="#4285F4"/>
+              <path d="M9 18C11.43 18 13.4673 17.194 14.6682 15.6385L11.8945 13.6543C11.2336 14.0913 10.3218 14.3633 9 14.3633C6.65536 14.3633 4.67864 12.8092 3.96409 10.7155H1.10449V12.7618C2.29773 15.1162 5.39727 18 9 18Z" fill="#34A853"/>
+              <path d="M3.96409 10.7155C3.78273 10.2785 3.68182 9.79955 3.68182 9.29998C3.68182 8.80041 3.78273 8.32141 3.96409 7.88441V5.83813H1.10449C0.686727 6.66027 0.454545 7.62722 0.454545 8.68182C0.454545 9.73642 0.686727 10.7034 1.10449 11.5255L3.96409 10.7155Z" fill="#FBBC05"/>
+              <path d="M9 3.63636C10.434 3.63636 11.6776 4.12695 12.6415 5.03545L14.7314 2.94545C13.4655 1.74545 11.43 0.818182 9 0.818182C5.39727 0.818182 2.29773 3.70182 1.10449 6.05636L3.96409 7.88441C4.67864 5.79068 6.65536 3.63636 9 3.63636Z" fill="#EA4335"/>
+            </g>
+          </svg>
+          Continue with Google
+        </Button>
         <div className="text-sm text-center">
           {form === "signup" ? (
             <>
