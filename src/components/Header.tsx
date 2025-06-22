@@ -35,13 +35,10 @@ const Header = () => {
           Pineapple Calculator Hub
         </span>
       </Link>
-      <nav className="hidden md:flex gap-8 font-semibold text-base">
+      <nav className="hidden md:flex items-center gap-6 font-semibold text-base">
         <Link to="/" className="hover:text-[#00B86B] transition-colors">Home</Link>
-        <a href="#all-calculators" className="hover:text-[#00B86B] transition-colors">Calculators</a>
-        <a href="#contact" className="hover:text-[#00B86B] transition-colors">Contact</a>
+        <a href="/#all-calculators" className="hover:text-[#00B86B] transition-colors">Calculators</a>
         <Link to="/about" className="hover:text-[#00B86B] transition-colors">About</Link>
-        <Link to="/privacy-policy" className="hover:text-[#00B86B] transition-colors">Privacy</Link>
-        <Link to="/terms-of-service" className="hover:text-[#00B86B] transition-colors">Terms</Link>
         <Link to="/contact" className="hover:text-[#00B86B] transition-colors">Contact</Link>
         {user ? (
           <button
