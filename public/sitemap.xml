@@ -1,99 +1,25 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://pineapplecalculator.com/</loc>
+    <loc>https://pineapplehub.com/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://pineapplecalculator.com/calculators/age</loc>
-    <priority>0.8</priority>
+    <loc>https://pineapplehub.com/about</loc>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pineapplecalculator.com/calculators/bmi</loc>
-    <priority>0.8</priority>
+    <loc>https://pineapplehub.com/contact</loc>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pineapplecalculator.com/calculators/emi</loc>
-    <priority>0.8</priority>
+    <loc>https://pineapplehub.com/privacy-policy</loc>
+    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://pineapplecalculator.com/calculators/sip</loc>
-    <priority>0.8</priority>
+    <loc>https://pineapplehub.com/terms-of-service</loc>
+    <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://pineapplecalculator.com/calculators/swp</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pineapplecalculator.com/calculators/fd</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pineapplecalculator.com/calculators/percentage</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pineapplecalculator.com/calculators/home-loan</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pineapplecalculator.com/calculators/home-loan-emi</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pineapplecalculator.com/calculators/loan</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pineapplecalculator.com/calculators/compound-interest</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pineapplecalculator.com/calculators/income-tax</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pineapplecalculator.com/calculators/date</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pineapplecalculator.com/calculators/calorie</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pineapplecalculator.com/calculators/days</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pineapplecalculator.com/calculators/gst</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pineapplecalculator.com/calculators/mutual-fund</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pineapplecalculator.com/calculators/pregnancy</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pineapplecalculator.com/calculators/nps</loc>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://pineapplecalculator.com/about</loc>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://pineapplecalculator.com/contact</loc>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://pineapplecalculator.com/privacy-policy</loc>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://pineapplecalculator.com/terms-of-service</loc>
-    <priority>0.5</priority>
-  </url>
+  <!-- Add more as your site grows -->
 </urlset>

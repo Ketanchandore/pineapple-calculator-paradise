@@ -12,8 +12,3 @@ Allow: /
 
 User-agent: *
 Allow: /
-
-User-agent: *
-Allow: /
-
-Sitemap: https://pineapplecalculator.com/sitemap.xml
