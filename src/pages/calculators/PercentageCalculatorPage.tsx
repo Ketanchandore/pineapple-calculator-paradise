@@ -1,3 +1,4 @@
+
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
@@ -5,13 +6,14 @@ import React from "react";
 import AgeCalculator from "@/components/calculators/AgeCalculator";
 import { Helmet } from "react-helmet";
 
-const AgeCalculatorPage = () => {
+const PercentageCalculatorPage = () => {
   const [dark, setDark] = React.useState(false);
+  
   React.useEffect(() => {
     if (dark) {
-      document.body.classList.add("dark");
+      document.body.classList.add("light");
     } else {
-      document.body.classList.remove("dark");
+      document.body.classList.remove("light");
     }
   }, [dark]);
   
@@ -58,18 +60,21 @@ const AgeCalculatorPage = () => {
         <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>
         <script type="application/ld+json">{JSON.stringify(webAppSchema)}</script>
       </Helmet>
-      <div className="min-h-screen flex flex-col bg-[#FFFDF6] dark:bg-[#181d16] transition-all duration-300">
+      <div className="min-h-screen flex flex-col bg-background">
         <Header />
         <main className="flex flex-row flex-1 w-full max-w-[1600px] mx-auto">
           <Sidebar />
-          <section className="flex-1 px-4 md:px-12 py-8">
-            <h1 className="text-3xl sm:text-4xl font-display font-bold text-[#00B86B] dark:text-[#F7E572] mb-2 animate-fade-in">
+          <section className="flex-1 responsive-padding">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-gradient mb-4 animate-slide-up">
               Age Calculator
             </h1>
-            <h2 className="font-semibold text-xl text-[#4A5B1C] dark:text-[#FFE066] mb-4 animate-fade-in">
+            <h2 className="text-lg sm:text-xl text-muted-foreground mb-8 animate-fade-in">
               Instantly find your age in years, months, days, hours, minutes, and seconds.
             </h2>
-            <AgeCalculator />
+            
+            <div className="card-neon rounded-2xl p-6 sm:p-8 animate-slide-up">
+              <AgeCalculator />
+            </div>
           </section>
         </main>
         <Footer />
@@ -77,4 +82,5 @@ const AgeCalculatorPage = () => {
     </>
   );
 };
-export default AgeCalculatorPage;
+
+export default PercentageCalculatorPage;

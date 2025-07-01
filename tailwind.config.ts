@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,11 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Custom neon colors
+				'neon-blue': 'hsl(200 100% 60%)',
+				'electric-blue': 'hsl(210 100% 60%)',
+				'cyber-black': 'hsl(220 20% 8%)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +89,40 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-neon': {
+					'0%, 100%': {
+						boxShadow: '0 0 5px hsl(200 100% 60% / 0.5)'
+					},
+					'50%': {
+						boxShadow: '0 0 20px hsl(200 100% 60% / 0.8)'
+					}
+				},
+				'slide-up': {
+					from: {
+						opacity: '0',
+						transform: 'translateY(30px)'
+					},
+					to: {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'fade-in': {
+					from: { opacity: '0' },
+					to: { opacity: '1' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-neon': 'pulse-neon 2s ease-in-out infinite',
+				'slide-up': 'slide-up 0.6s ease-out',
+				'fade-in': 'fade-in 0.8s ease-out'
+			},
+			backgroundImage: {
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'cyber-gradient': 'linear-gradient(135deg, hsl(220 20% 8%), hsl(220 25% 5%))',
 			}
 		}
 	},
