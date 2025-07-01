@@ -2,6 +2,7 @@
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
+import LazyCalculatorWrapper from "@/components/calculators/LazyCalculatorWrapper";
 import MutualFundCalculator from "@/components/calculators/MutualFundCalculator";
 
 const MutualFundCalculatorPage = () => (
@@ -13,7 +14,9 @@ const MutualFundCalculatorPage = () => (
         <h1 className="text-3xl font-display font-bold text-[#00B86B] mb-7 flex items-center gap-2">
           <span>Mutual Fund Calculator</span>
         </h1>
-        <MutualFundCalculator />
+        <LazyCalculatorWrapper>
+          <MutualFundCalculator />
+        </LazyCalculatorWrapper>
       </section>
     </main>
     <Footer />

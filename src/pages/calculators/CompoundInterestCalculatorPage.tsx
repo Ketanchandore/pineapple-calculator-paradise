@@ -2,6 +2,7 @@
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
+import LazyCalculatorWrapper from "@/components/calculators/LazyCalculatorWrapper";
 import CompoundInterestCalculator from "@/components/calculators/CompoundInterestCalculator";
 
 const CompoundInterestCalculatorPage = () => (
@@ -13,7 +14,9 @@ const CompoundInterestCalculatorPage = () => (
         <h1 className="text-3xl font-display font-bold text-[#00B86B] mb-7">
           Compound Interest Calculator
         </h1>
-        <CompoundInterestCalculator />
+        <LazyCalculatorWrapper>
+          <CompoundInterestCalculator />
+        </LazyCalculatorWrapper>
       </section>
     </main>
     <Footer />

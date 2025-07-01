@@ -2,6 +2,7 @@
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
+import LazyCalculatorWrapper from "@/components/calculators/LazyCalculatorWrapper";
 import HomeLoanEmiCalculator from "@/components/calculators/HomeLoanEmiCalculator";
 
 const HomeLoanEmiCalculatorPage = () => (
@@ -13,7 +14,9 @@ const HomeLoanEmiCalculatorPage = () => (
         <h1 className="text-3xl font-display font-bold text-[#00B86B] mb-7">
           Home Loan EMI Calculator
         </h1>
-        <HomeLoanEmiCalculator />
+        <LazyCalculatorWrapper>
+          <HomeLoanEmiCalculator />
+        </LazyCalculatorWrapper>
       </section>
     </main>
     <Footer />

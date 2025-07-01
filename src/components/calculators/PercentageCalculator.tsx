@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -30,7 +30,8 @@ const operationOptions: { label: string; value: Operation; description: string }
   },
 ];
 
-function calculate(op: Operation, a: number, b: number) {
+// Memoized calculation function
+const calculate = (op: Operation, a: number, b: number) => {
   switch (op) {
     case "percentOf":
       return (a / 100) * b;
@@ -43,7 +44,7 @@ function calculate(op: Operation, a: number, b: number) {
     default:
       return NaN;
   }
-}
+};
 
 const PercentageCalculator: React.FC = () => {
   const [operation, setOperation] = useState<Operation>("percentOf");
@@ -51,32 +52,34 @@ const PercentageCalculator: React.FC = () => {
   const [inputB, setInputB] = useState<string>("");
   const [result, setResult] = useState<null | number>(null);
   const [loading, setLoading] = useState(false);
-
-  // For sharing/copy help
   const [display, setDisplay] = useState<string>("");
 
-  function validateInputs() {
+  // Memoized validation
+  const isValid = useMemo(() => {
     if (inputA.trim() === "" || inputB.trim() === "") return false;
     if (isNaN(Number(inputA)) || isNaN(Number(inputB))) return false;
     if (operation !== "isWhatPercentOf" && Number(inputB) === 0) return false;
     return true;
-  }
+  }, [inputA, inputB, operation]);
 
-  const handleCalculate = (e: React.FormEvent) => {
+  const handleCalculate = useCallback((e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateInputs()) {
+    if (!isValid) {
       toast({ title: "Enter valid numbers to calculate." });
       setResult(null);
       setDisplay("");
       return;
     }
+    
     setLoading(true);
-    setTimeout(() => {
+    // Use requestAnimationFrame for smooth UI updates
+    requestAnimationFrame(() => {
       const a = parseFloat(inputA);
       const b = parseFloat(inputB);
       const r = calculate(operation, a, b);
       setResult(r);
-      // Explanation for result string
+      
+      // Generate display string
       let exp = "";
       if (operation === "percentOf") {
         exp = `${a}% of ${b} = ${r}`;
@@ -91,21 +94,21 @@ const PercentageCalculator: React.FC = () => {
       }
       setDisplay(exp);
       setLoading(false);
-    }, 300);
-  };
+    });
+  }, [inputA, inputB, operation, isValid]);
 
-  const handleReset = () => {
+  const handleReset = useCallback(() => {
     setInputA("");
     setInputB("");
     setResult(null);
     setDisplay("");
-  };
+  }, []);
 
-  const handlePrint = () => {
+  const handlePrint = useCallback(() => {
     window.print();
-  };
+  }, []);
 
-  const handleShare = () => {
+  const handleShare = useCallback(() => {
     if (navigator.share && display) {
       navigator.share({
         title: "Percentage Calculator Result",
@@ -117,19 +120,25 @@ const PercentageCalculator: React.FC = () => {
     } else {
       toast({ title: "Nothing to share yet." });
     }
-  };
+  }, [display]);
 
-  const handleCopy = () => {
+  const handleCopy = useCallback(() => {
     if (display) {
       navigator.clipboard.writeText(display);
       toast({ title: "Copied to clipboard!", description: display });
     } else {
       toast({ title: "Nothing to copy yet." });
     }
-  };
+  }, [display]);
 
-  // Render hint text under input fields
-  const renderInputHints = () => {
+  const setOperationType = useCallback((newOp: Operation) => {
+    setOperation(newOp);
+    setResult(null);
+    setDisplay("");
+  }, []);
+
+  // Memoized input hints
+  const inputHints = useMemo(() => {
     switch (operation) {
       case "percentOf":
         return (
@@ -152,7 +161,11 @@ const PercentageCalculator: React.FC = () => {
       default:
         return null;
     }
-  };
+  }, [operation]);
+
+  const currentOption = useMemo(() => 
+    operationOptions.find(op => op.value === operation), [operation]
+  );
 
   return (
     <Card className="max-w-xl mx-auto border border-[#F7E572] bg-white dark:bg-[#1e1e00] shadow-lg animate-fade-in">
@@ -165,11 +178,7 @@ const PercentageCalculator: React.FC = () => {
                 <Button
                   key={op.value}
                   type="button"
-                  onClick={() => {
-                    setOperation(op.value);
-                    setResult(null);
-                    setDisplay("");
-                  }}
+                  onClick={() => setOperationType(op.value)}
                   variant={operation === op.value ? "default" : "outline"}
                   className="flex-1 gap-2"
                 >
@@ -179,9 +188,10 @@ const PercentageCalculator: React.FC = () => {
               ))}
             </div>
             <div className="pt-1 text-xs text-muted-foreground pl-1 italic">
-              {operationOptions.find((op) => op.value === operation)?.description}
+              {currentOption?.description}
             </div>
           </div>
+          
           <div>
             <Label htmlFor="inputA">
               {operation === "percentOf" && "X (Percent)"}
@@ -196,10 +206,11 @@ const PercentageCalculator: React.FC = () => {
               inputMode="decimal"
               placeholder={operation === "percentChange" ? "Starting value" : "X"}
               value={inputA}
-              onChange={e => setInputA(e.target.value)}
+              onChange={(e) => setInputA(e.target.value)}
               required
             />
           </div>
+          
           <div>
             <Label htmlFor="inputB">
               {operation === "percentOf" && "Y (Number)"}
@@ -214,13 +225,15 @@ const PercentageCalculator: React.FC = () => {
               min="0"
               placeholder={operation === "percentChange" ? "Ending value" : "Y"}
               value={inputB}
-              onChange={e => setInputB(e.target.value)}
+              onChange={(e) => setInputB(e.target.value)}
               required
             />
           </div>
-          <div>{renderInputHints()}</div>
+          
+          <div>{inputHints}</div>
+          
           <div className="flex gap-3 mt-2 flex-wrap">
-            <Button disabled={loading} type="submit" className="gap-1">
+            <Button disabled={loading || !isValid} type="submit" className="gap-1">
               {loading && <Loader2 className="animate-spin w-4 h-4" />}
               Calculate
             </Button>
@@ -242,6 +255,7 @@ const PercentageCalculator: React.FC = () => {
             </Button>
           </div>
         </form>
+        
         <div className="my-6">
           <div className="flex items-start gap-2 mb-2">
             <Info className="w-5 h-5 text-[#00B86B] mt-0.5" />
@@ -250,6 +264,7 @@ const PercentageCalculator: React.FC = () => {
             </span>
           </div>
         </div>
+        
         {typeof result === "number" && !isNaN(result) && (
           <div className="mt-7 bg-[#FAF9E3] dark:bg-[#232300] font-medium text-[#2c461a] dark:text-[#b2ffce] p-5 rounded-xl shadow animate-fade-in text-base relative select-all">
             <span className="block mb-1 text-[#A8982D] font-semibold">Result:</span>
@@ -263,6 +278,7 @@ const PercentageCalculator: React.FC = () => {
             <div className="text-sm pt-2 text-muted-foreground">{display}</div>
           </div>
         )}
+        
         {/* FAQ section */}
         <div className="pt-8">
           <details className="mb-3">

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+
+import React, { useState, useCallback, useMemo } from "react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -22,7 +23,6 @@ import {
 } from "@/components/ui/accordion";
 import { toast } from "@/hooks/use-toast";
 import { Printer, Share2, Info, RefreshCcw } from "lucide-react";
-import { cn } from "@/lib/utils";
 import "@/index.css";
 
 const schema = z.object({
@@ -50,7 +50,8 @@ const schema = z.object({
 
 type FormValues = z.infer<typeof schema>;
 
-function calculateEMI(p: number, r: number, n: number) {
+// Memoized calculation function
+const calculateEMI = (p: number, r: number, n: number) => {
   const monthlyRate = r / (12 * 100);
   const emi =
     (p * monthlyRate * Math.pow(1 + monthlyRate, n)) /
@@ -58,7 +59,15 @@ function calculateEMI(p: number, r: number, n: number) {
 
   if (!isFinite(emi)) return 0;
   return emi;
-}
+};
+
+// Memoized formatter
+const formatNumber = (amount: number, digits: number = 0) => {
+  return amount.toLocaleString(undefined, {
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits,
+  });
+};
 
 export default function HomeLoanCalculator() {
   const [result, setResult] = useState<{
@@ -84,7 +93,14 @@ export default function HomeLoanCalculator() {
   const { register, handleSubmit, formState, reset, watch } = form;
   const { errors } = formState;
 
-  const onSubmit = (data: FormValues) => {
+  // Memoize currency symbols
+  const currencySymbols = useMemo(() => ({
+    INR: "₹",
+    USD: "$",
+    EUR: "€",
+  }), []);
+
+  const onSubmit = useCallback((data: FormValues) => {
     const principal = Number(data.principal);
     const rate = Number(data.rate);
     let n = Number(data.tenure);
@@ -106,13 +122,13 @@ export default function HomeLoanCalculator() {
       title: "Calculation Successful",
       description: "Scroll down for your Home Loan results.",
     });
-  };
+  }, []);
 
-  const onPrint = () => {
+  const onPrint = useCallback(() => {
     window.print();
-  };
+  }, []);
 
-  const onShare = async () => {
+  const onShare = useCallback(async () => {
     try {
       await navigator.share({
         title: "Home Loan Calculator Result",
@@ -125,18 +141,16 @@ export default function HomeLoanCalculator() {
         description: "Your browser does not support Web Share API.",
       });
     }
-  };
+  }, [result]);
 
-  const onClear = () => {
+  const onClear = useCallback(() => {
     reset();
     setResult(null);
-  };
+  }, [reset]);
 
-  const currencySymbols: Record<string, string> = {
-    INR: "₹",
-    USD: "$",
-    EUR: "€",
-  };
+  const toggleDetails = useCallback(() => {
+    setShowDetails(prev => !prev);
+  }, []);
 
   return (
     <div className="max-w-2xl mx-auto my-4 animate-fade-in">
@@ -190,7 +204,7 @@ export default function HomeLoanCalculator() {
                     {...register("tenure")}
                   />
                   <select
-                    className="border rounded-md px-2 py-1 outline-none bg-background"
+                    className="border rounded-md px-2 py-1 outline-none bg-background min-w-[100px]"
                     {...register("tenureType")}
                   >
                     <option value="years">Years</option>
@@ -206,7 +220,7 @@ export default function HomeLoanCalculator() {
                 <Label htmlFor="currency">Currency</Label>
                 <select
                   id="currency"
-                  className="border rounded-md px-2 py-2 w-full outline-none bg-background"
+                  className="border rounded-md px-3 py-2 w-full outline-none bg-background"
                   {...register("currency")}
                 >
                   <option value="INR">INR (₹)</option>
@@ -216,7 +230,7 @@ export default function HomeLoanCalculator() {
               </div>
             </div>
           </CardContent>
-          <CardFooter className="flex flex-col md:flex-row md:justify-between gap-2 items-stretch">
+          <CardFooter className="flex flex-col md:flex-row md:justify-between gap-3 items-stretch">
             <div className="flex-1 flex gap-2">
               <Button type="submit" className="flex-1">
                 Calculate
@@ -226,7 +240,7 @@ export default function HomeLoanCalculator() {
                 Clear
               </Button>
             </div>
-            <div className="flex gap-2 mt-2 md:mt-0">
+            <div className="flex gap-2">
               <Button variant="outline" type="button" onClick={onPrint} title="Print">
                 <Printer className="mr-2 h-4 w-4" />
                 Print
@@ -275,7 +289,7 @@ export default function HomeLoanCalculator() {
             <div className="mt-3 flex gap-2">
               <Button
                 variant="secondary"
-                onClick={() => setShowDetails((v) => !v)}
+                onClick={toggleDetails}
                 size="sm"
               >
                 <Info className="mr-2 h-4 w-4" />
@@ -312,7 +326,7 @@ export default function HomeLoanCalculator() {
           <AccordionItem value="q1">
             <AccordionTrigger>What is a Home Loan EMI?</AccordionTrigger>
             <AccordionContent>
-              EMI stands for “Equated Monthly Installment.” It is the fixed sum you pay every month to repay your home loan, covering both principal and interest.
+              EMI stands for "Equated Monthly Installment." It is the fixed sum you pay every month to repay your home loan, covering both principal and interest.
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="q2">
@@ -334,12 +348,4 @@ export default function HomeLoanCalculator() {
       </div>
     </div>
   );
-}
-
-// Helper to format numbers with commas and fixed decimals
-function formatNumber(amount: number, digits: number = 0) {
-  return amount.toLocaleString(undefined, {
-    minimumFractionDigits: digits,
-    maximumFractionDigits: digits,
-  });
 }
