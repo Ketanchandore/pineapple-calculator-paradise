@@ -1,9 +1,11 @@
 
+import Header from "@/components/Header";
+import Sidebar from "@/components/Sidebar";
+import Footer from "@/components/Footer";
 import React, { useState } from "react";
-import { format, addDays, isValid, differenceInDays, differenceInWeeks } from "date-fns";
+import { format, addDays, isValid, differenceInDays } from "date-fns";
 import { Baby } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
@@ -11,7 +13,7 @@ import {
   PopoverContent,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { Link } from "react-router-dom";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const PREGNANCY_DAYS = 280; // 40 weeks
 
@@ -22,7 +24,7 @@ function getTrimester(weeks: number): string {
   return "Past due";
 }
 
-const PregnancyCalculatorPage = () => {
+const PregnancyCalculator = () => {
   const [lmp, setLmp] = useState<Date | null>(null);
   const [showResult, setShowResult] = useState(false);
 
@@ -42,7 +44,6 @@ const PregnancyCalculatorPage = () => {
     daysPregnantRemainder = daysPregnant % 7;
     daysToGo = PREGNANCY_DAYS - daysPregnant;
     if (daysPregnant < 0) {
-      // LMP is in the future
       trimester = "";
       setShowResult(false);
     } else if (daysPregnant > PREGNANCY_DAYS) {
@@ -67,125 +68,134 @@ const PregnancyCalculatorPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FFFDF6]">
-      <div className="flex-1 flex items-center justify-center">
-        <div className="text-center bg-white rounded-2xl border px-8 py-10 border-[#ffe066] shadow-2xl animate-fade-in max-w-xl w-full">
-          <div className="flex justify-center items-center mb-4">
-            <Baby size={40} className="text-[#00B86B]" />
+    <Card className="max-w-xl mx-auto">
+      <CardHeader>
+        <CardTitle className="text-2xl text-center flex items-center justify-center gap-2">
+          <Baby className="text-[#00B86B]" />
+          Pregnancy Calculator
+        </CardTitle>
+        <p className="text-center text-gray-600">
+          Check your estimated due date, gestational age and trimester.
+        </p>
+      </CardHeader>
+      <CardContent>
+        <form className="space-y-6" onSubmit={handleSubmit}>
+          <div>
+            <label className="block mb-2 font-medium text-gray-700">
+              First day of your last menstrual period (LMP)
+            </label>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  type="button"
+                  variant="outline"
+                  className={cn(
+                    "w-full justify-start text-left font-normal",
+                    !lmp && "text-muted-foreground"
+                  )}
+                >
+                  {lmp ? format(lmp, "PPP") : <span>Pick a date</span>}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent align="start" className="w-auto p-0">
+                <Calendar
+                  mode="single"
+                  selected={lmp ?? undefined}
+                  onSelect={setLmp}
+                  initialFocus
+                  disabled={(date) =>
+                    date > today || date < new Date(today.getFullYear() - 1, today.getMonth(), today.getDate())
+                  }
+                />
+              </PopoverContent>
+            </Popover>
           </div>
-          <h1 className="text-2xl font-bold text-[#00B86B] mb-2">
-            Pregnancy Calculator
-          </h1>
-          <p className="text-[#A8982D] text-base mb-6">
-            Check your estimated due date, gestational age and trimester.
-          </p>
-          <form className="space-y-7" onSubmit={handleSubmit}>
-            <div className="flex flex-col items-center">
-              <label className="block mb-2 font-medium text-[#A8982D]">
-                First day of your last menstrual period (LMP)
-              </label>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className={cn(
-                      "w-[240px] justify-start text-left font-normal",
-                      !lmp && "text-muted-foreground"
-                    )}
-                  >
-                    {lmp ? format(lmp, "PPP") : <span>Pick a date</span>}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent align="start" className="w-auto p-0">
-                  <Calendar
-                    mode="single"
-                    selected={lmp ?? undefined}
-                    onSelect={setLmp}
-                    initialFocus
-                    className={cn("p-3 pointer-events-auto")}
-                    disabled={(date) =>
-                      date > today || date < new Date(today.getFullYear() - 1, today.getMonth(), today.getDate())
-                    }
-                  />
-                </PopoverContent>
-              </Popover>
+          <div className="flex gap-3">
+            <Button
+              variant="default"
+              type="submit"
+              disabled={!lmp || !isValid(lmp)}
+              className="flex-1"
+            >
+              Calculate
+            </Button>
+            <Button
+              variant="outline"
+              type="button"
+              className="flex-1"
+              onClick={handleReset}
+              disabled={!lmp}
+            >
+              Reset
+            </Button>
+          </div>
+        </form>
+        {showResult && lmp && isValid(lmp) && (
+          <div className="mt-6 p-4 bg-green-50 rounded-lg">
+            <div className="flex items-center gap-2 text-green-700 font-bold text-lg mb-3">
+              <Baby size={24} />
+              Pregnant for{" "}
+              <span className="text-orange-600">
+                {weeksPregnant} {weeksPregnant === 1 ? "week" : "weeks"}
+                {daysPregnantRemainder > 0 &&
+                  ` ${daysPregnantRemainder} day${daysPregnantRemainder > 1 ? "s" : ""}`}
+              </span>
             </div>
-            <div className="flex flex-col gap-3">
-              <Button
-                variant="default"
-                type="submit"
-                disabled={!lmp || !isValid(lmp)}
-                className="w-full"
-              >
-                Calculate
-              </Button>
-              <Button
-                variant="outline"
-                type="button"
-                className="w-full"
-                onClick={handleReset}
-                disabled={!lmp}
-              >
-                Reset
-              </Button>
-            </div>
-          </form>
-          {showResult && lmp && isValid(lmp) && (
-            <div className="mt-8 text-left space-y-4 animate-fade-in">
-              <div className="flex items-center gap-2 text-[#00B86B] font-bold text-lg">
-                <Baby size={26} className="inline-block" />
-                Pregnant for{" "}
-                <span className="text-[#FF922B] ml-2">
-                  {weeksPregnant} {weeksPregnant === 1 ? "week" : "weeks"}
-                  {daysPregnantRemainder > 0 &&
-                    ` ${daysPregnantRemainder} day${daysPregnantRemainder > 1 ? "s" : ""}`}
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between">
+                <span className="font-medium">Estimated Due Date:</span>
+                <span className="text-green-700">
+                  {edd ? format(edd, "PPP") : "--"}
                 </span>
               </div>
-              <ul className="space-y-1 text-[#59522B] text-base mt-2">
-                <li>
-                  <span className="font-medium">Estimated Due Date: </span>
-                  <span className="text-[#386641]">
-                    {edd ? format(edd, "PPP") : "--"}
-                  </span>
-                </li>
-                <li>
-                  <span className="font-medium">Current Trimester: </span>
-                  <span>{trimester}</span>
-                </li>
-                <li>
-                  <span className="font-medium">Days to go: </span>
-                  <span>
-                    {daysToGo > 0 ? daysToGo : 0} day{daysToGo !== 1 ? "s" : ""}
-                  </span>
-                </li>
-                <li>
-                  <span className="font-medium">Gestational Age: </span>
-                  <span>
-                    {weeksPregnant} week{weeksPregnant !== 1 ? "s" : ""},{" "}
-                    {daysPregnantRemainder} day
-                    {daysPregnantRemainder !== 1 ? "s" : ""}
-                  </span>
-                </li>
-              </ul>
-              {daysPregnant > PREGNANCY_DAYS && (
-                <div className="mt-2 text-red-500 font-semibold">
-                  This pregnancy is past due.
-                </div>
-              )}
+              <div className="flex justify-between">
+                <span className="font-medium">Current Trimester:</span>
+                <span>{trimester}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium">Days to go:</span>
+                <span>
+                  {daysToGo > 0 ? daysToGo : 0} day{daysToGo !== 1 ? "s" : ""}
+                </span>
+              </div>
+              <div className="flex justify-between">
+                <span className="font-medium">Gestational Age:</span>
+                <span>
+                  {weeksPregnant} week{weeksPregnant !== 1 ? "s" : ""},{" "}
+                  {daysPregnantRemainder} day
+                  {daysPregnantRemainder !== 1 ? "s" : ""}
+                </span>
+              </div>
             </div>
-          )}
-          {!showResult && lmp && !isValid(lmp) && (
-            <div className="mt-5 text-red-600">Please pick a valid date.</div>
-          )}
-          <Button asChild variant="outline" className="mt-8 w-full">
-            <Link to="/">Back to Home</Link>
-          </Button>
-        </div>
-      </div>
-    </div>
+            {daysPregnant > PREGNANCY_DAYS && (
+              <div className="mt-3 text-red-600 font-semibold text-sm">
+                This pregnancy is past due.
+              </div>
+            )}
+          </div>
+        )}
+        {!showResult && lmp && !isValid(lmp) && (
+          <div className="mt-4 text-red-600 text-sm">Please pick a valid date.</div>
+        )}
+      </CardContent>
+    </Card>
   );
 };
 
-export default PregnancyCalculatorPage;
+const PregnancyCalculatorPage = () => (
+  <div className="min-h-screen flex flex-col bg-[#FFFDF6]">
+    <Header />
+    <main className="flex flex-row flex-1 w-full max-w-[1600px] mx-auto">
+      <Sidebar />
+      <section className="flex-1 px-8 py-8">
+        <h1 className="text-3xl font-display font-bold text-[#00B86B] mb-7 flex items-center gap-2">
+          <span>Pregnancy Calculator</span>
+        </h1>
+        <PregnancyCalculator />
+      </section>
+    </main>
+    <Footer />
+  </div>
+);
 
+export default PregnancyCalculatorPage;
