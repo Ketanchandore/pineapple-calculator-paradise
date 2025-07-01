@@ -1,3 +1,4 @@
+
 import Header from "@/components/Header";
 import AppSidebar from "@/components/AppSidebar";
 import Footer from "@/components/Footer";
@@ -17,6 +18,39 @@ const Index = () => {
         <meta property="og:title" content="Pineapple Calculator Hub" />
         <meta property="og:description" content="A modern hub for all your calculation needs: finance, health, math & more!" />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://pineapplehub.com/" />
+        <link rel="canonical" href="https://pineapplehub.com/" />
+        
+        {/* JSON-LD Structured Data for Homepage */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Pineapple Calculator Hub - Home",
+            "description": "Free online calculators for all your calculation needs",
+            "url": "https://pineapplehub.com/",
+            "mainEntity": {
+              "@type": "ItemList",
+              "numberOfItems": 19,
+              "itemListElement": [
+                {
+                  "@type": "SoftwareApplication",
+                  "position": 1,
+                  "name": "EMI Calculator",
+                  "url": "https://pineapplehub.com/calculators/emi",
+                  "description": "Calculate your EMI for loans"
+                },
+                {
+                  "@type": "SoftwareApplication",
+                  "position": 2,
+                  "name": "SIP Calculator", 
+                  "url": "https://pineapplehub.com/calculators/sip",
+                  "description": "Calculate SIP returns for investments"
+                }
+              ]
+            }
+          })}
+        </script>
       </Helmet>
       <SidebarProvider>
         <div className="min-h-screen flex flex-col bg-[#FFFDF6]">
