@@ -1,3 +1,4 @@
+
 import React, { Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -16,6 +17,7 @@ import Contact from "./pages/Contact";
 import CookieBanner from "@/components/CookieBanner";
 import AuthPage from "./pages/Auth";
 import FertilizerCalculatorPage from "./pages/calculators/FertilizerCalculatorPage";
+import ECommerceCalculatorPage from "./pages/calculators/ECommerceCalculatorPage";
 
 // Lazy load remaining calculators
 const SipCalculatorPage = React.lazy(() => import("./pages/calculators/SipCalculatorPage"));
@@ -51,6 +53,7 @@ const App = () => (
           <Route path="/calculators/age" element={<AgeCalculatorPage />} />
           <Route path="/calculators/bmi" element={<BMICalculatorPage />} />
           <Route path="/calculators/emi" element={<EMICalculatorPage />} />
+          <Route path="/calculators/ecommerce" element={<ECommerceCalculatorPage />} />
           <Route path="/calculators/sip" element={<Suspense fallback={Fallback}><SipCalculatorPage /></Suspense>} />
           <Route path="/calculators/swp" element={<Suspense fallback={Fallback}><SwpCalculatorPage /></Suspense>} />
           <Route path="/calculators/percentage" element={<Suspense fallback={Fallback}><PercentageCalculatorPage /></Suspense>} />

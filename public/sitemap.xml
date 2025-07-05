@@ -46,6 +46,11 @@
     <changefreq>monthly</changefreq>
   </url>
   <url>
+    <loc>https://pineapplehub.com/calculators/ecommerce</loc>
+    <priority>0.9</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
     <loc>https://pineapplehub.com/calculators/sip</loc>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
