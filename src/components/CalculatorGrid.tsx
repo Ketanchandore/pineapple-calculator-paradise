@@ -1,7 +1,6 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Home, HeartPulse, Calendar, Percent, TrendingUp, BookOpen, Hash, Umbrella, Smile, Baby, ClipboardList, Activity, Wallet, Spline, Coins, Layers, Scale, Menu, Sun, Moon, Calculator as CalcIcon } from "lucide-react";
+import { Home, HeartPulse, Calendar, Percent, TrendingUp, BookOpen, Hash, Umbrella, Smile, Baby, ClipboardList, Activity, Wallet, Spline, Coins, Layers, Scale, Menu, Sun, Moon, Calculator as CalcIcon, Leaf } from "lucide-react";
 import { cn } from "@/lib/utils"; // Just for className merging if needed
 
 const calculators = [
@@ -24,11 +23,12 @@ const calculators = [
   { name: "Mutual Fund",           path: "/calculators/mutual-fund", category: "Finance", icon: ClipboardList },
   { name: "Pregnancy",             path: "/calculators/pregnancy", category: "Health", icon: Baby },
   { name: "NPS Calculator",        path: "/calculators/nps", category: "Finance", icon: Smile },
+  { name: "Fertilizer Calculator", path: "/calculators/fertilizer", category: "Agriculture", icon: Leaf },
   // ... Add more as needed
 ];
 
 const categories = [
-  "All", "Finance", "Fitness", "Health", "Date & Time", "Math"
+  "All", "Finance", "Fitness", "Health", "Date & Time", "Math", "Agriculture"
 ];
 
 const CalculatorGrid: React.FC = () => {

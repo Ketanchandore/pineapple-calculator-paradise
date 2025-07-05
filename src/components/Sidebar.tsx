@@ -1,6 +1,5 @@
-
 import { NavLink, useLocation } from "react-router-dom";
-import { Calculator, Calendar, HeartPulse, Percent, IndianRupee, Home, TrendingUp, BookOpen, Spline, Layers, Coins, Umbrella, Activity, Scale, Wallet, Hash, Baby, Smile, ClipboardList } from "lucide-react";
+import { Calculator, Calendar, HeartPulse, Percent, IndianRupee, Home, TrendingUp, BookOpen, Spline, Layers, Coins, Umbrella, Activity, Scale, Wallet, Hash, Baby, Smile, ClipboardList, Leaf } from "lucide-react";
 
 const calculators = [
   { name: "Age Calculator",        path: "/calculators/age",      icon: Calendar },
@@ -22,6 +21,7 @@ const calculators = [
   { name: "Mutual Fund",           path: "/calculators/mutual-fund", icon: ClipboardList },
   { name: "Pregnancy",             path: "/calculators/pregnancy", icon: Baby },
   { name: "NPS Calculator",        path: "/calculators/nps",      icon: Smile },
+  { name: "Fertilizer Calculator", path: "/calculators/fertilizer", icon: Leaf },
 ];
 
 const Sidebar = () => {

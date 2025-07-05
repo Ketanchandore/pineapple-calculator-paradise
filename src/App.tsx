@@ -15,6 +15,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import CookieBanner from "@/components/CookieBanner";
 import AuthPage from "./pages/Auth";
+import FertilizerCalculatorPage from "./pages/calculators/FertilizerCalculatorPage";
 
 // Lazy load remaining calculators
 const SipCalculatorPage = React.lazy(() => import("./pages/calculators/SipCalculatorPage"));
@@ -71,6 +72,7 @@ const App = () => (
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/calculators/fertilizer" element={<FertilizerCalculatorPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
