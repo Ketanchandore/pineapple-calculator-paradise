@@ -11,11 +11,17 @@ const ECommerceCalculatorPage = () => (
     <Helmet>
       <title>eCommerce Profit Margin Calculator - ROI, Markup & Break-Even Analysis</title>
       <meta name="description" content="Advanced eCommerce profit margin calculator. Calculate profit margins, markup, ROI, break-even analysis, and get strategic recommendations for your online business." />
-      <meta name="keywords" content="ecommerce calculator, profit margin calculator, markup calculator, ROI calculator, break-even analysis, online business calculator, dropshipping calculator" />
+      <meta name="keywords" content="ecommerce calculator, profit margin calculator, markup calculator, ROI calculator, break-even analysis, online business calculator, dropshipping calculator, shopify profit tool, amazon seller calculator, ebay profit calculator, online margin calculator, product selling tool, gross margin tool, pricing calculator for sellers, online business revenue calculator, ecommerce profit tool, selling profit calculator, business margin analyzer, retail profit calculator, wholesale margin calculator" />
+      
+      {/* Google Site Verification */}
+      <meta name="google-site-verification" content="PASTE_YOUR_VERIFICATION_CODE_HERE" />
+      
       <meta property="og:title" content="eCommerce Profit Margin Calculator - Complete Business Analysis" />
       <meta property="og:description" content="Calculate profit margins, markup, ROI and get strategic recommendations for your eCommerce business" />
       <meta property="og:type" content="website" />
       <meta property="og:url" content="https://pineapplehub.com/calculators/ecommerce" />
+      <meta property="og:image" content="https://pineapplehub.com/og-preview.png" />
+      
       <link rel="canonical" href="https://pineapplehub.com/calculators/ecommerce" />
       
       <script type="application/ld+json">
@@ -40,7 +46,15 @@ const ECommerceCalculatorPage = () => (
             "Multi-currency Support",
             "Export Results",
             "Share Functionality"
-          ]
+          ],
+          "author": {
+            "@type": "Organization",
+            "name": "Pineapple Calculator Hub"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Pineapple Calculator Hub"
+          }
         })}
       </script>
     </Helmet>
@@ -83,6 +97,19 @@ const ECommerceCalculatorPage = () => (
         <LazyCalculatorWrapper>
           <ECommerceCalculator />
         </LazyCalculatorWrapper>
+
+        {/* Hidden SEO Keywords for Search Engines */}
+        <div style={{display: 'none'}} aria-hidden="true">
+          ecommerce profit calculator, online margin calculator, product selling tool, dropshipping calculator, 
+          gross margin tool, pricing calculator for sellers, Shopify profit tool, online business revenue calculator,
+          Amazon seller calculator, eBay profit calculator, Etsy margin calculator, WooCommerce profit tool,
+          BigCommerce calculator, Magento profit analyzer, selling profit calculator, business margin analyzer,
+          retail profit calculator, wholesale margin calculator, product pricing tool, cost analysis calculator,
+          revenue optimization tool, profit optimization calculator, markup percentage calculator, 
+          break even analysis tool, ROI calculator for business, return on investment calculator,
+          ecommerce analytics tool, online store profitability, digital marketing ROI, 
+          conversion rate profit calculator, customer acquisition cost calculator
+        </div>
 
         {/* Additional Information */}
         <div className="mt-12 space-y-8">
