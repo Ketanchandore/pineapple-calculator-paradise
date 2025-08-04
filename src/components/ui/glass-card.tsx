@@ -1,9 +1,9 @@
 
 import React from 'react';
-import { Card, CardProps } from '@/components/ui/card';
+import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 
-interface GlassCardProps extends CardProps {
+interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
   intensity?: 'light' | 'medium' | 'strong';
   hover?: boolean;
   glow?: boolean;
