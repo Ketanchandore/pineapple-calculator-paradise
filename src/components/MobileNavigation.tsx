@@ -44,7 +44,7 @@ const MobileNavigation = () => {
       {/* Side Menu */}
       <div
         className={cn(
-          "fixed top-0 right-0 h-full w-80 bg-background border-l border-border z-50 transform transition-transform duration-300 ease-in-out md:hidden",
+          "fixed top-0 right-0 h-full w-80 bg-background border-l border-border z-50 transform transition-transform duration-300 ease-in-out md:hidden shadow-xl",
           isOpen ? "translate-x-0" : "translate-x-full"
         )}
       >
@@ -69,7 +69,7 @@ const MobileNavigation = () => {
                 key={item.href}
                 to={item.href}
                 onClick={closeMenu}
-                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors"
+                className="flex items-center gap-3 p-3 rounded-lg hover:bg-muted transition-colors text-foreground hover:text-primary"
               >
                 <item.icon className="h-5 w-5 text-muted-foreground" />
                 <span className="font-medium">{item.label}</span>
@@ -78,7 +78,7 @@ const MobileNavigation = () => {
           </nav>
 
           {/* Sign In Button */}
-          <div className="pt-4 border-t">
+          <div className="pt-4 border-t border-border">
             <Link to="/auth" onClick={closeMenu}>
               <Button className="w-full gap-2">
                 <LogIn className="h-4 w-4" />

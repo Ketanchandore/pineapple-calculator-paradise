@@ -3,7 +3,10 @@ import React, { useState, useEffect } from "react";
 import { toast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Printer, Share2, RefreshCcw } from "lucide-react";
+import ActionButtons from "@/components/ui/action-buttons";
 import { cn } from "@/lib/utils";
 
 type AgeResult = {
@@ -76,7 +79,6 @@ const AgeCalculator = () => {
   const [touched, setTouched] = useState(false);
   const [result, setResult] = useState<AgeResult | null>(null);
   const [error, setError] = useState<string>("");
-  const [anim, setAnim] = useState(false);
 
   useEffect(() => {
     if (!dob) {
@@ -93,11 +95,13 @@ const AgeCalculator = () => {
     setResult(computeAge(dob));
   }, [dob]);
 
-  // For highlight animation on calculation
-  const handleCalcAnim = () => {
-    setAnim(true);
-    setTimeout(() => setAnim(false), 800);
-  };
+  // Auto-focus first input
+  useEffect(() => {
+    const firstInput = document.getElementById('dob');
+    if (firstInput) {
+      firstInput.focus();
+    }
+  }, []);
 
   const handleReset = () => {
     setDob("");
@@ -106,130 +110,176 @@ const AgeCalculator = () => {
     setResult(null);
   };
 
-  const handlePrint = () => {
-    window.print();
-  };
-
-  const handleShare = () => {
-    const url = window.location.href;
-    navigator.clipboard.writeText(url);
-    toast({ title: "Link copied!", description: "Share this calculator with friends." });
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && dob && !error) {
+      // Calculation happens automatically via useEffect
+    }
   };
 
   return (
-    <div className="bg-white dark:bg-[#242d1e] rounded-2xl shadow-2xl border border-[#ffe066] p-6 max-w-xl mx-auto animate-fade-in">
-      <h2 className="text-xl font-semibold mb-3 text-[#00B86B] dark:text-[#FFE066]">Online Age Calculator</h2>
-      <form
-        className="flex flex-col gap-5"
-        onSubmit={e => { e.preventDefault(); handleCalcAnim(); }}
-        autoComplete="off"
-      >
-        <Label htmlFor="dob" className="text-base mb-1">Enter your Date of Birth:</Label>
-        <Input
-          id="dob"
-          type="date"
-          value={dob}
-          onChange={e => { setDob(e.target.value); setTouched(true); }}
-          onBlur={() => setTouched(true)}
-          required
-          placeholder="YYYY-MM-DD"
-          aria-invalid={!!error}
-          className={cn("border rounded-2xl px-4 py-3 text-lg bg-[#FFF9EC] dark:bg-[#222610] border-[#dde28f] focus:outline-none focus:ring-2 focus:ring-[#00B86B] w-full transition-all", error && "border-red-400")}
-        />
-        {error && <span className="text-sm text-red-500 -mt-3">{error}</span>}
-        <div className="flex gap-3 mt-1">
-          <button
-            type="submit"
-            className="btn-pineapple rounded-2xl shadow font-medium px-6 py-2 transition-all hover-scale"
-            onClick={handleCalcAnim}
-            disabled={!dob || !!error}
-          >Calculate</button>
-          <button
-            type="button"
-            onClick={handleReset}
-            className="bg-[#FFD600]/70 hover:bg-[#F8E474] dark:bg-[#3B420F] dark:text-white rounded-2xl px-6 py-2 font-medium shadow transition-all hover-scale flex items-center gap-2 ml-2"
-          >
-            <RefreshCcw className="h-5" /> Reset
-          </button>
-          <button
-            type="button"
-            onClick={handlePrint}
-            className="bg-[#fff9e2] hover:bg-[#fff6be] text-[#8e9800] rounded-2xl px-4 py-2 shadow flex items-center gap-2 hover-scale focus:outline-none dark:bg-[#222610] ml-2"
-          >
-            <Printer className="h-5" /> Print
-          </button>
-          <button
-            type="button"
-            onClick={handleShare}
-            className="bg-[#d9fffa]/80 rounded-2xl px-4 py-2 text-[#019b70] ml-2 shadow hover:bg-[#acffe2] flex items-center gap-2 hover-scale transition-all"
-          >
-            <Share2 className="h-5" /> Share
-          </button>
-        </div>
-      </form>
-
-      <div className="h-3" />
-      {/* Age Results */}
-      {result && !error && (
-        <div
-          className={cn("mt-6 text-lg font-semibold text-[#3B4D17] dark:text-[#F9FFCA] bg-[#FAF9E3] dark:bg-[#222610] p-5 rounded-2xl shadow animate-fade-in transition-all", anim && "ring-4 ring-[#00B86B]/40")}
-          tabIndex={0}
-        >
-          <div className="mb-3 flex items-center gap-2">
-            <span className="text-lg font-bold text-[#00B86B] dark:text-[#FFE066]">Your Age:</span>
-          </div>
-          <ul className="text-base space-y-1">
-            <li><b>Years:</b> {result.years}</li>
-            <li><b>Months:</b> {result.months}</li>
-            <li><b>Days:</b> {result.days}</li>
-            <li><b>Weeks (rounded):</b> {result.weeks}</li>
-            <li><b>Total Days:</b> {result.totalDays.toLocaleString()}</li>
-            <li><b>Total Hours:</b> {result.totalHours.toLocaleString()}</li>
-            <li><b>Total Minutes:</b> {result.totalMinutes.toLocaleString()}</li>
-            <li><b>Total Seconds:</b> {result.totalSeconds.toLocaleString()}</li>
-          </ul>
-          <div className="text-sm mt-3 text-[#019b70] dark:text-[#eaf28a]">
-            <b>Tip:</b> These values are precise up to this very second!
-          </div>
-        </div>
-      )}
-      {!result && touched && !error && (
-        <div className="mt-6 bg-[#fffcdb] dark:bg-[#39331d] rounded-2xl p-5 text-[#A8982D] text-base shadow-md">
-          Enter your date of birth to calculate your age in detail.
-        </div>
-      )}
-
-      {/* How it Works */}
-      <section className="mt-8 mb-4">
-        <h3 className="font-semibold text-lg mb-1 text-[#A8982D] dark:text-[#FFE066]">How does the Age Calculator work?</h3>
-        <p className="text-base text-[#4A5B1C] dark:text-[#f0f097] mb-1">
-          This calculator finds your exact age (up to the current second) from your date of birth. It shows years, months, days, weeks, total days, hours, minutes, and seconds using precise calendar math. All calculations are automatic and update instantly as you type.
+    <Card className="max-w-2xl mx-auto animate-fade-in">
+      <CardHeader>
+        <CardTitle className="text-2xl text-center text-primary">Age Calculator</CardTitle>
+        <p className="text-center text-muted-foreground">
+          Calculate your exact age in years, months, days, and more
         </p>
-        <p className="text-sm text-[#84865C]">Press <b>Calculate</b> for highlight, use <b>Reset</b>, <b>Print</b> or <b>Share</b> for more options!</p>
-      </section>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <div className="space-y-4">
+          <div>
+            <Label htmlFor="dob" className="text-base font-medium">
+              Enter your Date of Birth:
+            </Label>
+            <Input
+              id="dob"
+              type="date"
+              value={dob}
+              onChange={(e) => { 
+                setDob(e.target.value); 
+                setTouched(true); 
+              }}
+              onKeyPress={handleKeyPress}
+              className={cn(
+                "mt-2 text-lg",
+                error ? "border-destructive ring-destructive" : ""
+              )}
+              required
+              aria-invalid={!!error}
+              aria-describedby={error ? "dob-error" : undefined}
+            />
+            {error && (
+              <p id="dob-error" className="text-destructive text-sm mt-1">
+                {error}
+              </p>
+            )}
+          </div>
 
-      {/* Formula/Explanation */}
-      <section className="mb-4">
-        <h3 className="font-semibold text-lg mb-1 text-[#A8982D] dark:text-[#FFE066]">Age Calculation Formula</h3>
-        <div className="text-base text-[#4A5B1C] dark:text-[#f0f097]">
-          <b>Age</b> = Current Date − Date of Birth. <br />
-          Calendar-aware calculation is used to break down into years, months, days.
+          <div className="flex gap-3">
+            <Button
+              onClick={handleReset}
+              variant="outline"
+              className="flex-1 gap-2"
+            >
+              <RefreshCcw className="h-4 w-4" />
+              Reset
+            </Button>
+          </div>
         </div>
-      </section>
 
-      {/* FAQ */}
-      <section>
-        <h3 className="font-semibold text-lg mb-2 text-[#A8982D] dark:text-[#FFE066]">Frequently Asked Questions</h3>
-        <ul className="text-base text-[#5C6C32] dark:text-[#ecfccb] space-y-1">
-          {FAQ_DATA.map(({ q, a }) => (
-            <li key={q}><b>Q:</b> {q} <br /><b>A:</b> {a}</li>
-          ))}
-        </ul>
-      </section>
-      <div className="mt-6 text-xs text-[#A96907] dark:text-[#ffe066]">
-        <b>Disclaimer:</b> For general use only – not medical advice.
-      </div>
-    </div>
+        {/* Age Results */}
+        {result && !error && (
+          <div 
+            id="calculator-result"
+            className="result-display animate-fade-in"
+          >
+            <h3 className="text-xl font-semibold mb-4 text-primary">
+              Your Age:
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+              <div className="text-center p-3 bg-card rounded-lg border">
+                <div className="text-2xl font-bold text-primary">{result.years}</div>
+                <div className="text-sm text-muted-foreground">Years</div>
+              </div>
+              <div className="text-center p-3 bg-card rounded-lg border">
+                <div className="text-2xl font-bold text-primary">{result.months}</div>
+                <div className="text-sm text-muted-foreground">Months</div>
+              </div>
+              <div className="text-center p-3 bg-card rounded-lg border">
+                <div className="text-2xl font-bold text-primary">{result.days}</div>
+                <div className="text-sm text-muted-foreground">Days</div>
+              </div>
+              <div className="text-center p-3 bg-card rounded-lg border">
+                <div className="text-2xl font-bold text-primary">{result.weeks}</div>
+                <div className="text-sm text-muted-foreground">Weeks</div>
+              </div>
+            </div>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+              <div className="text-center p-3 bg-secondary/50 rounded-lg">
+                <div className="text-lg font-semibold">{result.totalDays.toLocaleString()}</div>
+                <div className="text-xs text-muted-foreground">Total Days</div>
+              </div>
+              <div className="text-center p-3 bg-secondary/50 rounded-lg">
+                <div className="text-lg font-semibold">{result.totalHours.toLocaleString()}</div>
+                <div className="text-xs text-muted-foreground">Total Hours</div>
+              </div>
+              <div className="text-center p-3 bg-secondary/50 rounded-lg">
+                <div className="text-lg font-semibold">{result.totalMinutes.toLocaleString()}</div>
+                <div className="text-xs text-muted-foreground">Total Minutes</div>
+              </div>
+              <div className="text-center p-3 bg-secondary/50 rounded-lg">
+                <div className="text-lg font-semibold">{result.totalSeconds.toLocaleString()}</div>
+                <div className="text-xs text-muted-foreground">Total Seconds</div>
+              </div>
+            </div>
+
+            <p className="text-sm text-muted-foreground text-center">
+              These values are precise up to this very second!
+            </p>
+
+            <ActionButtons
+              result={result}
+              calculatorName="Age Calculator"
+              resultElementId="calculator-result"
+            />
+          </div>
+        )}
+
+        {!result && touched && !error && (
+          <div className="text-center p-6 bg-muted/50 rounded-lg">
+            <p className="text-muted-foreground">
+              Enter your date of birth to calculate your age in detail.
+            </p>
+          </div>
+        )}
+
+        {/* How it Works */}
+        <section className="mt-8 space-y-4">
+          <h3 className="text-lg font-semibold text-primary">
+            How does the Age Calculator work?
+          </h3>
+          <p className="text-muted-foreground">
+            This calculator finds your exact age (up to the current second) from your date of birth. 
+            It shows years, months, days, weeks, total days, hours, minutes, and seconds using precise 
+            calendar math. All calculations are automatic and update instantly as you type.
+          </p>
+        </section>
+
+        {/* Formula */}
+        <section className="space-y-4">
+          <h3 className="text-lg font-semibold text-primary">
+            Age Calculation Formula
+          </h3>
+          <div className="bg-muted/50 p-4 rounded-lg">
+            <p className="font-mono text-sm">
+              <strong>Age</strong> = Current Date − Date of Birth
+            </p>
+            <p className="text-sm text-muted-foreground mt-2">
+              Calendar-aware calculation is used to break down into years, months, and days.
+            </p>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="space-y-4">
+          <h3 className="text-lg font-semibold text-primary">
+            Frequently Asked Questions
+          </h3>
+          <div className="space-y-3">
+            {FAQ_DATA.map(({ q, a }, index) => (
+              <div key={index} className="border-l-4 border-primary pl-4">
+                <p className="font-medium text-foreground">Q: {q}</p>
+                <p className="text-muted-foreground text-sm mt-1">A: {a}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <div className="text-xs text-muted-foreground text-center mt-6 p-4 bg-muted/30 rounded-lg">
+          <strong>Disclaimer:</strong> For general use only – not medical advice.
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 
