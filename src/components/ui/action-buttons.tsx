@@ -9,7 +9,8 @@ import {
   Copy, 
   MessageCircle, 
   Mail, 
-  CheckCircle 
+  CheckCircle,
+  Facebook
 } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
 import html2canvas from 'html2canvas';
@@ -111,15 +112,24 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
     printWindow.document.write(`
       <html>
         <head>
-          <title>${calculatorName} Result</title>
+          <title>${calculatorName} Result - PineappleHub</title>
           <style>
-            body { font-family: Arial, sans-serif; margin: 20px; }
+            body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
             .result-container { max-width: 600px; margin: 0 auto; }
+            .header { text-align: center; margin-bottom: 30px; }
+            .footer { text-align: center; margin-top: 30px; color: #666; }
           </style>
         </head>
         <body>
+          <div class="header">
+            <h1>PineappleHub - ${calculatorName}</h1>
+            <p>Free Online Calculator Results</p>
+          </div>
           <div class="result-container">
             ${element.outerHTML}
+          </div>
+          <div class="footer">
+            <p>Generated at ${new Date().toLocaleDateString()} | Visit: PineappleHub.com</p>
           </div>
         </body>
       </html>
@@ -130,25 +140,43 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
   };
 
   const shareViaWhatsApp = () => {
-    const text = `Check out my ${calculatorName} result from PineappleHub!`;
-    const url = encodeURIComponent(window.location.href);
-    window.open(`https://wa.me/?text=${encodeURIComponent(text)} ${url}`, '_blank');
+    const resultText = typeof result === 'object' 
+      ? Object.entries(result).map(([key, value]) => `${key}: ${value}`).join('\n')
+      : result.toString();
+    
+    const text = `🧮 Check out my ${calculatorName} result from PineappleHub!\n\n${resultText}\n\nCalculate yours: ${window.location.href}`;
+    const encodedText = encodeURIComponent(text);
+    window.open(`https://wa.me/?text=${encodedText}`, '_blank');
   };
 
   const shareViaTelegram = () => {
-    const text = `Check out my ${calculatorName} result from PineappleHub!`;
+    const resultText = typeof result === 'object' 
+      ? Object.entries(result).map(([key, value]) => `${key}: ${value}`).join('\n')
+      : result.toString();
+    
+    const text = `🧮 Check out my ${calculatorName} result from PineappleHub!\n\n${resultText}\n\nCalculate yours: ${window.location.href}`;
     const url = encodeURIComponent(window.location.href);
     window.open(`https://t.me/share/url?url=${url}&text=${encodeURIComponent(text)}`, '_blank');
   };
 
   const shareViaEmail = () => {
+    const resultText = typeof result === 'object' 
+      ? Object.entries(result).map(([key, value]) => `${key}: ${value}`).join('\n')
+      : result.toString();
+    
     const subject = encodeURIComponent(`${calculatorName} Result from PineappleHub`);
-    const body = encodeURIComponent(`I calculated my ${calculatorName} result using PineappleHub. Check it out: ${window.location.href}`);
+    const body = encodeURIComponent(`Hi,\n\nI calculated my ${calculatorName} result using PineappleHub's free calculator.\n\nMy Result:\n${resultText}\n\nTry it yourself: ${window.location.href}\n\nBest regards`);
     window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
   };
 
+  const shareViaFacebook = () => {
+    const url = encodeURIComponent(window.location.href);
+    const quote = encodeURIComponent(`Just used PineappleHub's ${calculatorName} - awesome free calculator tool!`);
+    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${quote}`, '_blank');
+  };
+
   return (
-    <div className="flex flex-wrap gap-3 justify-center mt-6 animate-fade-in">
+    <div className="flex flex-wrap gap-3 justify-center mt-6 animate-fade-in" id="action-buttons">
       <ModernButton
         onClick={copyToClipboard}
         variant="outline"
@@ -187,7 +215,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
         onClick={shareViaWhatsApp}
         variant="outline"
         size="sm"
-        className="gap-2"
+        className="gap-2 text-green-600 hover:text-green-700"
         glassEffect
       >
         <MessageCircle className="h-4 w-4" />
@@ -198,11 +226,22 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
         onClick={shareViaTelegram}
         variant="outline"
         size="sm"
-        className="gap-2"
+        className="gap-2 text-blue-500 hover:text-blue-600"
         glassEffect
       >
         <Share2 className="h-4 w-4" />
         Telegram
+      </ModernButton>
+
+      <ModernButton
+        onClick={shareViaFacebook}
+        variant="outline"
+        size="sm"
+        className="gap-2 text-blue-600 hover:text-blue-700"
+        glassEffect
+      >
+        <Facebook className="h-4 w-4" />
+        Facebook
       </ModernButton>
 
       <ModernButton
