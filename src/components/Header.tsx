@@ -1,22 +1,29 @@
 
 import React from "react";
-import { Calculator } from "lucide-react";
+import { Calculator, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 import { ThemeToggle } from "./ThemeToggle";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import MobileNavigation from "./MobileNavigation";
 
 const Header = () => (
   <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur-md border-b border-border shadow-sm">
     <div className="container mx-auto px-6 py-4 flex items-center justify-between">
-      <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-        <div className="bg-primary p-2 rounded-xl shadow-lg">
-          <Calculator className="h-6 w-6 text-primary-foreground" />
-        </div>
-        <div>
-          <h1 className="text-xl font-bold text-primary">PineappleHub</h1>
-          <p className="text-xs text-muted-foreground">Free Online Calculators</p>
-        </div>
-      </Link>
+      <div className="flex items-center gap-4">
+        {/* Sidebar Toggle */}
+        <SidebarTrigger className="md:flex" />
+        
+        {/* Home Button for non-home pages */}
+        <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+          <div className="bg-primary p-2 rounded-xl shadow-lg">
+            <Calculator className="h-6 w-6 text-primary-foreground" />
+          </div>
+          <div>
+            <h1 className="text-xl font-bold text-primary">PineappleHub</h1>
+            <p className="text-xs text-muted-foreground">Free Online Calculators</p>
+          </div>
+        </Link>
+      </div>
       
       <div className="flex items-center gap-4">
         {/* Desktop Navigation */}
