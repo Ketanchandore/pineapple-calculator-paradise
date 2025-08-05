@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import SEO from "@/components/SEO";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import StickyFooter from "@/components/StickyFooter";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -66,6 +67,7 @@ function AppContent() {
   return (
     <>
       <SEO />
+      <GoogleAnalytics />
       <CookieBanner />
       <Routes>
         <Route path="/" element={<Index />} />

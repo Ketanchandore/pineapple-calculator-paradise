@@ -1,0 +1,72 @@
+
+{
+  "name": "PineappleHub - Free Online Calculators",
+  "short_name": "PineappleHub",
+  "description": "Free online calculators for age, BMI, EMI, GST, income tax, SIP, mutual funds & more. Fast, accurate & mobile-friendly calculation tools for daily use.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon",
+      "purpose": "favicon"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "apple touch icon"
+    }
+  ],
+  "categories": ["utilities", "finance", "productivity", "education"],
+  "screenshots": [
+    {
+      "src": "/og-image.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg",
+      "label": "PineappleHub Calculator Homepage"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Age Calculator",
+      "short_name": "Age Calc",
+      "description": "Calculate your exact age",
+      "url": "/calculators/age",
+      "icons": [{ "src": "/favicon-32x32.png", "sizes": "32x32" }]
+    },
+    {
+      "name": "BMI Calculator",
+      "short_name": "BMI Calc",
+      "description": "Calculate your Body Mass Index",
+      "url": "/calculators/bmi",
+      "icons": [{ "src": "/favicon-32x32.png", "sizes": "32x32" }]
+    },
+    {
+      "name": "EMI Calculator",
+      "short_name": "EMI Calc", 
+      "description": "Calculate loan EMI",
+      "url": "/calculators/emi",
+      "icons": [{ "src": "/favicon-32x32.png", "sizes": "32x32" }]
+    }
+  ],
+  "prefer_related_applications": false
+}
