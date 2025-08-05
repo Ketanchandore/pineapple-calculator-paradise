@@ -54,7 +54,7 @@ const queryClient = new QueryClient({
 const Fallback = (
   <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-background to-muted">
     <div className="text-center space-y-4">
-      <div className="animate-bounce-in text-6xl">🍍</div>
+      <div className="animate-bounce text-6xl">🍍</div>
       <div className="text-lg font-medium text-primary animate-pulse">Loading calculator...</div>
       <div className="loading-dots text-sm text-muted-foreground"></div>
     </div>
@@ -66,7 +66,7 @@ function AppContent() {
 
   return (
     <SidebarProvider defaultOpen={false}>
-      <div className="min-h-screen flex w-full">
+      <div className="min-h-screen w-full bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800">
         <SEO />
         <GoogleAnalytics />
         <CookieBanner />

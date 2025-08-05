@@ -30,30 +30,32 @@ const calculators = [
 
 export default function AppSidebar() {
   return (
-    <Sidebar className="min-w-[60px] max-w-[256px] bg-white border-r border-border shadow-lg z-10 px-2 py-4">
+    <Sidebar className="border-r-2 border-slate-200 dark:border-slate-700 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl shadow-2xl">
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>
-            <div className="text-lg font-bold text-[#00B86B] font-display tracking-wide">
+            <div className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-display tracking-wide">
               Calculators
             </div>
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="space-y-1">
               {calculators.map(calc => (
                 <SidebarMenuItem key={calc.path}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild className="group">
                     <NavLink 
                       to={calc.path} 
                       className={({ isActive }) =>
-                        `flex items-center gap-3 px-3 py-2 rounded-lg font-medium text-base hover:bg-[#ffe06633] hover:text-[#00B86B] transition-all ${
-                          isActive ? "bg-[#ffe06633] text-[#00B86B] font-semibold" : ""
+                        `flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-base transition-all duration-200 ${
+                          isActive 
+                            ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg transform scale-[1.02]" 
+                            : "hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 dark:hover:from-slate-800 dark:hover:to-slate-700 hover:text-blue-600 dark:hover:text-blue-400 hover:scale-[1.01]"
                         }`
                       }
                       end
                     >
-                      <calc.icon className="w-5 h-5" />
-                      <span className="ml-1">{calc.name}</span>
+                      <calc.icon className="w-5 h-5 group-hover:scale-110 transition-transform duration-200" />
+                      <span className="ml-1 font-medium">{calc.name}</span>
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
