@@ -5,12 +5,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "@/components/ThemeProvider";
-import { SidebarProvider } from "@/components/ui/sidebar";
-import { useSmoothScroll } from "@/hooks/useSmoothScroll";
-import SEO from "@/components/SEO";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
-import CookieBanner from "@/components/CookieBanner";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import AgeCalculatorPage from "./pages/calculators/AgeCalculatorPage";
@@ -20,6 +14,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import CookieBanner from "@/components/CookieBanner";
 import AuthPage from "./pages/Auth";
 import FertilizerCalculatorPage from "./pages/calculators/FertilizerCalculatorPage";
 import ECommerceCalculatorPage from "./pages/calculators/ECommerceCalculatorPage";
@@ -42,87 +37,49 @@ const MutualFundCalculatorPage = React.lazy(() => import("./pages/calculators/Mu
 const PregnancyCalculatorPage = React.lazy(() => import("./pages/calculators/PregnancyCalculatorPage"));
 const NpsCalculatorPage = React.lazy(() => import("./pages/calculators/NpsCalculatorPage"));
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 5 * 60 * 1000, // 5 minutes
-      gcTime: 10 * 60 * 1000, // 10 minutes
-    },
-  },
-});
+const queryClient = new QueryClient();
 
-const Fallback = (
-  <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-background to-muted">
-    <div className="text-center space-y-4">
-      <div className="animate-bounce text-6xl">🍍</div>
-      <div className="text-lg font-medium text-primary animate-pulse">Loading calculator...</div>
-      <div className="loading-dots text-sm text-muted-foreground"></div>
-    </div>
-  </div>
-);
-
-function AppContent() {
-  useSmoothScroll();
-
-  return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-slate-800">
-      <SEO />
-      <GoogleAnalytics />
-      <CookieBanner />
-      <Routes>
-        <Route path="/" element={<Index />} />
-        <Route 
-          path="/calculators/*" 
-          element={
-            <SidebarProvider defaultOpen={false}>
-              <Routes>
-                <Route path="age" element={<AgeCalculatorPage />} />
-                <Route path="bmi" element={<BMICalculatorPage />} />
-                <Route path="emi" element={<EMICalculatorPage />} />
-                <Route path="ecommerce" element={<ECommerceCalculatorPage />} />
-                <Route path="sip" element={<Suspense fallback={Fallback}><SipCalculatorPage /></Suspense>} />
-                <Route path="swp" element={<Suspense fallback={Fallback}><SwpCalculatorPage /></Suspense>} />
-                <Route path="percentage" element={<Suspense fallback={Fallback}><PercentageCalculatorPage /></Suspense>} />
-                <Route path="home-loan" element={<Suspense fallback={Fallback}><HomeLoanCalculatorPage /></Suspense>} />
-                <Route path="compound-interest" element={<Suspense fallback={Fallback}><CompoundInterestCalculatorPage /></Suspense>} />
-                <Route path="income-tax" element={<Suspense fallback={Fallback}><IncomeTaxCalculatorPage /></Suspense>} />
-                <Route path="fd" element={<Suspense fallback={Fallback}><FDCalculatorPage /></Suspense>} />
-                <Route path="date" element={<Suspense fallback={Fallback}><DateCalculatorPage /></Suspense>} />
-                <Route path="calorie" element={<Suspense fallback={Fallback}><CalorieCalculatorPage /></Suspense>} />
-                <Route path="home-loan-emi" element={<Suspense fallback={Fallback}><HomeLoanEmiCalculatorPage /></Suspense>} />
-                <Route path="loan" element={<Suspense fallback={Fallback}><LoanCalculatorPage /></Suspense>} />
-                <Route path="days" element={<Suspense fallback={Fallback}><DaysCalculatorPage /></Suspense>} />
-                <Route path="gst" element={<Suspense fallback={Fallback}><GstCalculatorPage /></Suspense>} />
-                <Route path="mutual-fund" element={<Suspense fallback={Fallback}><MutualFundCalculatorPage /></Suspense>} />
-                <Route path="pregnancy" element={<Suspense fallback={Fallback}><PregnancyCalculatorPage /></Suspense>} />
-                <Route path="nps" element={<Suspense fallback={Fallback}><NpsCalculatorPage /></Suspense>} />
-                <Route path="fertilizer" element={<FertilizerCalculatorPage />} />
-              </Routes>
-            </SidebarProvider>
-          } 
-        />
-        <Route path="/auth" element={<AuthPage />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/terms-of-service" element={<TermsOfService />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </div>
-  );
-}
+const Fallback = <div className="text-center text-[#00B86B] py-12">Loading...</div>;
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThemeProvider defaultTheme="system" storageKey="pineapple-theme">
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <AppContent />
-        </BrowserRouter>
-      </TooltipProvider>
-    </ThemeProvider>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <CookieBanner />
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/calculators/age" element={<AgeCalculatorPage />} />
+          <Route path="/calculators/bmi" element={<BMICalculatorPage />} />
+          <Route path="/calculators/emi" element={<EMICalculatorPage />} />
+          <Route path="/calculators/ecommerce" element={<ECommerceCalculatorPage />} />
+          <Route path="/calculators/sip" element={<Suspense fallback={Fallback}><SipCalculatorPage /></Suspense>} />
+          <Route path="/calculators/swp" element={<Suspense fallback={Fallback}><SwpCalculatorPage /></Suspense>} />
+          <Route path="/calculators/percentage" element={<Suspense fallback={Fallback}><PercentageCalculatorPage /></Suspense>} />
+          <Route path="/calculators/home-loan" element={<Suspense fallback={Fallback}><HomeLoanCalculatorPage /></Suspense>} />
+          <Route path="/calculators/compound-interest" element={<Suspense fallback={Fallback}><CompoundInterestCalculatorPage /></Suspense>} />
+          <Route path="/calculators/income-tax" element={<Suspense fallback={Fallback}><IncomeTaxCalculatorPage /></Suspense>} />
+          <Route path="/calculators/fd" element={<Suspense fallback={Fallback}><FDCalculatorPage /></Suspense>} />
+          <Route path="/calculators/date" element={<Suspense fallback={Fallback}><DateCalculatorPage /></Suspense>} />
+          <Route path="/calculators/calorie" element={<Suspense fallback={Fallback}><CalorieCalculatorPage /></Suspense>} />
+          <Route path="/calculators/home-loan-emi" element={<Suspense fallback={Fallback}><HomeLoanEmiCalculatorPage /></Suspense>} />
+          <Route path="/calculators/loan" element={<Suspense fallback={Fallback}><LoanCalculatorPage /></Suspense>} />
+          <Route path="/calculators/days" element={<Suspense fallback={Fallback}><DaysCalculatorPage /></Suspense>} />
+          <Route path="/calculators/gst" element={<Suspense fallback={Fallback}><GstCalculatorPage /></Suspense>} />
+          <Route path="/calculators/mutual-fund" element={<Suspense fallback={Fallback}><MutualFundCalculatorPage /></Suspense>} />
+          <Route path="/calculators/pregnancy" element={<Suspense fallback={Fallback}><PregnancyCalculatorPage /></Suspense>} />
+          <Route path="/calculators/nps" element={<Suspense fallback={Fallback}><NpsCalculatorPage /></Suspense>} />
+          <Route path="/auth" element={<AuthPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-of-service" element={<TermsOfService />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/calculators/fertilizer" element={<FertilizerCalculatorPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
   </QueryClientProvider>
 );
 

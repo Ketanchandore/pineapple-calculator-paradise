@@ -1,172 +1,73 @@
+# Welcome to your Lovable project
 
-# PineappleHub - Free Online Calculators
+## Project info
 
-A modern, responsive calculator web application built with React, TypeScript, and Tailwind CSS.
+**URL**: https://lovable.dev/projects/21b566de-9f8d-4e34-a6c2-adfb286596bb
 
-## 🚀 Features
+## How can I edit this code?
 
-- **Multiple Calculators**: Age, BMI, EMI, SIP, and more
-- **Mobile Responsive**: Works perfectly on all devices
-- **Dark/Light Mode**: Theme preference with localStorage
-- **SEO Optimized**: Meta tags, structured data, sitemap
-- **PWA Ready**: Offline support and app-like experience
-- **Accessibility**: WCAG 2.1 AA compliant
-- **Performance**: 90+ Lighthouse scores
-- **Analytics Ready**: Google Analytics 4 integration
+There are several ways of editing your application.
 
-## 🛠️ Tech Stack
+**Use Lovable**
 
-- **Frontend**: React 18, TypeScript, Tailwind CSS
-- **Routing**: React Router v6
-- **State Management**: Tanstack Query
-- **UI Components**: Radix UI, Shadcn/ui
-- **Icons**: Lucide React
-- **Build Tool**: Vite
-- **Deployment**: Static hosting ready
+Simply visit the [Lovable Project](https://lovable.dev/projects/21b566de-9f8d-4e34-a6c2-adfb286596bb) and start prompting.
 
-## 📦 Installation
+Changes made via Lovable will be committed automatically to this repo.
 
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd pineapplehub
-```
+**Use your preferred IDE**
 
-2. Install dependencies:
-```bash
-npm install
-# or
-yarn install
-# or
-bun install
-```
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-3. Start development server:
-```bash
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+
+Follow these steps:
+
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
+
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
+
+# Step 3: Install the necessary dependencies.
+npm i
+
+# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
-# or
-yarn dev
-# or
-bun dev
 ```
 
-4. Build for production:
-```bash
-npm run build
-# or
-yarn build
-# or
-bun build
-```
+**Edit a file directly in GitHub**
 
-## 🌍 Deployment to Hostinger
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
 
-### Option 1: File Manager Upload
+**Use GitHub Codespaces**
 
-1. Run the build command:
-```bash
-npm run build
-```
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-2. Upload the `dist/` folder contents to your Hostinger public_html directory via File Manager
+## What technologies are used for this project?
 
-3. Ensure these files are in the root:
-   - `index.html`
-   - `robots.txt`
-   - `sitemap.xml`
-   - `manifest.json`
-   - `favicon.ico`
+This project is built with:
 
-### Option 2: FTP Upload
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
 
-1. Build the project:
-```bash
-npm run build
-```
+## How can I deploy this project?
 
-2. Connect to your Hostinger FTP:
-   - Host: your-domain.com
-   - Username: your-ftp-username
-   - Password: your-ftp-password
+Simply open [Lovable](https://lovable.dev/projects/21b566de-9f8d-4e34-a6c2-adfb286596bb) and click on Share -> Publish.
 
-3. Upload all files from `dist/` to `public_html/`
+## Can I connect a custom domain to my Lovable project?
 
-## ⚙️ Configuration
+Yes, you can!
 
-### Google Analytics Setup
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
-1. Replace the measurement ID in `src/components/GoogleAnalytics.tsx`:
-```typescript
-const GA_MEASUREMENT_ID = 'G-YOUR-ACTUAL-ID';
-```
-
-2. Replace verification codes:
-```typescript
-// Google Search Console
-<meta name="google-site-verification" content="YOUR_VERIFICATION_CODE" />
-
-// Bing Webmaster
-<meta name="msvalidate.01" content="YOUR_BING_CODE" />
-```
-
-### Domain Configuration
-
-1. Update the base URL in `src/components/SEO.tsx`:
-```typescript
-const currentUrl = `https://your-domain.com${location.pathname}`;
-```
-
-2. Update sitemap.xml and robots.txt with your domain
-
-### Custom Domain Setup
-
-1. Point your domain DNS to Hostinger:
-   - A Record: @ → Your server IP
-   - CNAME Record: www → your-domain.com
-
-2. Enable SSL certificate in Hostinger control panel
-
-## 📊 SEO & Performance
-
-### Google Search Console Setup
-
-1. Go to [Google Search Console](https://search.google.com/search-console)
-2. Add your property (domain or URL prefix)
-3. Verify using the meta tag method
-4. Submit your sitemap: `https://your-domain.com/sitemap.xml`
-
-### Lighthouse Optimization
-
-The app is optimized for 90+ scores in all categories:
-- **Performance**: Code splitting, lazy loading, optimized images
-- **Accessibility**: ARIA labels, semantic HTML, color contrast
-- **Best Practices**: Security headers, HTTPS, modern APIs
-- **SEO**: Meta tags, structured data, semantic markup
-
-## 🔧 Customization
-
-### Adding New Calculators
-
-1. Create calculator component in `src/components/calculators/`
-2. Create page in `src/pages/calculators/`
-3. Add route to `src/App.tsx`
-4. Update `src/components/CalculatorGrid.tsx`
-5. Add to sitemap.xml
-
-### Theme Customization
-
-Edit `src/index.css` and `tailwind.config.ts` for custom colors and styling.
-
-## 📝 License
-
-MIT License - feel free to use for personal or commercial projects.
-
-## 🤝 Support
-
-For issues or questions:
-- Create an issue in the repository
-- Contact: support@pineapplehub.com
-
----
-
-**Made with ❤️ for the calculator community**
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
