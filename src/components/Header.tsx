@@ -10,8 +10,10 @@ const Header = () => (
   <header className="sticky top-0 z-50 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b-2 border-slate-200 dark:border-slate-700 shadow-lg">
     <div className="container mx-auto px-6 py-4 flex items-center justify-between">
       <div className="flex items-center gap-4">
-        {/* Sidebar Toggle with enhanced visibility */}
-        <SidebarTrigger className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg" />
+        {/* Sidebar Toggle - only show on desktop */}
+        <div className="hidden md:block">
+          <SidebarTrigger className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg" />
+        </div>
         
         {/* Logo with improved design */}
         <Link to="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
@@ -45,8 +47,10 @@ const Header = () => (
         {/* Theme Toggle */}
         <ThemeToggle />
 
-        {/* Mobile Navigation */}
-        <MobileNavigation />
+        {/* Mobile Navigation - only on mobile */}
+        <div className="md:hidden">
+          <MobileNavigation />
+        </div>
       </div>
     </div>
   </header>
