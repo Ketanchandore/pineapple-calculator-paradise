@@ -1,4 +1,3 @@
-
 import React, { Suspense } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -9,7 +8,6 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import SEO from "@/components/SEO";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
-import StickyFooter from "@/components/StickyFooter";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import AgeCalculatorPage from "./pages/calculators/AgeCalculatorPage";
@@ -99,7 +97,6 @@ function AppContent() {
         <Route path="/calculators/fertilizer" element={<FertilizerCalculatorPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      <StickyFooter />
     </>
   );
 }
