@@ -1,10 +1,12 @@
 import { supabase } from "@/integrations/supabase/client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Calculator } from "lucide-react";
+import { Calculator, Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-const Header = () => {
+const Header = memo(() => {
   const [user, setUser] = useState<any>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,42 +27,140 @@ const Header = () => {
     navigate("/");
   };
 
+  const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
+
   return (
-    <header className="w-full flex items-center justify-between px-6 py-4 shadow bg-white/80 sticky top-0 z-20 backdrop-blur-md border-b border-border">
-      <Link to="/" className="flex items-center gap-3 group">
-        <span className="rounded-full bg-[#FFE066] p-2 shadow hover-scale transition-all">
-          <Calculator className="text-[#00B86B]" size={28} />
-        </span>
-        <span className="text-2xl md:text-3xl font-display text-[#2A2605] tracking-wide drop-shadow font-bold group-hover:text-[#00B86B] transition-colors">
-          Pineapple Calculator Hub
+    <header className="w-full flex items-center justify-between px-4 lg:px-6 py-3 shadow-lg bg-gradient-to-r from-[#00B86B] to-[#00A05C] sticky top-0 z-50 backdrop-blur-md">
+      <Link to="/" className="flex items-center gap-3 group" onClick={() => setMobileMenuOpen(false)}>
+        <div className="relative">
+          <span className="rounded-full bg-[#FFE066] p-2.5 shadow-lg hover-scale transition-all duration-300 group-hover:shadow-xl">
+            <Calculator className="text-[#00B86B]" size={24} />
+          </span>
+          <div className="absolute inset-0 rounded-full bg-[#FFE066] opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+        </div>
+        <span className="text-xl lg:text-2xl font-bold text-white tracking-wide drop-shadow-md group-hover:text-[#FFE066] transition-colors duration-300">
+          Calculator Hub
         </span>
       </Link>
-      <nav className="hidden md:flex gap-8 font-semibold text-base">
-        <Link to="/" className="hover:text-[#00B86B] transition-colors">Home</Link>
-        <a href="#all-calculators" className="hover:text-[#00B86B] transition-colors">Calculators</a>
-        <a href="#contact" className="hover:text-[#00B86B] transition-colors">Contact</a>
-        <Link to="/about" className="hover:text-[#00B86B] transition-colors">About</Link>
-        <Link to="/privacy-policy" className="hover:text-[#00B86B] transition-colors">Privacy</Link>
-        <Link to="/terms-of-service" className="hover:text-[#00B86B] transition-colors">Terms</Link>
-        <Link to="/contact" className="hover:text-[#00B86B] transition-colors">Contact</Link>
+
+      {/* Desktop Navigation */}
+      <nav className="hidden lg:flex items-center gap-6 font-semibold text-sm">
+        <Link to="/" className="text-white/90 hover:text-[#FFE066] transition-colors duration-200 px-2 py-1 rounded">
+          Home
+        </Link>
+        <a href="#all-calculators" className="text-white/90 hover:text-[#FFE066] transition-colors duration-200 px-2 py-1 rounded">
+          Calculators
+        </a>
+        <Link to="/about" className="text-white/90 hover:text-[#FFE066] transition-colors duration-200 px-2 py-1 rounded">
+          About
+        </Link>
+        <Link to="/contact" className="text-white/90 hover:text-[#FFE066] transition-colors duration-200 px-2 py-1 rounded">
+          Contact
+        </Link>
+        <Link to="/privacy-policy" className="text-white/90 hover:text-[#FFE066] transition-colors duration-200 px-2 py-1 rounded">
+          Privacy
+        </Link>
         {user ? (
-          <button
-            className="bg-[#00B86B] text-white px-3 py-1 rounded font-bold hover:bg-[#01995C] transition ml-2"
+          <Button
+            variant="secondary"
+            size="sm"
+            className="bg-[#FFE066] text-[#00B86B] hover:bg-[#FFBF00] transition-all duration-200 font-bold shadow-md hover:shadow-lg"
             onClick={handleLogout}
           >
             Log out
-          </button>
+          </Button>
         ) : (
-          <Link
-            to="/auth"
-            className="bg-[#00B86B] text-white px-3 py-1 rounded font-bold hover:bg-[#01995C] transition ml-2"
-          >
-            Log in/Sign up
+          <Link to="/auth">
+            <Button
+              variant="secondary"
+              size="sm"
+              className="bg-[#FFE066] text-[#00B86B] hover:bg-[#FFBF00] transition-all duration-200 font-bold shadow-md hover:shadow-lg"
+            >
+              Sign In
+            </Button>
           </Link>
         )}
       </nav>
+
+      {/* Mobile Menu Button */}
+      <Button
+        variant="ghost"
+        size="sm"
+        className="lg:hidden text-white hover:text-[#FFE066] hover:bg-white/10 transition-colors"
+        onClick={toggleMobileMenu}
+      >
+        {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+      </Button>
+
+      {/* Mobile Navigation */}
+      {mobileMenuOpen && (
+        <nav className="absolute top-full left-0 right-0 bg-[#00B86B] border-t border-white/20 shadow-lg lg:hidden animate-fade-in">
+          <div className="flex flex-col p-4 space-y-3">
+            <Link 
+              to="/" 
+              className="text-white/90 hover:text-[#FFE066] transition-colors duration-200 px-3 py-2 rounded" 
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Home
+            </Link>
+            <a 
+              href="#all-calculators" 
+              className="text-white/90 hover:text-[#FFE066] transition-colors duration-200 px-3 py-2 rounded"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Calculators
+            </a>
+            <Link 
+              to="/about" 
+              className="text-white/90 hover:text-[#FFE066] transition-colors duration-200 px-3 py-2 rounded"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              About
+            </Link>
+            <Link 
+              to="/contact" 
+              className="text-white/90 hover:text-[#FFE066] transition-colors duration-200 px-3 py-2 rounded"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Contact
+            </Link>
+            <Link 
+              to="/privacy-policy" 
+              className="text-white/90 hover:text-[#FFE066] transition-colors duration-200 px-3 py-2 rounded"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Privacy
+            </Link>
+            <div className="pt-2 border-t border-white/20">
+              {user ? (
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="w-full bg-[#FFE066] text-[#00B86B] hover:bg-[#FFBF00] transition-all duration-200 font-bold"
+                  onClick={() => {
+                    handleLogout();
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  Log out
+                </Button>
+              ) : (
+                <Link to="/auth" onClick={() => setMobileMenuOpen(false)}>
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    className="w-full bg-[#FFE066] text-[#00B86B] hover:bg-[#FFBF00] transition-all duration-200 font-bold"
+                  >
+                    Sign In
+                  </Button>
+                </Link>
+              )}
+            </div>
+          </div>
+        </nav>
+      )}
     </header>
   );
-};
+});
 
 export default Header;

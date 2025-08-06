@@ -28,10 +28,22 @@ export default defineConfig(({ mode }) => ({
     sourcemap: false,
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          ui: ['@radix-ui/react-dialog', '@radix-ui/react-popover', '@radix-ui/react-toast'],
-          utils: ['date-fns', 'lucide-react', 'clsx', 'tailwind-merge']
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'vendor';
+            }
+            if (id.includes('@radix-ui')) {
+              return 'ui';
+            }
+            if (id.includes('lucide-react') || id.includes('date-fns')) {
+              return 'utils';
+            }
+            return 'vendor';
+          }
+          if (id.includes('src/components/calculators/')) {
+            return 'calculators';
+          }
         }
       }
     },
@@ -39,13 +51,35 @@ export default defineConfig(({ mode }) => ({
     terserOptions: {
       compress: {
         drop_console: true,
-        drop_debugger: true
+        drop_debugger: true,
+        pure_funcs: ['console.log'],
+        unsafe_arrows: true,
+        passes: 2
+      },
+      mangle: {
+        safari10: true
       }
     }
   },
   // Performance optimizations
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom', 'date-fns', 'lucide-react'],
+    include: [
+      'react', 
+      'react-dom', 
+      'react-router-dom', 
+      'date-fns', 
+      'lucide-react',
+      'react-hook-form',
+      'zod',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-popover'
+    ],
     exclude: ['@vite/client', '@vite/env']
+  },
+  // Add preload for common routes
+  experimental: {
+    renderBuiltUrl(filename: string) {
+      return { runtime: `window.__prependPath(${JSON.stringify(filename)})` }
+    }
   }
 }));
