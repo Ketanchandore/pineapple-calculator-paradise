@@ -1,30 +1,9 @@
 
 {
-  "name": "Pineapple Calculator Hub",
-  "short_name": "Calculator Hub",
-  "description": "Professional calculator hub for all calculations - EMI, SIP, BMI, GST, Home Loan & more",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#FFFDF6",
-  "theme_color": "#FFE066",
-  "orientation": "portrait-primary",
-  "scope": "/",
+  "name": "PineappleHub - Free Online Calculator Tools",
+  "short_name": "PineappleHub",
+  "description": "Free online calculator tools for all your needs. Calculate Age, BMI, EMI, SIP, Compound Interest & more.",
   "icons": [
-    {
-      "src": "/favicon-16x16.png",
-      "sizes": "16x16",
-      "type": "image/png"
-    },
-    {
-      "src": "/favicon-32x32.png",
-      "sizes": "32x32",
-      "type": "image/png"
-    },
-    {
-      "src": "/apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png"
-    },
     {
       "src": "/android-chrome-192x192.png",
       "sizes": "192x192",
@@ -38,7 +17,35 @@
       "purpose": "any maskable"
     }
   ],
-  "categories": ["finance", "productivity", "utilities"],
+  "theme_color": "#00b86b",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "start_url": "/",
+  "scope": "/",
   "lang": "en",
-  "dir": "ltr"
+  "categories": ["productivity", "utilities", "finance"],
+  "shortcuts": [
+    {
+      "name": "Age Calculator",
+      "short_name": "Age Calc",
+      "description": "Calculate your exact age",
+      "url": "/calculators/age",
+      "icons": [{ "src": "/android-chrome-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "BMI Calculator",
+      "short_name": "BMI Calc",
+      "description": "Calculate Body Mass Index",
+      "url": "/calculators/bmi",
+      "icons": [{ "src": "/android-chrome-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "EMI Calculator",
+      "short_name": "EMI Calc",
+      "description": "Calculate loan EMI",
+      "url": "/calculators/emi",
+      "icons": [{ "src": "/android-chrome-96x96.png", "sizes": "96x96" }]
+    }
+  ]
 }
