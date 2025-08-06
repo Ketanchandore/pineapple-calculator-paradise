@@ -1,7 +1,6 @@
-
 import { SEOHead } from "@/components/SEOHead";
-import { HeroSection } from "@/components/HeroSection";
-import { CalculatorGrid } from "@/components/CalculatorGrid";
+import HeroSection from "@/components/HeroSection";
+import CalculatorGrid from "@/components/CalculatorGrid";
 
 const Index = () => {
   return (
