@@ -75,11 +75,5 @@ export default defineConfig(({ mode }) => ({
       '@radix-ui/react-popover'
     ],
     exclude: ['@vite/client', '@vite/env']
-  },
-  // Add preload for common routes
-  experimental: {
-    renderBuiltUrl(filename: string) {
-      return { runtime: `window.__prependPath(${JSON.stringify(filename)})` }
-    }
   }
 }));
