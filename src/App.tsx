@@ -14,6 +14,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Disclaimer from "./pages/Disclaimer";
 import CookieBanner from "@/components/CookieBanner";
 import AuthPage from "./pages/Auth";
 import FertilizerCalculatorPage from "./pages/calculators/FertilizerCalculatorPage";
@@ -75,6 +76,7 @@ const App = () => (
           <Route path="/terms-of-service" element={<TermsOfService />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/calculators/fertilizer" element={<FertilizerCalculatorPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
