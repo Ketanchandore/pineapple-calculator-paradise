@@ -1,24 +1,13 @@
-
-import Header from "@/components/Header";
-import Sidebar from "@/components/Sidebar";
-import Footer from "@/components/Footer";
+import CalculatorPageLayout from "@/components/CalculatorPageLayout";
 import LazyCalculatorWrapper from "@/components/calculators/LazyCalculatorWrapper";
 import SIPCalculator from "@/components/calculators/SIPCalculator";
 
 const SipCalculatorPage = () => (
-  <div className="min-h-screen flex flex-col bg-[#FFFDF6]">
-    <Header />
-    <main className="flex flex-row flex-1 w-full max-w-[1600px] mx-auto">
-      <Sidebar />
-      <section className="flex-1 px-8 py-8">
-        <h1 className="text-3xl font-display font-bold text-[#00B86B] mb-7">SIP Calculator</h1>
-        <LazyCalculatorWrapper>
-          <SIPCalculator />
-        </LazyCalculatorWrapper>
-      </section>
-    </main>
-    <Footer />
-  </div>
+  <CalculatorPageLayout pageTitle="SIP Calculator" description="Calculate SIP returns, maturity value, and wealth creation with our fast and accurate SIP calculator.">
+    <LazyCalculatorWrapper>
+      <SIPCalculator />
+    </LazyCalculatorWrapper>
+  </CalculatorPageLayout>
 );
 
 export default SipCalculatorPage;

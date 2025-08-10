@@ -8,6 +8,7 @@ interface SEOHeadProps {
   canonicalUrl?: string;
   ogImage?: string;
   type?: string;
+  structuredData?: any | any[];
 }
 
 export const SEOHead = ({ 
@@ -16,7 +17,8 @@ export const SEOHead = ({
   keywords = "calculator, online calculator, free tools",
   canonicalUrl,
   ogImage = "https://pineapplehub.com/og-image.jpg",
-  type = "website"
+  type = "website",
+  structuredData,
 }: SEOHeadProps) => {
   const fullTitle = title.includes('PineappleHub') ? title : `${title} | PineappleHub`;
   const url = canonicalUrl || `https://pineapplehub.com${window.location.pathname}`;
@@ -39,6 +41,20 @@ export const SEOHead = ({
       <meta name="twitter:title" content={fullTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
+
+      {/* Structured Data */}
+      {structuredData && (
+        Array.isArray(structuredData) ? (
+          structuredData.map((data: any, i: number) => (
+            <script key={`sd-${i}`} type="application/ld+json">
+              {JSON.stringify(data)}
+            </script>
+          ))
+        ) : (
+          <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+        )
+      )}
+
     </Helmet>
   );
 };

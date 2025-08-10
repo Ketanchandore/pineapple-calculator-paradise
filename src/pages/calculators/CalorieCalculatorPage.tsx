@@ -1,16 +1,12 @@
-
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import CalculatorPageLayout from "@/components/CalculatorPageLayout";
 import CalorieCalculator from "@/components/calculators/CalorieCalculator";
 
 const CalorieCalculatorPage = () => (
-  <div className="min-h-screen flex flex-col bg-[#FFFDF6]">
-    <div className="flex-1 flex flex-col items-center justify-center px-2 py-10">
+  <CalculatorPageLayout pageTitle="Calorie Calculator" description="Estimate daily calorie needs and track health goals with our fast calorie calculator.">
+    <div className="max-w-3xl">
       <CalorieCalculator />
-      <Button asChild variant="outline" className="mt-8">
-        <Link to="/">Back to Home</Link>
-      </Button>
     </div>
-  </div>
+  </CalculatorPageLayout>
 );
+
 export default CalorieCalculatorPage;

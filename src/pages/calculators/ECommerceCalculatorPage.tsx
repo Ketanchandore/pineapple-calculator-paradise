@@ -6,7 +6,7 @@ import ECommerceCalculator from "@/components/calculators/ECommerceCalculator";
 import { Helmet } from "react-helmet";
 
 const ECommerceCalculatorPage = () => (
-  <div className="min-h-screen flex flex-col bg-[#FFFDF6]">
+  <div className="min-h-screen flex flex-col bg-background">
     <Helmet>
       <title>eCommerce Profit Margin Calculator - ROI, Markup & Break-Even Analysis</title>
       <meta name="description" content="Advanced eCommerce profit margin calculator. Calculate profit margins, markup, ROI, break-even analysis, and get strategic recommendations for your online business." />
@@ -57,6 +57,17 @@ const ECommerceCalculatorPage = () => (
         })}
       </script>
     </Helmet>
+    <script type="application/ld+json">
+      {JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "How do I calculate profit margin?", "acceptedAnswer": { "@type": "Answer", "text": "Enter cost and selling price to get margin and markup instantly." } },
+          { "@type": "Question", "name": "What fees should I include?", "acceptedAnswer": { "@type": "Answer", "text": "Include shipping, platform, advertising, taxes and other costs." } },
+          { "@type": "Question", "name": "Is this tool free to use?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, the eCommerce calculator is free and works on any device." } }
+        ]
+      })}
+    </script>
     
     <Header />
     <main className="flex flex-row flex-1 w-full max-w-[1600px] mx-auto">
@@ -64,7 +75,7 @@ const ECommerceCalculatorPage = () => (
       <section className="flex-1 px-4 md:px-8 py-8">
         <div className="mb-8">
           <div className="max-w-4xl">
-            <h1 className="text-3xl md:text-4xl font-display font-bold text-[#00B86B] mb-4">
+            <h1 className="text-3xl md:text-4xl font-display font-bold text-foreground mb-4">
               eCommerce Profit Margin Calculator
             </h1>
             <p className="text-lg text-gray-600 mb-6">
