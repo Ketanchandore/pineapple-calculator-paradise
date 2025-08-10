@@ -57,7 +57,7 @@ const Header = memo(() => {
               <Calculator className="h-5 w-5 text-primary-foreground" />
             </div>
             <div className="hidden sm:block">
-              <span className="text-xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+              <span className="text-xl font-display font-extrabold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
                 PineappleHub
               </span>
               <div className="text-xs text-muted-foreground -mt-1">Calculator Tools</div>
