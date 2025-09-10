@@ -5,6 +5,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import PerformanceMonitor from "@/components/PerformanceMonitor";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import AgeCalculatorPage from "./pages/calculators/AgeCalculatorPage";
@@ -37,6 +38,10 @@ const GstCalculatorPage = React.lazy(() => import("./pages/calculators/GstCalcul
 const MutualFundCalculatorPage = React.lazy(() => import("./pages/calculators/MutualFundCalculatorPage"));
 const PregnancyCalculatorPage = React.lazy(() => import("./pages/calculators/PregnancyCalculatorPage"));
 const NpsCalculatorPage = React.lazy(() => import("./pages/calculators/NpsCalculatorPage"));
+const BMRCalculatorPage = React.lazy(() => import("./pages/calculators/BMRCalculatorPage"));
+const CurrencyCalculatorPage = React.lazy(() => import("./pages/calculators/CurrencyCalculatorPage"));
+const ScientificCalculatorPage = React.lazy(() => import("./pages/calculators/ScientificCalculatorPage"));
+const MortgageCalculatorPage = React.lazy(() => import("./pages/calculators/MortgageCalculatorPage"));
 
 const queryClient = new QueryClient();
 
@@ -47,6 +52,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <PerformanceMonitor />
       <BrowserRouter>
         <CookieBanner />
         <Routes>
@@ -71,6 +77,10 @@ const App = () => (
           <Route path="/calculators/mutual-fund" element={<Suspense fallback={Fallback}><MutualFundCalculatorPage /></Suspense>} />
           <Route path="/calculators/pregnancy" element={<Suspense fallback={Fallback}><PregnancyCalculatorPage /></Suspense>} />
           <Route path="/calculators/nps" element={<Suspense fallback={Fallback}><NpsCalculatorPage /></Suspense>} />
+          <Route path="/calculators/bmr" element={<Suspense fallback={Fallback}><BMRCalculatorPage /></Suspense>} />
+          <Route path="/calculators/currency" element={<Suspense fallback={Fallback}><CurrencyCalculatorPage /></Suspense>} />
+          <Route path="/calculators/scientific" element={<Suspense fallback={Fallback}><ScientificCalculatorPage /></Suspense>} />
+          <Route path="/calculators/mortgage" element={<Suspense fallback={Fallback}><MortgageCalculatorPage /></Suspense>} />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms-of-service" element={<TermsOfService />} />

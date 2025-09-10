@@ -161,4 +161,38 @@
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
+  
+  <!-- Additional Calculator Pages -->
+  <url>
+    <loc>https://pineapplehub.com/calculators/bmr</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <lastmod>2025-01-01</lastmod>
+  </url>
+  <url>
+    <loc>https://pineapplehub.com/calculators/currency</loc>
+    <priority>0.8</priority>
+    <changefreq>daily</changefreq>
+    <lastmod>2025-01-01</lastmod>
+  </url>
+  <url>
+    <loc>https://pineapplehub.com/calculators/scientific</loc>
+    <priority>0.7</priority>
+    <changefreq>monthly</changefreq>
+    <lastmod>2025-01-01</lastmod>
+  </url>
+  <url>
+    <loc>https://pineapplehub.com/calculators/mortgage</loc>
+    <priority>0.8</priority>
+    <changefreq>monthly</changefreq>
+    <lastmod>2025-01-01</lastmod>
+  </url>
+  
+  <!-- Legal and Info Pages -->
+  <url>
+    <loc>https://pineapplehub.com/disclaimer</loc>
+    <priority>0.5</priority>
+    <changefreq>yearly</changefreq>
+    <lastmod>2025-01-01</lastmod>
+  </url>
 </urlset>

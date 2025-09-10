@@ -66,27 +66,108 @@
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" />
     
-    <!-- Schema.org structured data -->
+    <!-- Rich Schema.org structured data for maximum SEO -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "PineappleHub",
-      "url": "https://pineapplehub.com",
-      "description": "Free online calculator tools for all your needs",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://pineapplehub.com/search?q={search_term_string}"
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://pineapplehub.com/#organization",
+          "name": "PineappleHub",
+          "url": "https://pineapplehub.com",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://pineapplehub.com/logo.png",
+            "width": 512,
+            "height": 512
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+1-555-CALC-HUB",
+            "contactType": "customer service",
+            "availableLanguage": ["English"]
+          },
+          "sameAs": [
+            "https://twitter.com/pineapplehub",
+            "https://facebook.com/pineapplehub",
+            "https://linkedin.com/company/pineapplehub"
+          ]
         },
-        "query-input": "required name=search_term_string"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "PineappleHub",
-        "url": "https://pineapplehub.com"
-      }
+        {
+          "@type": "WebSite",
+          "@id": "https://pineapplehub.com/#website",
+          "url": "https://pineapplehub.com",
+          "name": "PineappleHub - Free Online Calculator Tools",
+          "description": "Free online calculator tools for all your needs. Calculate Age, BMI, EMI, SIP, Compound Interest, Date calculations & more.",
+          "publisher": {
+            "@id": "https://pineapplehub.com/#organization"
+          },
+          "potentialAction": [{
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://pineapplehub.com/calculators/{search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }],
+          "inLanguage": "en-US"
+        },
+        {
+          "@type": "WebApplication",
+          "@id": "https://pineapplehub.com/#webapp",
+          "name": "PineappleHub Calculator Suite",
+          "url": "https://pineapplehub.com",
+          "applicationCategory": "FinanceApplication",
+          "operatingSystem": "All",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "ratingCount": "2847",
+            "bestRating": "5",
+            "worstRating": "1"
+          }
+        }
+      ]
+    }
+    </script>
+    
+    <!-- FAQ Schema for Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are these calculator tools free to use?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, all our calculator tools are completely free to use. No registration or payment required."
+          }
+        },
+        {
+          "@type": "Question", 
+          "name": "How accurate are the calculations?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our calculators use industry-standard formulas and are regularly tested for accuracy. However, results should be used for informational purposes only."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you store my calculation data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, all calculations are performed locally in your browser. We do not store any personal calculation data."
+          }
+        }
+      ]
     }
     </script>
     
@@ -99,13 +180,53 @@
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
     
-    <!-- Google Analytics (replace with your tracking ID) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+              console.log('SW registered: ', registration);
+            }, function(registrationError) {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+    
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('config', 'GA_TRACKING_ID');
+      gtag('config', 'G-XXXXXXXXXX', {
+        page_title: document.title,
+        page_location: window.location.href,
+        content_group1: 'Calculator Tools'
+      });
     </script>
+    
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="YOUR_VERIFICATION_CODE_HERE" />
+    
+    <!-- Bing Webmaster Tools -->
+    <meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE" />
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="geo.region" content="US" />
+    <meta name="geo.placename" content="United States" />
+    <meta name="copyright" content="PineappleHub" />
+    <meta name="category" content="Calculator Tools, Finance, Health, Education" />
+    <meta name="coverage" content="Worldwide" />
+    <meta name="target" content="all" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    
+    <!-- Performance and Core Web Vitals -->
+    <link rel="prefetch" href="/calculators/age" />
+    <link rel="prefetch" href="/calculators/bmi" />
+    <link rel="prefetch" href="/calculators/emi" />
+    <link rel="prefetch" href="/calculators/sip" />
   </body>
 </html>

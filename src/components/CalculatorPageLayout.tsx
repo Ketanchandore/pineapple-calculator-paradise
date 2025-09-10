@@ -2,6 +2,8 @@ import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import Footer from "@/components/Footer";
 import { SEOHead } from "@/components/SEOHead";
+import BreadcrumbNavigation from "@/components/BreadcrumbNavigation";
+import JsonLdStructuredData from "@/components/JsonLdStructuredData";
 import React from "react";
 
 export type FAQItem = { question: string; answer: string };
@@ -13,6 +15,7 @@ interface CalculatorPageLayoutProps {
   canonicalUrl?: string;
   ogImage?: string;
   type?: string;
+  calculatorType?: string;
   faqItems?: FAQItem[];
   children: React.ReactNode;
 }
@@ -42,6 +45,7 @@ export default function CalculatorPageLayout({
   canonicalUrl,
   ogImage,
   type,
+  calculatorType,
   faqItems,
   children,
 }: CalculatorPageLayoutProps) {
@@ -74,12 +78,18 @@ export default function CalculatorPageLayout({
         type={type}
         structuredData={[faqSchema]}
       />
+      <JsonLdStructuredData 
+        pageTitle={pageTitle}
+        description={finalDescription}
+        calculatorType={calculatorType}
+      />
 
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
         <main className="flex flex-row flex-1 w-full max-w-[1600px] mx-auto">
           <Sidebar />
           <section className="flex-1 px-6 md:px-8 py-6 md:py-8">
+            <BreadcrumbNavigation />
             <header className="mb-6">
               <h1 className="text-3xl md:text-4xl font-display font-extrabold text-foreground mb-2">
                 {pageTitle}

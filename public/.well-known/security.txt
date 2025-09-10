@@ -1,6 +1,6 @@
-
-Contact: security@pineapplehub.com
+Contact: mailto:security@pineapplehub.com
 Expires: 2025-12-31T23:59:59.000Z
-Encryption: https://pineapplehub.com/pgp-key.txt
+Acknowledgments: https://pineapplehub.com/security-acknowledgments
 Preferred-Languages: en
+Canonical: https://pineapplehub.com/.well-known/security.txt
 Policy: https://pineapplehub.com/security-policy

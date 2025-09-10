@@ -1,11 +1,9 @@
+# ads.txt file for PineappleHub
+# This file is used to authorize digital sellers
+# Replace with your actual ad network details when you have them
 
-# ads.txt file for pineapplehub.com
-# This file is used to prevent advertising fraud and ensure advertising transparency
-# Update this file with your actual advertising relationships
+# Example entries (uncomment and modify when you have ad partnerships):
+# google.com, pub-XXXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+# facebook.com, XXXXXXXXXXXXXXXX, DIRECT, c3e20eee3f780d68
 
-# Google AdSense
-google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
-
-# Add other advertising partners here when needed
-# Example format:
-# domain.com, publisher-id, DIRECT/RESELLER, certification-authority-id
+# For now, this file exists to prevent unauthorized ad sales
