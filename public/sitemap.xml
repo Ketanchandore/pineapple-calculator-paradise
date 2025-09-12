@@ -4,31 +4,31 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <!-- Main Pages -->
   <url>
-    <loc>https://pineapplehub.com/</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/</loc>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/about</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/about</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/contact</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/contact</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/privacy-policy</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/privacy-policy</loc>
     <priority>0.6</priority>
     <changefreq>yearly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/terms-of-service</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/terms-of-service</loc>
     <priority>0.6</priority>
     <changefreq>yearly</changefreq>
     <lastmod>2025-01-01</lastmod>
@@ -36,127 +36,127 @@
   
   <!-- High Priority Calculator Pages -->
   <url>
-    <loc>https://pineapplehub.com/calculators/age</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/age</loc>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/bmi</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/bmi</loc>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/emi</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/emi</loc>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/sip</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/sip</loc>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/compound-interest</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/compound-interest</loc>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/home-loan</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/home-loan</loc>
     <priority>0.9</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/percentage</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/percentage</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/date</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/date</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/days</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/days</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/calorie</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/calorie</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/loan</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/loan</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/fd</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/fd</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/gst</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/gst</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/income-tax</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/income-tax</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/mutual-fund</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/mutual-fund</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/nps</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/nps</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/swp</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/swp</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/ecommerce</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/ecommerce</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/home-loan-emi</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/home-loan-emi</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/pregnancy</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/pregnancy</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/fertilizer</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/fertilizer</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
@@ -164,25 +164,25 @@
   
   <!-- Additional Calculator Pages -->
   <url>
-    <loc>https://pineapplehub.com/calculators/bmr</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/bmr</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/currency</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/currency</loc>
     <priority>0.8</priority>
     <changefreq>daily</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/scientific</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/scientific</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
   </url>
   <url>
-    <loc>https://pineapplehub.com/calculators/mortgage</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/mortgage</loc>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-01</lastmod>
@@ -190,7 +190,7 @@
   
   <!-- Legal and Info Pages -->
   <url>
-    <loc>https://pineapplehub.com/disclaimer</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/disclaimer</loc>
     <priority>0.5</priority>
     <changefreq>yearly</changefreq>
     <lastmod>2025-01-01</lastmod>

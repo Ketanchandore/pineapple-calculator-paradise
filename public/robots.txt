@@ -21,7 +21,7 @@ Allow: /
 Crawl-delay: 2
 
 # Sitemap location
-Sitemap: https://pineapplehub.com/sitemap.xml
+Sitemap: https://pineapple-calculator-paradise.lovable.app/sitemap.xml
 
 # Disallow any admin or private areas (if any)
 Disallow: /admin/
