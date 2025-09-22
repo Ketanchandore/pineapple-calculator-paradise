@@ -250,6 +250,47 @@ export type Database = {
         }
         Relationships: []
       }
+      shared_resume_access_logs: {
+        Row: {
+          access_timestamp: string
+          access_type: string
+          created_at: string
+          id: string
+          ip_address: unknown | null
+          referrer: string | null
+          shared_resume_id: string
+          user_agent: string | null
+        }
+        Insert: {
+          access_timestamp?: string
+          access_type?: string
+          created_at?: string
+          id?: string
+          ip_address?: unknown | null
+          referrer?: string | null
+          shared_resume_id: string
+          user_agent?: string | null
+        }
+        Update: {
+          access_timestamp?: string
+          access_type?: string
+          created_at?: string
+          id?: string
+          ip_address?: unknown | null
+          referrer?: string | null
+          shared_resume_id?: string
+          user_agent?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "shared_resume_access_logs_shared_resume_id_fkey"
+            columns: ["shared_resume_id"]
+            isOneToOne: false
+            referencedRelation: "shared_resumes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       shared_resumes: {
         Row: {
           created_at: string
@@ -411,6 +452,10 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: undefined
       }
+      check_report_rate_limit: {
+        Args: { p_user_id: string }
+        Returns: boolean
+      }
       increment_user_usage: {
         Args: {
           p_messages?: number
@@ -424,6 +469,26 @@ export type Database = {
       is_admin: {
         Args: { user_id: string }
         Returns: boolean
+      }
+      log_resume_access: {
+        Args: {
+          p_access_type?: string
+          p_ip_address?: unknown
+          p_referrer?: string
+          p_shared_resume_id: string
+          p_user_agent?: string
+        }
+        Returns: undefined
+      }
+      secure_increment_user_usage: {
+        Args: {
+          p_messages?: number
+          p_tokens?: number
+          p_tts?: number
+          p_uploads?: number
+          p_user_id: string
+        }
+        Returns: undefined
       }
     }
     Enums: {
