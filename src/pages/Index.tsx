@@ -7,6 +7,10 @@ import { ContentOptimizer } from "@/components/ContentOptimizer";
 import { TrafficBooster } from "@/components/TrafficBooster";
 import { UltimateSEO } from "@/components/UltimateSEO";
 import { TrafficMagnet } from "@/components/TrafficMagnet";
+import { ViralTrafficBooster } from "@/components/ViralTrafficBooster";
+import { SocialProofBanner } from "@/components/SocialProofBanner";
+import { ClickbaitCTASection } from "@/components/ClickbaitCTASection";
+import { ShareableContentSection } from "@/components/ShareableContentSection";
 import HeroSection from "@/components/HeroSection";
 import CalculatorGrid from "@/components/CalculatorGrid";
 import Header from "@/components/Header";
@@ -39,11 +43,15 @@ const Index = () => {
         pageTitle="🚀 Free Calculator Online India | EMI, SIP, BMI Calculator - PineappleHub"
         description="🇮🇳 India's #1 FREE Calculator App! 50+ Tools: EMI Calculator, SIP Calculator, BMI Calculator. Used by 15M+ people. Mobile-friendly, instant results!"
       />
+      <ViralTrafficBooster />
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
+        <SocialProofBanner />
         <main className="flex-1">
           <HeroSection />
           <CalculatorGrid />
+          <ClickbaitCTASection />
+          <ShareableContentSection />
         </main>
         <Footer />
       </div>
