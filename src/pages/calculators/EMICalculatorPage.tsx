@@ -1,5 +1,4 @@
 import CalculatorPageLayout from "@/components/CalculatorPageLayout";
-import LazyCalculatorWrapper from "@/components/calculators/LazyCalculatorWrapper";
 import EMICalculator from "@/components/calculators/EMICalculator";
 
 const EMICalculatorPage = () => (
@@ -9,9 +8,9 @@ const EMICalculatorPage = () => (
     calculatorType="finance"
     keywords="EMI calculator, loan EMI, equated monthly installment, loan calculator, interest calculator, monthly payment"
   >
-    <LazyCalculatorWrapper>
+    <div className="max-w-3xl">
       <EMICalculator />
-    </LazyCalculatorWrapper>
+    </div>
   </CalculatorPageLayout>
 );
 

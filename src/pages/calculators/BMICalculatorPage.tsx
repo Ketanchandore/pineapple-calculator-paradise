@@ -1,5 +1,4 @@
 import CalculatorPageLayout from "@/components/CalculatorPageLayout";
-import LazyCalculatorWrapper from "@/components/calculators/LazyCalculatorWrapper";
 import BMICalculator from "@/components/calculators/BMICalculator";
 
 const BMICalculatorPage = () => (
@@ -9,9 +8,9 @@ const BMICalculatorPage = () => (
     calculatorType="health"
     keywords="BMI calculator, body mass index, BMI chart, healthy weight, obesity calculator, weight status"
   >
-    <LazyCalculatorWrapper>
+    <div className="max-w-3xl">
       <BMICalculator />
-    </LazyCalculatorWrapper>
+    </div>
   </CalculatorPageLayout>
 );
 

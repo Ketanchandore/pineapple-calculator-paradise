@@ -1,5 +1,4 @@
 import CalculatorPageLayout from "@/components/CalculatorPageLayout";
-import LazyCalculatorWrapper from "@/components/calculators/LazyCalculatorWrapper";
 import AgeCalculator from "@/components/calculators/AgeCalculator";
 
 const AgeCalculatorPage = () => (
@@ -9,9 +8,9 @@ const AgeCalculatorPage = () => (
     calculatorType="age"
     keywords="age calculator, calculate age, years months days, exact age, birthday calculator, age in days"
   >
-    <LazyCalculatorWrapper>
+    <div className="max-w-3xl">
       <AgeCalculator />
-    </LazyCalculatorWrapper>
+    </div>
   </CalculatorPageLayout>
 );
 

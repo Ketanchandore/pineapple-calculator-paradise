@@ -1,5 +1,4 @@
 import CalculatorPageLayout from "@/components/CalculatorPageLayout";
-import LazyCalculatorWrapper from "@/components/calculators/LazyCalculatorWrapper";
 import SIPCalculator from "@/components/calculators/SIPCalculator";
 
 const SipCalculatorPage = () => (
@@ -9,9 +8,9 @@ const SipCalculatorPage = () => (
     calculatorType="investment"
     keywords="SIP calculator, systematic investment plan, mutual fund SIP, SIP returns, investment calculator, wealth creation"
   >
-    <LazyCalculatorWrapper>
+    <div className="max-w-3xl">
       <SIPCalculator />
-    </LazyCalculatorWrapper>
+    </div>
   </CalculatorPageLayout>
 );
 
