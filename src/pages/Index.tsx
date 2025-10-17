@@ -20,9 +20,9 @@ const Index = () => {
   return (
     <>
       <SEOHead
-        title="🚀 Free Calculator Online India | EMI, SIP, BMI Calculator - No Download Required"
-        description="🇮🇳 India's #1 FREE Calculator App! 50+ Tools: EMI Calculator, SIP Calculator, BMI Calculator, Loan Calculator, GST Calculator. ✅ 15M+ Users ✅ Mobile Friendly ✅ Instant Results"
-        keywords="calculator online india, free calculator app, EMI calculator, SIP calculator, BMI calculator, loan calculator, GST calculator, income tax calculator, percentage calculator, age calculator, compound interest calculator, home loan calculator, FD calculator, scientific calculator, date calculator, calorie calculator, BMR calculator, pregnancy calculator, mortgage calculator, mutual fund calculator, NPS calculator, SWP calculator, calculator app download, online calculator free, best calculator india, finance calculator, health calculator, math calculator, calculator tools, calculator website"
+        title="Free Online Calculators - Pineapple Calculator Paradise"
+        description="Discover 50+ free online calculators for math, finance, health, and more. Fast, accurate, and easy-to-use calculation tools for all your needs."
+        keywords="calculator online, free calculator, math calculator, finance calculator, health calculator, EMI calculator, SIP calculator, BMI calculator, loan calculator, GST calculator, income tax calculator, percentage calculator, age calculator, compound interest calculator, home loan calculator, FD calculator, scientific calculator, date calculator, calorie calculator, mortgage calculator, mutual fund calculator, online calculator tools"
         canonicalUrl="https://pineapple-calculator-paradise.lovable.app/"
       />
       <UltimateSEO page="home" />
