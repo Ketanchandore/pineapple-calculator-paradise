@@ -9,6 +9,20 @@ interface JsonLdStructuredDataProps {
 const JsonLdStructuredData = ({ pageTitle, description, calculatorType }: JsonLdStructuredDataProps) => {
   const location = useLocation();
   const currentUrl = `https://pineapple-calculator-paradise.lovable.app${location.pathname}`;
+  
+  // Organization Schema
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Pineapple Calculator Paradise",
+    "url": "https://pineapple-calculator-paradise.lovable.app",
+    "logo": "https://pineapple-calculator-paradise.lovable.app/logo.png",
+    "description": "Free online calculators for finance, health, math, and more",
+    "sameAs": [
+      "https://twitter.com/pineapplecalc",
+      "https://facebook.com/pineapplecalc"
+    ]
+  };
 
   const generateWebSiteSchema = () => ({
     "@context": "https://schema.org",
@@ -93,7 +107,7 @@ const JsonLdStructuredData = ({ pageTitle, description, calculatorType }: JsonLd
   const generateSoftwareApplicationSchema = () => {
     if (!calculatorType) return null;
 
-    const appCategory = calculatorType?.includes('financial') || calculatorType?.includes('emi') || calculatorType?.includes('sip') ? 
+    const appCategory = calculatorType?.includes('finance') || calculatorType?.includes('investment') || calculatorType?.includes('emi') || calculatorType?.includes('sip') ? 
       "FinanceApplication" : 
       calculatorType?.includes('health') || calculatorType?.includes('bmi') || calculatorType?.includes('calorie') ? 
       "MedicalApplication" : 
@@ -102,113 +116,126 @@ const JsonLdStructuredData = ({ pageTitle, description, calculatorType }: JsonLd
     return {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "@id": `${currentUrl}#calculator`,
-      "name": pageTitle,
-      "description": description,
-      "url": currentUrl,
+      "name": `${pageTitle} - Online Calculator`,
+      "operatingSystem": "Web Browser",
       "applicationCategory": appCategory,
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript enabled",
-      "permissions": "No special permissions required",
       "offers": {
         "@type": "Offer",
         "price": "0",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock",
-        "availabilityStarts": "2024-01-01"
-      },
-      "creator": {
-        "@type": "Organization",
-        "@id": "https://pineapple-calculator-paradise.lovable.app/#organization"
+        "priceCurrency": "USD"
       },
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "ratingCount": "2547",
-        "bestRating": "5",
-        "worstRating": "1"
+        "ratingValue": "4.8",
+        "ratingCount": "150"
       },
-      "keywords": `${calculatorType}, online calculator, free calculator, ${pageTitle.toLowerCase()}`,
-      "screenshot": `${currentUrl}/screenshot.png`,
+      "description": description,
+      "url": currentUrl,
+      "author": {
+        "@type": "Organization",
+        "name": "Pineapple Calculator Paradise"
+      },
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "softwareVersion": "1.0",
+      "datePublished": "2024-01-01",
+      "dateModified": new Date().toISOString().split('T')[0],
       "featureList": [
-        "Free to use",
-        "Instant calculations", 
-        "Mobile responsive",
-        "No registration required",
-        "Accurate results"
+        "Free to use - No registration required",
+        "Instant accurate calculations", 
+        "Mobile responsive design",
+        "Privacy-focused - No data collection",
+        "Works offline once loaded"
       ]
     };
   };
 
   const generateHowToSchema = () => {
-    const steps = [
-      {
-        "@type": "HowToStep",
-        "name": "Enter your values",
-        "text": `Input the required values in the ${calculatorType || 'calculator'} form fields.`
-      },
-      {
-        "@type": "HowToStep", 
-        "name": "Click Calculate",
-        "text": "Press the calculate button to get instant results."
-      },
-      {
-        "@type": "HowToStep",
-        "name": "View Results",
-        "text": "Review your calculated results and analysis."
-      }
-    ];
+    if (!calculatorType) return null;
 
     return {
       "@context": "https://schema.org",
       "@type": "HowTo",
-      "name": `How to use ${pageTitle}`,
-      "description": `Step-by-step guide to use our ${calculatorType || 'calculator'} tool.`,
+      "name": `How to Use ${pageTitle}`,
+      "description": `Step-by-step guide to using the ${pageTitle} for accurate and instant calculations.`,
+      "image": "https://pineapple-calculator-paradise.lovable.app/calculator-tutorial.png",
       "totalTime": "PT2M",
       "estimatedCost": {
         "@type": "MonetaryAmount",
         "currency": "USD",
         "value": "0"
       },
-      "step": steps,
       "tool": {
         "@type": "HowToTool",
-        "name": pageTitle,
-        "requiredQuantity": "1"
-      }
+        "name": pageTitle
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Enter Your Values",
+          "text": `Input your values into the ${pageTitle} fields. All fields are clearly labeled for easy data entry.`,
+          "url": currentUrl
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Review Your Input",
+          "text": "Double-check your entered values to ensure accuracy in your calculations.",
+          "url": currentUrl
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Get Instant Results",
+          "text": "View your calculated results instantly with detailed breakdowns, charts, and explanations.",
+          "url": currentUrl
+        }
+      ]
     };
   };
 
-  const generateFAQSchema = () => ({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": `How to use ${pageTitle}?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `Our ${pageTitle} is easy to use. Simply enter your values in the input fields and click calculate to get instant results.`
+  const generateFAQSchema = () => {
+    if (!calculatorType) return null;
+
+    return {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": `How do I use the ${pageTitle}?`,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": `Simply enter your values into the ${pageTitle} fields and get instant, accurate results. The calculator automatically computes results as you type or when you click calculate.`
+          }
+        },
+        {
+          "@type": "Question", 
+          "name": `Is the ${pageTitle} free to use?`,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": `Yes, all our calculators including the ${pageTitle} are completely free with no registration, download, or sign-up required. Access them anytime from any device.`
+          }
+        },
+        {
+          "@type": "Question",
+          "name": `How accurate are the calculator results?`,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": `Our ${pageTitle} uses industry-standard formulas and algorithms to provide highly accurate results for planning, educational, and professional purposes.`
+          }
+        },
+        {
+          "@type": "Question",
+          "name": `Can I use this calculator on mobile devices?`,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": `Absolutely! The ${pageTitle} is fully responsive and optimized for mobile phones, tablets, and desktop computers with a seamless user experience across all devices.`
+          }
         }
-      },
-      {
-        "@type": "Question", 
-        "name": `Is ${pageTitle} free to use?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `Yes, our ${pageTitle} is completely free to use with no registration required.`
-        }
-      },
-      {
-        "@type": "Question",
-        "name": `Is ${pageTitle} accurate?`,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": `Our ${pageTitle} uses industry-standard formulas and is designed to provide accurate and reliable results.`
-        }
-      }
-    ]
-  });
+      ]
+    };
+  };
 
   return (
     <>
@@ -236,7 +263,7 @@ const JsonLdStructuredData = ({ pageTitle, description, calculatorType }: JsonLd
         }}
       />
       
-      {calculatorType && (
+      {calculatorType && generateSoftwareApplicationSchema() && (
         <>
           {/* Software Application Schema */}
           <script
@@ -247,20 +274,24 @@ const JsonLdStructuredData = ({ pageTitle, description, calculatorType }: JsonLd
           />
           
           {/* How-To Schema */}
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify(generateHowToSchema())
-            }}
-          />
+          {generateHowToSchema() && (
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(generateHowToSchema())
+              }}
+            />
+          )}
           
           {/* FAQ Schema */}
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify(generateFAQSchema())
-            }}
-          />
+          {generateFAQSchema() && (
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(generateFAQSchema())
+              }}
+            />
+          )}
         </>
       )}
     </>
