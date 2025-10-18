@@ -27,27 +27,14 @@ const JsonLdStructuredData = ({ pageTitle, description, calculatorType }: JsonLd
   const generateWebSiteSchema = () => ({
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": "https://pineapple-calculator-paradise.lovable.app/#website",
-    "url": "https://pineapple-calculator-paradise.lovable.app/",
-    "name": "PineappleHub - Free Online Calculator Tools",
-    "description": "Free online calculator tools for all your needs. Calculate Age, BMI, EMI, SIP, Compound Interest, Date calculations & more.",
-    "publisher": {
-      "@type": "Organization",
-      "@id": "https://pineapple-calculator-paradise.lovable.app/#organization"
-    },
-    "potentialAction": [{
+    "name": "Pineapple Calculator Paradise",
+    "url": "https://pineapple-calculator-paradise.lovable.app",
+    "description": "Free online calculators for all your calculation needs",
+    "potentialAction": {
       "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://pineapple-calculator-paradise.lovable.app/calculators/{search_term_string}"
-      },
+      "target": "https://pineapple-calculator-paradise.lovable.app/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
-    }],
-    "sameAs": [
-      "https://www.facebook.com/pineapplehub",
-      "https://twitter.com/pineapplehub",
-      "https://www.linkedin.com/company/pineapplehub"
-    ]
+    }
   });
 
   const generateOrganizationSchema = () => ({
