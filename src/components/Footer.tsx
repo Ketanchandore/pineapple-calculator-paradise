@@ -57,39 +57,35 @@ const Footer = memo(() => (
               <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
               Contact Us
             </Link>
-            <Link to="/#calculators" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm group">
+            <Link to="/sitemap" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm group">
               <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-              All Calculators
+              Sitemap
             </Link>
           </nav>
         </div>
 
-        {/* Popular Calculators */}
+        {/* Calculator Categories */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
             <Calculator className="w-5 h-5 text-primary" />
-            Popular Tools
+            Categories
           </h3>
           <nav className="space-y-3">
-            <Link to="/calculators/sip" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm group">
+            <Link to="/finance-calculators" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm group">
               <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-              SIP Calculator
+              Finance Calculators
             </Link>
-            <Link to="/calculators/emi" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm group">
+            <Link to="/health-calculators" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm group">
               <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-              EMI Calculator
+              Health Calculators
             </Link>
-            <Link to="/calculators/bmi" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm group">
+            <Link to="/math-calculators" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm group">
               <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-              BMI Calculator
+              Math Calculators
             </Link>
-            <Link to="/calculators/compound-interest" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm group">
+            <Link to="/#calculators" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm group">
               <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-              Compound Interest
-            </Link>
-            <Link to="/calculators/income-tax" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm group">
-              <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
-              Income Tax Calculator
+              All Calculators
             </Link>
           </nav>
         </div>

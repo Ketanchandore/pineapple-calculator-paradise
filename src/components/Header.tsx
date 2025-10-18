@@ -80,23 +80,17 @@ const Header = memo(() => {
                 <ChevronDown className="ml-1 h-3 w-3" />
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-56">
-                <DropdownMenuItem onClick={() => navigate('/calculators/age')}>
-                  Age Calculator
+                <DropdownMenuItem onClick={() => navigate('/finance-calculators')}>
+                  <strong>Finance Calculators</strong>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => navigate('/calculators/bmi')}>
-                  BMI Calculator
+                <DropdownMenuItem onClick={() => navigate('/health-calculators')}>
+                  <strong>Health Calculators</strong>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => navigate('/calculators/emi')}>
-                  EMI Calculator
+                <DropdownMenuItem onClick={() => navigate('/math-calculators')}>
+                  <strong>Math Calculators</strong>
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => navigate('/calculators/sip')}>
-                  SIP Calculator
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => navigate('/calculators/compound-interest')}>
-                  Compound Interest
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => navigate('/#calculators')}>
-                  View All Calculators
+                <DropdownMenuItem className="border-t mt-1 pt-1" onClick={() => navigate('/#calculators')}>
+                  View All Calculators →
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

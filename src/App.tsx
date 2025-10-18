@@ -43,6 +43,12 @@ const CurrencyCalculatorPage = React.lazy(() => import("./pages/calculators/Curr
 const ScientificCalculatorPage = React.lazy(() => import("./pages/calculators/ScientificCalculatorPage"));
 const MortgageCalculatorPage = React.lazy(() => import("./pages/calculators/MortgageCalculatorPage"));
 
+// Category pages
+const FinanceCalculators = React.lazy(() => import("./pages/categories/FinanceCalculators"));
+const HealthCalculators = React.lazy(() => import("./pages/categories/HealthCalculators"));
+const MathCalculators = React.lazy(() => import("./pages/categories/MathCalculators"));
+const SitemapPage = React.lazy(() => import("./pages/Sitemap"));
+
 const queryClient = new QueryClient();
 
 const Fallback = <div className="text-center text-[#00B86B] py-12">Loading...</div>;
@@ -88,6 +94,10 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/calculators/fertilizer" element={<FertilizerCalculatorPage />} />
+          <Route path="/finance-calculators" element={<Suspense fallback={Fallback}><FinanceCalculators /></Suspense>} />
+          <Route path="/health-calculators" element={<Suspense fallback={Fallback}><HealthCalculators /></Suspense>} />
+          <Route path="/math-calculators" element={<Suspense fallback={Fallback}><MathCalculators /></Suspense>} />
+          <Route path="/sitemap" element={<Suspense fallback={Fallback}><SitemapPage /></Suspense>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
