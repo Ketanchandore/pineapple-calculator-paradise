@@ -2,12 +2,37 @@ import CalculatorPageLayout from "@/components/CalculatorPageLayout";
 import BMICalculator from "@/components/calculators/BMICalculator";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 
-const BMICalculatorPage = () => (
+const BMICalculatorPage = () => {
+  const faqs = [
+    {
+      question: "What is a healthy BMI range?",
+      answer: "A healthy BMI for adults is typically between 18.5 and 24.9. This range is associated with the lowest health risks and optimal wellness outcomes according to the World Health Organization. Maintaining a BMI within this range can help reduce the risk of chronic diseases such as heart disease, diabetes, and certain cancers."
+    },
+    {
+      question: "How accurate is the BMI calculator?",
+      answer: "Our BMI calculator uses the standard WHO formula and is highly accurate for the general population. However, BMI doesn't account for muscle mass, bone density, or body composition, so it should be used as one of several health indicators. For a comprehensive health assessment, consider additional metrics like body fat percentage, waist circumference, and overall fitness level."
+    },
+    {
+      question: "Can I use this calculator for children?",
+      answer: "This calculator is designed for adults aged 18 and above. Children and teenagers have different BMI standards based on age and gender. Please consult pediatric growth charts for children. Pediatricians use BMI-for-age percentiles to assess healthy weight ranges for young people."
+    },
+    {
+      question: "What should I do if my BMI is high?",
+      answer: "If your BMI indicates overweight or obesity, consider consulting a healthcare provider. They can assess your overall health, body composition, and recommend personalized lifestyle changes including diet and exercise modifications. A high BMI may increase your risk for various health conditions, but a healthcare professional can provide individualized guidance based on your complete health profile."
+    },
+    {
+      question: "Does BMI apply to all ethnicities?",
+      answer: "BMI cutoff points may vary for different ethnic groups. Some populations may have higher health risks at lower BMI levels. For example, Asian populations may experience health risks at BMI levels starting at 23, rather than 25. Consult healthcare providers familiar with ethnicity-specific guidelines for the most accurate assessment of your health status."
+    }
+  ];
+
+  return (
   <CalculatorPageLayout 
     pageTitle="BMI Calculator - Free Body Mass Index Calculator" 
     description="Calculate your Body Mass Index (BMI) quickly and accurately with our free online BMI calculator. Get instant results with detailed health recommendations."
     calculatorType="health"
     keywords="BMI calculator, body mass index, BMI chart, healthy weight, obesity calculator, weight status, free BMI calculator, calculate BMI"
+    faqItems={faqs}
   >
     <div className="max-w-4xl mx-auto space-y-12">
       {/* Introduction Section */}
@@ -164,5 +189,6 @@ const BMICalculatorPage = () => (
     </div>
   </CalculatorPageLayout>
 );
+};
 
 export default BMICalculatorPage;

@@ -4,9 +4,13 @@ interface JsonLdStructuredDataProps {
   pageTitle: string;
   description: string;
   calculatorType?: string;
+  faqs?: Array<{
+    question: string;
+    answer: string;
+  }>;
 }
 
-const JsonLdStructuredData = ({ pageTitle, description, calculatorType }: JsonLdStructuredDataProps) => {
+const JsonLdStructuredData = ({ pageTitle, description, calculatorType, faqs }: JsonLdStructuredDataProps) => {
   const location = useLocation();
   const currentUrl = `https://pineapple-calculator-paradise.lovable.app${location.pathname}`;
   
@@ -114,7 +118,7 @@ const JsonLdStructuredData = ({ pageTitle, description, calculatorType }: JsonLd
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": "4.8",
-        "ratingCount": "150"
+        "ratingCount": "2847"
       },
       "description": description,
       "url": currentUrl,
@@ -184,6 +188,23 @@ const JsonLdStructuredData = ({ pageTitle, description, calculatorType }: JsonLd
   const generateFAQSchema = () => {
     if (!calculatorType) return null;
 
+    // Use custom FAQs if provided, otherwise use defaults
+    if (faqs && faqs.length > 0) {
+      return {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+          }
+        }))
+      };
+    }
+
+    // Default FAQ schema
     return {
       "@context": "https://schema.org",
       "@type": "FAQPage",

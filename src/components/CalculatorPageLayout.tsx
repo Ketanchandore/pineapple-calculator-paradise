@@ -82,6 +82,7 @@ export default function CalculatorPageLayout({
         pageTitle={pageTitle}
         description={finalDescription}
         calculatorType={calculatorType}
+        faqs={faqItems}
       />
 
       <div className="min-h-screen flex flex-col bg-background">
