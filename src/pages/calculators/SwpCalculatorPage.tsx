@@ -3,10 +3,11 @@ import SWPCalculator from "@/components/calculators/SWPCalculator";
 
 const SwpCalculatorPage = () => (
   <CalculatorPageLayout 
-    pageTitle="SWP Calculator" 
-    description="Free SWP calculator for Systematic Withdrawal Plan. Calculate monthly withdrawals, remaining corpus, and tax impact on mutual fund investments."
+    pageTitle="SWP Calculator - Systematic Withdrawal Plan | Free Tool" 
+    description="Calculate SWP withdrawals and remaining corpus. Free systematic withdrawal plan calculator for retirement income. Try now!"
     calculatorType="investment"
     keywords="SWP calculator, systematic withdrawal plan, mutual fund withdrawal, SWP returns, retirement income calculator"
+    canonicalUrl="https://pineapple-calculator-paradise.lovable.app/calculators/swp"
   >
     <div className="max-w-3xl">
       <SWPCalculator />

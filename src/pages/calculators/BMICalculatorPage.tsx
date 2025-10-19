@@ -28,10 +28,11 @@ const BMICalculatorPage = () => {
 
   return (
   <CalculatorPageLayout 
-    pageTitle="BMI Calculator - Free Body Mass Index Calculator" 
-    description="Calculate your Body Mass Index (BMI) quickly and accurately with our free online BMI calculator. Get instant results with detailed health recommendations."
+    pageTitle="BMI Calculator - Free Body Mass Index Calculator | Pineapple Calculator" 
+    description="Calculate your Body Mass Index (BMI) instantly. Free, accurate BMI calculator with detailed health recommendations. Try now!"
     calculatorType="health"
     keywords="BMI calculator, body mass index, BMI chart, healthy weight, obesity calculator, weight status, free BMI calculator, calculate BMI"
+    canonicalUrl="https://pineapple-calculator-paradise.lovable.app/calculators/bmi"
     faqItems={faqs}
   >
     <div className="max-w-4xl mx-auto space-y-12">

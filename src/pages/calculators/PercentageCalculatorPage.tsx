@@ -3,10 +3,11 @@ import PercentageCalculator from "@/components/calculators/PercentageCalculator"
 
 const PercentageCalculatorPage = () => (
   <CalculatorPageLayout 
-    pageTitle="Percentage Calculator" 
-    description="Free percentage calculator for instant calculations. Find percentage increase, decrease, change, and ratio. Easy online percentage tool."
+    pageTitle="Percentage Calculator - Calculate Percentage Increase & Decrease" 
+    description="Free percentage calculator for instant calculations. Find percentage increase, decrease, and ratio quickly. Easy-to-use tool!"
     calculatorType="utility"
     keywords="percentage calculator, calculate percentage, percentage increase, percentage decrease, percentage change, ratio calculator"
+    canonicalUrl="https://pineapple-calculator-paradise.lovable.app/calculators/percentage"
   >
     <div className="max-w-3xl">
       <PercentageCalculator />
