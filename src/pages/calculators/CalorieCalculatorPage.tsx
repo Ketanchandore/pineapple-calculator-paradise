@@ -1,5 +1,7 @@
 import CalculatorPageLayout from "@/components/CalculatorPageLayout";
 import CalorieCalculator from "@/components/calculators/CalorieCalculator";
+import { RelatedCalculators } from "@/components/RelatedCalculators";
+import { Scale, Activity, HeartPulse, Baby } from "lucide-react";
 
 const CalorieCalculatorPage = () => (
   <CalculatorPageLayout 
@@ -11,6 +13,35 @@ const CalorieCalculatorPage = () => (
   >
     <div className="max-w-3xl">
       <CalorieCalculator />
+      
+      <RelatedCalculators 
+        calculators={[
+          {
+            title: "BMI Calculator",
+            description: "Calculate Body Mass Index",
+            icon: Scale,
+            link: "/calculators/bmi"
+          },
+          {
+            title: "BMR Calculator",
+            description: "Calculate Basal Metabolic Rate",
+            icon: Activity,
+            link: "/calculators/bmr"
+          },
+          {
+            title: "Age Calculator",
+            description: "Calculate exact age in years",
+            icon: HeartPulse,
+            link: "/calculators/age"
+          },
+          {
+            title: "Pregnancy Calculator",
+            description: "Calculate pregnancy due date",
+            icon: Baby,
+            link: "/calculators/pregnancy"
+          }
+        ]}
+      />
     </div>
   </CalculatorPageLayout>
 );

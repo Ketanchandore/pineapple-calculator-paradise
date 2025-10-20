@@ -1,5 +1,7 @@
 import CalculatorPageLayout from "@/components/CalculatorPageLayout";
 import AgeCalculator from "@/components/calculators/AgeCalculator";
+import { RelatedCalculators } from "@/components/RelatedCalculators";
+import { Calendar, Baby, Clock, HeartPulse } from "lucide-react";
 
 const AgeCalculatorPage = () => (
   <CalculatorPageLayout 
@@ -11,6 +13,35 @@ const AgeCalculatorPage = () => (
   >
     <div className="max-w-3xl">
       <AgeCalculator />
+      
+      <RelatedCalculators 
+        calculators={[
+          {
+            title: "Date Calculator",
+            description: "Calculate dates and durations",
+            icon: Calendar,
+            link: "/calculators/date"
+          },
+          {
+            title: "Pregnancy Calculator",
+            description: "Calculate pregnancy due date",
+            icon: Baby,
+            link: "/calculators/pregnancy"
+          },
+          {
+            title: "Days Calculator",
+            description: "Calculate days between dates",
+            icon: Clock,
+            link: "/calculators/days"
+          },
+          {
+            title: "BMI Calculator",
+            description: "Calculate Body Mass Index",
+            icon: HeartPulse,
+            link: "/calculators/bmi"
+          }
+        ]}
+      />
     </div>
   </CalculatorPageLayout>
 );

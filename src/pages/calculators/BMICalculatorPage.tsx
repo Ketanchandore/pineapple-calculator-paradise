@@ -1,6 +1,8 @@
 import CalculatorPageLayout from "@/components/CalculatorPageLayout";
 import BMICalculator from "@/components/calculators/BMICalculator";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { RelatedCalculators } from "@/components/RelatedCalculators";
+import { Activity, Flame, Baby, Calendar } from "lucide-react";
 
 const BMICalculatorPage = () => {
   const faqs = [
@@ -186,6 +188,35 @@ const BMICalculatorPage = () => {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
+
+        <RelatedCalculators 
+          calculators={[
+            {
+              title: "BMR Calculator",
+              description: "Calculate your Basal Metabolic Rate",
+              icon: Activity,
+              link: "/calculators/bmr"
+            },
+            {
+              title: "Calorie Calculator",
+              description: "Calculate daily calorie needs",
+              icon: Flame,
+              link: "/calculators/calorie"
+            },
+            {
+              title: "Pregnancy Calculator",
+              description: "Calculate due date",
+              icon: Baby,
+              link: "/calculators/pregnancy"
+            },
+            {
+              title: "Age Calculator",
+              description: "Calculate exact age",
+              icon: Calendar,
+              link: "/calculators/age"
+            }
+          ]}
+        />
       </div>
     </div>
   </CalculatorPageLayout>

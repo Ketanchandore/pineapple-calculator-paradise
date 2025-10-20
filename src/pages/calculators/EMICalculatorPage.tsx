@@ -1,5 +1,7 @@
 import CalculatorPageLayout from "@/components/CalculatorPageLayout";
 import EMICalculator from "@/components/calculators/EMICalculator";
+import { RelatedCalculators } from "@/components/RelatedCalculators";
+import { Home, Calculator, Percent, Building } from "lucide-react";
 
 const EMICalculatorPage = () => (
   <CalculatorPageLayout 
@@ -11,6 +13,35 @@ const EMICalculatorPage = () => (
   >
     <div className="max-w-3xl">
       <EMICalculator />
+      
+      <RelatedCalculators 
+        calculators={[
+          {
+            title: "Home Loan Calculator",
+            description: "Calculate home loan EMI & eligibility",
+            icon: Home,
+            link: "/calculators/home-loan"
+          },
+          {
+            title: "Loan Calculator",
+            description: "Calculate personal loan payments",
+            icon: Calculator,
+            link: "/calculators/loan"
+          },
+          {
+            title: "Compound Interest Calculator",
+            description: "Calculate compound interest",
+            icon: Percent,
+            link: "/calculators/compound-interest"
+          },
+          {
+            title: "Mortgage Calculator",
+            description: "Calculate mortgage payments",
+            icon: Building,
+            link: "/calculators/mortgage"
+          }
+        ]}
+      />
     </div>
   </CalculatorPageLayout>
 );
