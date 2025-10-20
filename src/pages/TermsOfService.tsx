@@ -47,11 +47,21 @@ const TermsOfService = () => (
               </div>
               
               <div>
-                <h2 className="text-2xl font-semibold mb-3">3. Calculator Results Disclaimer</h2>
-                <p className="text-muted-foreground">
-                  Our calculators provide estimates for informational purposes only. Results may not reflect 
-                  real-world conditions and should not be considered professional financial, medical, or legal advice. 
-                  Always consult qualified professionals for important decisions.
+                <h2 className="text-2xl font-semibold mb-3">3. Calculator Accuracy Disclaimer</h2>
+                <p className="text-muted-foreground mb-3">
+                  Our calculators provide estimates for informational purposes only. While we strive for accuracy, 
+                  results may not reflect real-world conditions due to various factors including market fluctuations, 
+                  individual circumstances, and simplified calculation models.
+                </p>
+                <ul className="list-disc pl-6 space-y-1 text-muted-foreground text-sm">
+                  <li>Calculator results are approximations and should be verified with official sources</li>
+                  <li>Financial calculators don't account for all fees, taxes, or charges</li>
+                  <li>Health calculators provide general guidance, not medical advice</li>
+                  <li>Interest rates, policies, and regulations change frequently</li>
+                </ul>
+                <p className="text-muted-foreground mt-3">
+                  <strong>Important:</strong> Never make important financial, medical, or legal decisions based 
+                  solely on calculator results. Always consult qualified professionals.
                 </p>
               </div>
               
@@ -64,24 +74,50 @@ const TermsOfService = () => (
               </div>
               
               <div>
-                <h2 className="text-2xl font-semibold mb-3">5. Limitation of Liability</h2>
-                <p className="text-muted-foreground">
-                  PineappleHub is not liable for any damages arising from the use of our calculator tools, 
-                  including but not limited to financial losses, business interruptions, or inaccurate calculations. 
-                  Use our services at your own risk.
+                <h2 className="text-2xl font-semibold mb-3">5. Intellectual Property Rights</h2>
+                <p className="text-muted-foreground mb-3">
+                  All content on PineappleHub, including calculator designs, algorithms, text, graphics, logos, 
+                  and software, is the intellectual property of PineappleHub or its licensors and is protected by 
+                  copyright and trademark laws.
+                </p>
+                <ul className="list-disc pl-6 space-y-1 text-muted-foreground text-sm">
+                  <li>You may use our calculators for personal, educational, or commercial purposes</li>
+                  <li>You may not copy, modify, or redistribute our calculator code without permission</li>
+                  <li>Screenshots and links to our calculators are permitted with proper attribution</li>
+                  <li>Unauthorized scraping or automated data collection is prohibited</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h2 className="text-2xl font-semibold mb-3">6. Limitation of Liability</h2>
+                <p className="text-muted-foreground mb-3">
+                  <strong>To the fullest extent permitted by law:</strong>
+                </p>
+                <ul className="list-disc pl-6 space-y-1 text-muted-foreground text-sm">
+                  <li>PineappleHub is not liable for any direct, indirect, incidental, or consequential damages</li>
+                  <li>We are not responsible for financial losses from calculator errors or misinterpretation</li>
+                  <li>No liability for investment decisions based on calculator outputs</li>
+                  <li>Not responsible for health-related decisions made without professional consultation</li>
+                  <li>No liability for technical issues, service interruptions, or data loss</li>
+                  <li>Total liability shall not exceed $100 or the amount you paid (if any)</li>
+                </ul>
+                <p className="text-muted-foreground mt-3">
+                  You acknowledge that you use our calculator tools entirely at your own risk and accept full 
+                  responsibility for any decisions made based on the results.
                 </p>
               </div>
               
               <div>
-                <h2 className="text-2xl font-semibold mb-3">6. Service Availability</h2>
+                <h2 className="text-2xl font-semibold mb-3">7. Service Availability</h2>
                 <p className="text-muted-foreground">
                   We strive to maintain continuous service availability but cannot guarantee 100% uptime. 
-                  Services may be temporarily unavailable for maintenance, updates, or technical issues.
+                  Services may be temporarily unavailable for maintenance, updates, or technical issues. We are 
+                  not liable for any losses or damages resulting from service interruptions or downtime.
                 </p>
               </div>
               
               <div>
-                <h2 className="text-2xl font-semibold mb-3">7. Changes to Terms</h2>
+                <h2 className="text-2xl font-semibold mb-3">8. Changes to Terms</h2>
                 <p className="text-muted-foreground">
                   We reserve the right to update these terms at any time. Significant changes will be 
                   communicated through our website or email. Continued use constitutes acceptance of updated terms.
@@ -89,12 +125,27 @@ const TermsOfService = () => (
               </div>
               
               <div>
-                <h2 className="text-2xl font-semibold mb-3">8. Contact Information</h2>
+                <h2 className="text-2xl font-semibold mb-3">9. Governing Law & Dispute Resolution</h2>
+                <p className="text-muted-foreground mb-3">
+                  These terms are governed by applicable laws without regard to conflict of law provisions. 
+                  Any disputes arising from these terms or your use of our services shall be resolved through:
+                </p>
+                <ul className="list-disc pl-6 space-y-1 text-muted-foreground text-sm">
+                  <li>First, good faith negotiations between you and PineappleHub</li>
+                  <li>If negotiations fail, binding arbitration or applicable court jurisdiction</li>
+                  <li>You agree to pursue claims individually, not as part of a class action</li>
+                </ul>
+              </div>
+              
+              <div>
+                <h2 className="text-2xl font-semibold mb-3">10. Contact Information</h2>
                 <p className="text-muted-foreground">
                   For questions about these terms, contact us at{" "}
                   <a href="mailto:pineappletech.official@gmail.com" className="text-primary hover:underline">
                     pineappletech.official@gmail.com
                   </a>
+                  {" "}or visit our{" "}
+                  <a href="/contact" className="text-primary hover:underline">Contact Page</a>.
                 </p>
               </div>
             </div>

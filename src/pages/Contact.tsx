@@ -2,8 +2,9 @@ import React from "react";
 import { SEOHead } from "@/components/SEOHead";
 import { BackButton } from "@/components/BackButton";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, Phone, MapPin, Clock, MessageSquare, HelpCircle } from "lucide-react";
+import { Mail, Clock, MessageSquare, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ContactForm } from "@/components/ContactForm";
 
 const Contact = () => (
   <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
@@ -29,7 +30,11 @@ const Contact = () => (
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
+          {/* Contact Form */}
+          <ContactForm />
+          
           {/* Contact Information */}
+          <div className="space-y-8">
           <Card className="h-fit">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -48,10 +53,10 @@ const Contact = () => (
                 <div>
                   <h3 className="font-semibold mb-1">Email Support</h3>
                   <a 
-                    href="mailto:pineappletech.official@gmail.com"
+                    href="mailto:contact@pineapplecalculator.com"
                     className="text-primary hover:underline"
                   >
-                    pineappletech.official@gmail.com
+                    contact@pineapplecalculator.com
                   </a>
                   <p className="text-sm text-muted-foreground mt-1">
                     Best for detailed questions and feedback
@@ -145,6 +150,7 @@ const Contact = () => (
               </div>
             </CardContent>
           </Card>
+          </div>
         </div>
 
         {/* Additional Info */}
