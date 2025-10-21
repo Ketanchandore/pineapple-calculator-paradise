@@ -46,7 +46,6 @@ const Index = () => {
       <ViralTrafficBooster />
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
-        <SocialProofBanner />
         <main className="flex-1">
           <HeroSection />
           <CalculatorGrid />
