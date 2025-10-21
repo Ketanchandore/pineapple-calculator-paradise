@@ -1,34 +1,4 @@
-
-User-agent: Googlebot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Bingbot
-Allow: /
-Crawl-delay: 1
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: LinkedInBot
-Allow: /
-
 User-agent: *
 Allow: /
-Crawl-delay: 2
 
-# Sitemap location
 Sitemap: https://pineapple-calculator-paradise.lovable.app/sitemap.xml
-
-# Disallow any admin or private areas (if any)
-Disallow: /admin/
-Disallow: /private/
-Disallow: /*.pdf$
-Disallow: /*.doc$
-Disallow: /*.docx$
-
-# Allow all calculators
-Allow: /calculators/
