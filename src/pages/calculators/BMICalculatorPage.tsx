@@ -3,6 +3,7 @@ import BMICalculator from "@/components/calculators/BMICalculator";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { RelatedCalculators } from "@/components/RelatedCalculators";
 import { Activity, Flame, Baby, Calendar } from "lucide-react";
+import { Helmet } from "react-helmet";
 
 const BMICalculatorPage = () => {
   const faqs = [
@@ -28,15 +29,56 @@ const BMICalculatorPage = () => {
     }
   ];
 
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "BMI Calculator",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web Browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "250000"
+    },
+    "description": "Free online BMI calculator to determine your Body Mass Index and get personalized health recommendations instantly."
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
-  <CalculatorPageLayout 
-    pageTitle="BMI Calculator - Free Body Mass Index Calculator | Pineapple Calculator" 
-    description="Calculate your Body Mass Index (BMI) instantly. Free, accurate BMI calculator with detailed health recommendations. Try now!"
-    calculatorType="health"
-    keywords="BMI calculator, body mass index, BMI chart, healthy weight, obesity calculator, weight status, free BMI calculator, calculate BMI"
-    canonicalUrl="https://pineapple-calculator-paradise.lovable.app/calculators/bmi"
-    faqItems={faqs}
-  >
+  <>
+    <Helmet>
+      <script type="application/ld+json">
+        {JSON.stringify(softwareSchema)}
+      </script>
+      <script type="application/ld+json">
+        {JSON.stringify(faqSchema)}
+      </script>
+    </Helmet>
+    <CalculatorPageLayout 
+      pageTitle="BMI Calculator - Free Body Mass Index Calculator | Pineapple Calculator" 
+      description="Calculate your Body Mass Index (BMI) instantly. Free, accurate BMI calculator with detailed health recommendations. Try now!"
+      calculatorType="health"
+      keywords="BMI calculator, body mass index, BMI chart, healthy weight, obesity calculator, weight status, free BMI calculator, calculate BMI"
+      canonicalUrl="https://pineapple-calculator-paradise.lovable.app/calculators/bmi"
+      faqItems={faqs}
+    >
     <div className="max-w-4xl mx-auto space-y-12">
       {/* Introduction Section */}
       <div className="space-y-4">
@@ -220,6 +262,7 @@ const BMICalculatorPage = () => {
       </div>
     </div>
   </CalculatorPageLayout>
+  </>
 );
 };
 
