@@ -203,27 +203,27 @@ const EMICalculatorPage = () => {
             calculators={[
               {
                 title: "Home Loan Calculator",
-                description: "Calculate home loan EMI & eligibility",
+                description: "Calculate home loan EMI and eligibility",
                 icon: Home,
                 link: "/calculators/home-loan"
               },
               {
                 title: "Loan Calculator",
-                description: "Calculate personal loan payments",
+                description: "Calculate personal and business loan EMI",
                 icon: Calculator,
                 link: "/calculators/loan"
               },
               {
-                title: "Compound Interest Calculator",
-                description: "Calculate compound interest",
-                icon: Percent,
-                link: "/calculators/compound-interest"
-              },
-              {
                 title: "Mortgage Calculator",
-                description: "Calculate mortgage payments",
+                description: "Calculate mortgage payments and interest",
                 icon: Building,
                 link: "/calculators/mortgage"
+              },
+              {
+                title: "Compound Interest Calculator",
+                description: "Calculate compound interest on loans",
+                icon: Percent,
+                link: "/calculators/compound-interest"
               }
             ]}
           />

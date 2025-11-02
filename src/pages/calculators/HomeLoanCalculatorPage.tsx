@@ -1,7 +1,7 @@
 import CalculatorPageLayout from "@/components/CalculatorPageLayout";
 import HomeLoanCalculator from "@/components/calculators/HomeLoanCalculator";
 import { RelatedCalculators } from "@/components/RelatedCalculators";
-import { Calculator, Building, Percent, Landmark } from "lucide-react";
+import { Calculator, Building, Percent, Home } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Helmet } from "react-helmet";
 
@@ -206,27 +206,27 @@ const HomeLoanCalculatorPage = () => {
             calculators={[
               {
                 title: "EMI Calculator",
-                description: "Calculate loan EMI easily",
+                description: "Calculate monthly loan installments",
                 icon: Calculator,
                 link: "/calculators/emi"
               },
               {
                 title: "Mortgage Calculator",
-                description: "Calculate mortgage payments",
+                description: "Calculate mortgage payments and interest",
                 icon: Building,
                 link: "/calculators/mortgage"
               },
               {
-                title: "Compound Interest Calculator",
-                description: "Calculate compound interest",
-                icon: Percent,
-                link: "/calculators/compound-interest"
+                title: "Home Loan EMI Calculator",
+                description: "Detailed home loan EMI breakdown",
+                icon: Home,
+                link: "/calculators/home-loan-emi"
               },
               {
-                title: "FD Calculator",
-                description: "Calculate fixed deposit returns",
-                icon: Landmark,
-                link: "/calculators/fd"
+                title: "Compound Interest Calculator",
+                description: "Calculate interest over loan tenure",
+                icon: Percent,
+                link: "/calculators/compound-interest"
               }
             ]}
           />

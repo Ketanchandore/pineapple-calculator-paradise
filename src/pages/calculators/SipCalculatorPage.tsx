@@ -203,27 +203,27 @@ const SipCalculatorPage = () => {
             calculators={[
               {
                 title: "Mutual Fund Calculator",
-                description: "Calculate mutual fund returns",
+                description: "Calculate mutual fund returns and growth",
                 icon: TrendingUp,
                 link: "/calculators/mutual-fund"
               },
               {
                 title: "FD Calculator",
-                description: "Calculate fixed deposit returns",
+                description: "Calculate fixed deposit maturity amount",
                 icon: Landmark,
                 link: "/calculators/fd"
               },
               {
-                title: "Compound Interest Calculator",
-                description: "Calculate compound interest",
-                icon: Calculator,
-                link: "/calculators/compound-interest"
-              },
-              {
                 title: "SWP Calculator",
-                description: "Calculate systematic withdrawal",
+                description: "Plan systematic withdrawal from investments",
                 icon: ArrowDownToLine,
                 link: "/calculators/swp"
+              },
+              {
+                title: "Compound Interest Calculator",
+                description: "Calculate compound interest on investments",
+                icon: Calculator,
+                link: "/calculators/compound-interest"
               }
             ]}
           />

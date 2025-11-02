@@ -215,28 +215,22 @@ const GstCalculatorPage = () => {
           <RelatedCalculators 
             calculators={[
               {
-                title: "Percentage Calculator",
-                description: "Calculate percentages easily",
-                icon: Percent,
-                link: "/calculators/percentage"
-              },
-              {
                 title: "Income Tax Calculator",
-                description: "Calculate income tax liability",
+                description: "Calculate income tax and plan savings",
                 icon: Calculator,
                 link: "/calculators/income-tax"
               },
               {
-                title: "E-Commerce Calculator",
-                description: "Calculate e-commerce margins",
-                icon: Receipt,
-                link: "/calculators/ecommerce"
+                title: "Percentage Calculator",
+                description: "Calculate tax percentages quickly",
+                icon: Percent,
+                link: "/calculators/percentage"
               },
               {
-                title: "SIP Calculator",
-                description: "Calculate mutual fund SIP returns",
-                icon: TrendingUp,
-                link: "/calculators/sip"
+                title: "EMI Calculator",
+                description: "Calculate loan EMI with GST impact",
+                icon: Receipt,
+                link: "/calculators/emi"
               }
             ]}
           />

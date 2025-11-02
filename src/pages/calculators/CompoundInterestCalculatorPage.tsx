@@ -224,27 +224,27 @@ const CompoundInterestCalculatorPage = () => {
             calculators={[
               {
                 title: "SIP Calculator",
-                description: "Calculate mutual fund SIP returns",
+                description: "Calculate systematic investment returns",
                 icon: TrendingUp,
                 link: "/calculators/sip"
               },
               {
                 title: "FD Calculator",
-                description: "Calculate fixed deposit returns",
+                description: "Calculate fixed deposit maturity amount",
                 icon: Landmark,
                 link: "/calculators/fd"
               },
               {
-                title: "SWP Calculator",
-                description: "Calculate systematic withdrawal",
+                title: "Mutual Fund Calculator",
+                description: "Calculate mutual fund investment returns",
                 icon: PiggyBank,
-                link: "/calculators/swp"
+                link: "/calculators/mutual-fund"
               },
               {
-                title: "EMI Calculator",
-                description: "Calculate loan EMI",
+                title: "SWP Calculator",
+                description: "Plan systematic withdrawal strategy",
                 icon: Calculator,
-                link: "/calculators/emi"
+                link: "/calculators/swp"
               }
             ]}
           />

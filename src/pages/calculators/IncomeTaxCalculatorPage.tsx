@@ -1,7 +1,7 @@
 import CalculatorPageLayout from "@/components/CalculatorPageLayout";
 import IncomeTaxCalculator from "@/components/calculators/IncomeTaxCalculator";
 import { RelatedCalculators } from "@/components/RelatedCalculators";
-import { Receipt, TrendingUp, Calculator as CalcIcon, Percent } from "lucide-react";
+import { Receipt, TrendingUp, Calculator as CalcIcon, Percent, Home } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Helmet } from "react-helmet";
 
@@ -205,27 +205,27 @@ const IncomeTaxCalculatorPage = () => {
             calculators={[
               {
                 title: "GST Calculator",
-                description: "Calculate GST & tax amounts",
+                description: "Calculate GST and tax amounts",
                 icon: Receipt,
                 link: "/calculators/gst"
               },
               {
                 title: "SIP Calculator",
-                description: "Calculate mutual fund returns",
+                description: "Plan systematic investment and tax savings",
                 icon: TrendingUp,
                 link: "/calculators/sip"
               },
               {
-                title: "EMI Calculator",
-                description: "Calculate loan payments",
-                icon: CalcIcon,
-                link: "/calculators/emi"
-              },
-              {
                 title: "Percentage Calculator",
-                description: "Calculate percentages easily",
+                description: "Calculate tax percentages and deductions",
                 icon: Percent,
                 link: "/calculators/percentage"
+              },
+              {
+                title: "Home Loan Calculator",
+                description: "Calculate home loan tax benefits",
+                icon: Home,
+                link: "/calculators/home-loan"
               }
             ]}
           />

@@ -210,28 +210,28 @@ const PercentageCalculatorPage = () => {
           <RelatedCalculators 
             calculators={[
               {
+                title: "GST Calculator",
+                description: "Calculate GST and tax amounts instantly",
+                icon: Receipt,
+                link: "/calculators/gst"
+              },
+              {
+                title: "Income Tax Calculator",
+                description: "Calculate income tax liability",
+                icon: TrendingUp,
+                link: "/calculators/income-tax"
+              },
+              {
                 title: "Scientific Calculator",
-                description: "Advanced scientific calculations",
+                description: "Advanced mathematical calculations",
                 icon: Calculator,
                 link: "/calculators/scientific"
               },
               {
                 title: "Compound Interest Calculator",
-                description: "Calculate investment growth",
-                icon: TrendingUp,
-                link: "/calculators/compound-interest"
-              },
-              {
-                title: "GST Calculator",
-                description: "Calculate GST & tax amounts",
-                icon: Receipt,
-                link: "/calculators/gst"
-              },
-              {
-                title: "EMI Calculator",
-                description: "Calculate loan payments",
+                description: "Calculate investment and loan interest",
                 icon: Percent,
-                link: "/calculators/emi"
+                link: "/calculators/compound-interest"
               }
             ]}
           />
