@@ -170,19 +170,19 @@
   
   <!-- Category Pages -->
   <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/categories/finance</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/finance-calculators</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-21</lastmod>
   </url>
   <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/categories/health</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/health-calculators</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-21</lastmod>
   </url>
   <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/categories/math</loc>
+    <loc>https://pineapple-calculator-paradise.lovable.app/math-calculators</loc>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
     <lastmod>2025-01-21</lastmod>
