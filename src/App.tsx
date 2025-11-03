@@ -49,6 +49,11 @@ const HealthCalculators = React.lazy(() => import("./pages/categories/HealthCalc
 const MathCalculators = React.lazy(() => import("./pages/categories/MathCalculators"));
 const SitemapPage = React.lazy(() => import("./pages/Sitemap"));
 
+// SEO & Content pages
+const CalculatorGuide = React.lazy(() => import("./pages/CalculatorGuide"));
+const BlogIndex = React.lazy(() => import("./pages/BlogIndex"));
+const CompareCalculators = React.lazy(() => import("./pages/CompareCalculators"));
+
 const queryClient = new QueryClient();
 
 const Fallback = <div className="text-center text-[#00B86B] py-12">Loading...</div>;
@@ -98,6 +103,9 @@ const App = () => (
           <Route path="/health-calculators" element={<Suspense fallback={Fallback}><HealthCalculators /></Suspense>} />
           <Route path="/math-calculators" element={<Suspense fallback={Fallback}><MathCalculators /></Suspense>} />
           <Route path="/sitemap" element={<Suspense fallback={Fallback}><SitemapPage /></Suspense>} />
+          <Route path="/calculator-guide" element={<Suspense fallback={Fallback}><CalculatorGuide /></Suspense>} />
+          <Route path="/blog" element={<Suspense fallback={Fallback}><BlogIndex /></Suspense>} />
+          <Route path="/compare-calculators" element={<Suspense fallback={Fallback}><CompareCalculators /></Suspense>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

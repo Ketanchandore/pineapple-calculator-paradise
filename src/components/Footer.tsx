@@ -49,6 +49,18 @@ const Footer = memo(() => (
               <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
               Home
             </Link>
+            <Link to="/calculator-guide" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm group">
+              <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              Calculator Guide
+            </Link>
+            <Link to="/blog" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm group">
+              <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              Blog & Tips
+            </Link>
+            <Link to="/compare-calculators" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm group">
+              <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+              Compare Tools
+            </Link>
             <Link to="/about" className="flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-200 text-sm group">
               <ChevronRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
               About Us
