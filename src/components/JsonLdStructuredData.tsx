@@ -78,10 +78,6 @@ const JsonLdStructuredData = ({ pageTitle, description, calculatorType, faqs }: 
       "@type": "Thing",
       "name": calculatorType || "Calculator Tools"
     },
-    "breadcrumb": {
-      "@type": "BreadcrumbList",
-      "@id": `${currentUrl}#breadcrumb`
-    },
     "potentialAction": {
       "@type": "UseAction",
       "object": {

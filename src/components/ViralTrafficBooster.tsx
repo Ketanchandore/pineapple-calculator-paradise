@@ -101,6 +101,7 @@ export const ViralTrafficBooster = () => {
           "@type": "Product",
           "name": "Free Calculator Suite - PineappleHub",
           "description": "🚀 Complete suite of 50+ free calculators for EMI, SIP, BMI, Loan, GST calculations. Used by 15M+ Indians daily!",
+          "image": "https://pineapple-calculator-paradise.lovable.app/og-image.jpg",
           "brand": {
             "@type": "Brand",
             "name": "PineappleHub"
@@ -181,24 +182,10 @@ export const ViralTrafficBooster = () => {
     breadcrumbScript.textContent = JSON.stringify(breadcrumbSchema);
     document.head.appendChild(breadcrumbScript);
 
-    // Add event tracking for viral sharing
-    const trackViral = () => {
-      // Track social shares
-      if (navigator.share) {
-        window.addEventListener('beforeunload', () => {
-          if (document.referrer.includes('whatsapp') || document.referrer.includes('facebook') || document.referrer.includes('twitter')) {
-            // User came from social media
-            fetch('/api/track-viral', { 
-              method: 'POST', 
-              body: JSON.stringify({ source: 'social', timestamp: Date.now() }),
-              keepalive: true 
-            }).catch(() => {});
-          }
-        });
-      }
-    };
-
-    trackViral();
+    // Track viral sharing capability
+    if (navigator.share) {
+      document.body.setAttribute('data-share-capable', 'true');
+    }
 
     // Cleanup
     return () => {

@@ -26,7 +26,6 @@ const Index = () => {
         canonicalUrl="https://pineapple-calculator-paradise.lovable.app/"
       />
       <UltimateSEO page="home" />
-      <TrafficMagnet />
       <AdvancedSEO 
         title="🚀 Free Calculator Online India | EMI, SIP, BMI Calculator"
         description="🇮🇳 India's #1 FREE Calculator App! 50+ Tools Used by 15M+ People"
@@ -35,10 +34,6 @@ const Index = () => {
       <SEOEnhancer page="home" />
       <SEODominator page="home" />
       <ContentOptimizer pageTi="Free Online Calculator India" category="general" />
-      <TrafficBooster 
-        keywords={['calculator online india', 'free calculator app', 'EMI calculator india', 'SIP calculator india', 'BMI calculator india']}
-        competitors={['calculator.net', 'rapidtables.com', 'calculator-online.net']}
-      />
       <JsonLdStructuredData 
         pageTitle="🚀 Free Calculator Online India | EMI, SIP, BMI Calculator - PineappleHub"
         description="🇮🇳 India's #1 FREE Calculator App! 50+ Tools: EMI Calculator, SIP Calculator, BMI Calculator. Used by 15M+ people. Mobile-friendly, instant results!"
