@@ -1,72 +1,42 @@
-
 import React, { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Printer, Share2, RefreshCcw } from "lucide-react";
+import { TrendingUp, Printer, Share2, RefreshCcw, Sparkles, PiggyBank } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 
-// Currency and duration options
 const currencyOptions = [
-  { label: "INR ₹", value: "INR" },
-  { label: "USD $", value: "USD" },
-  { label: "EUR €", value: "EUR" }
+  { label: "₹ INR", value: "INR" },
+  { label: "$ USD", value: "USD" },
+  { label: "€ EUR", value: "EUR" },
+  { label: "£ GBP", value: "GBP" },
+  { label: "A$ AUD", value: "AUD" },
 ];
 
 const termUnits = [
+  { label: "Years", value: "years" },
   { label: "Months", value: "months" },
-  { label: "Years", value: "years" }
 ];
 
-// Simple utility for currency formatting
 function formatCurrency(amount: number, currency: string) {
   return amount.toLocaleString(undefined, {
     style: "currency",
-    currency: currency || "INR",
-    maximumFractionDigits: 2,
-    minimumFractionDigits: 2,
+    currency: currency || "USD",
+    maximumFractionDigits: 0,
   });
 }
 
-// SIP Calculation: Monthly Investment, Rate (Annual %), Tenure (months)
-// M = P × [ ( (1 + r)^n - 1 ) / r ] × (1+r)
-// M = Maturity value, P = monthly investment, r = monthly rate, n = months
 function calculateSIP(monthly: number, rate: number, months: number) {
   const monthlyRate = rate / 12 / 100;
-  const n = months;
   if (!monthly || !rate || !months) return null;
-  const maturity =
-    monthly *
-    ((Math.pow(1 + monthlyRate, n) - 1) / monthlyRate) *
-    (1 + monthlyRate);
-  const invested = monthly * n;
+  const maturity = monthly * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate);
+  const invested = monthly * months;
   const gain = maturity - invested;
-  return {
-    maturity,
-    invested,
-    gain,
-  };
+  return { maturity, invested, gain };
 }
 
-// FAQ contents
-const FAQS = [
-  {
-    q: "What is a SIP Calculator?",
-    a: "A SIP (Systematic Investment Plan) Calculator helps you estimate the maturity amount of periodic investments in mutual funds over time, including gains from compounding."
-  },
-  {
-    q: "How is SIP maturity calculated?",
-    a: "SIP maturity is calculated using the monthly investment, annual interest rate, and tenure. The result is the future value of a series of recurring investments."
-  },
-  {
-    q: "Can I compare different scenarios?",
-    a: "Yes, you can instantly change the amount, rate, tenure, or currency to see updated results."
-  }
-];
-
 export default function SIPCalculator() {
-  // Inputs
-  const [currency, setCurrency] = useState("INR");
+  const [currency, setCurrency] = useState("USD");
   const [monthly, setMonthly] = useState("");
   const [rate, setRate] = useState("");
   const [term, setTerm] = useState("");
@@ -75,34 +45,28 @@ export default function SIPCalculator() {
   const [error, setError] = useState<string | null>(null);
   const [anim, setAnim] = useState(false);
 
-  // Calculated and parsed values
   const parsedMonthly = Number(monthly.replace(/,/g, ""));
   const parsedRate = Number(rate.replace(/,/g, ""));
-  let parsedTerm = Number(term.replace(/,/g, ""));
-  let displayTermMonths = termUnit === "months" ? parsedTerm : parsedTerm * 12;
+  const parsedTerm = Number(term.replace(/,/g, ""));
+  const displayTermMonths = termUnit === "months" ? parsedTerm : parsedTerm * 12;
 
-  // Validation effect
   useEffect(() => {
     if (!monthly && !rate && !term) return setError(null);
     if (parsedMonthly <= 0 || isNaN(parsedMonthly)) return setError("Enter a valid monthly investment.");
-    if (parsedRate <= 0 || parsedRate > 60 || isNaN(parsedRate)) return setError("Enter a valid annual interest rate.");
-    if (parsedTerm <= 0 || isNaN(parsedTerm) || displayTermMonths > 1200) return setError("Enter a valid investment tenure.");
+    if (parsedRate <= 0 || parsedRate > 50 || isNaN(parsedRate)) return setError("Enter a valid return rate.");
+    if (parsedTerm <= 0 || isNaN(parsedTerm) || displayTermMonths > 600) return setError("Enter a valid tenure.");
     setError(null);
   }, [monthly, rate, term, termUnit]);
 
-  // Results
-  const sipResult =
-    !error && parsedMonthly && parsedRate && parsedTerm
-      ? calculateSIP(parsedMonthly, parsedRate, displayTermMonths)
-      : null;
+  const sipResult = (!error && parsedMonthly && parsedRate && parsedTerm)
+    ? calculateSIP(parsedMonthly, parsedRate, displayTermMonths)
+    : null;
 
-  // Animation
   const triggerAnim = () => {
     setAnim(true);
     setTimeout(() => setAnim(false), 700);
   };
 
-  // Actions
   const handleReset = () => {
     setMonthly("");
     setRate("");
@@ -110,40 +74,50 @@ export default function SIPCalculator() {
     setTouched(false);
     setError(null);
   };
+
   const handlePrint = () => window.print();
   const handleShare = () => {
     navigator.clipboard.writeText(window.location.href);
-    toast({ title: "Link copied!", description: "You can share this calculator with others." });
+    toast({ title: "Link copied!", description: "Share this calculator with others." });
   };
 
-  // UI
   return (
-    <div className="bg-white dark:bg-[#232300] rounded-2xl shadow-2xl border border-[#ffe066] p-6 max-w-xl mx-auto animate-fade-in">
-      <h1 className="text-2xl font-bold text-[#00B86B] dark:text-[#FFE066] mb-3">SIP Calculator</h1>
-      <form
-        className="flex flex-col gap-5"
-        onSubmit={e => { e.preventDefault(); triggerAnim(); }}
-        autoComplete="off"
-      >
-        <div className="flex gap-4 mb-2 items-center">
-          <Label className="mr-2">Currency:</Label>
-          <div className="flex gap-1">
-            {currencyOptions.map(opt => (
-              <button
-                key={opt.value}
-                className={cn(
-                  "px-4 py-1 rounded-xl font-semibold border border-[#ffe066] shadow-sm transition-all hover:bg-[#e5fad9] dark:hover:bg-[#373814]",
-                  currency === opt.value ? "bg-[#00B86B] text-white dark:bg-[#FFE066] dark:text-[#232300]" : "bg-[#fff9e2] dark:bg-[#232300] text-[#5C6C32]"
-                )}
-                type="button"
-                onClick={() => setCurrency(opt.value)}
-                aria-pressed={currency === opt.value}
-              >{opt.label}</button>
-            ))}
-          </div>
+    <div className="glass-card rounded-2xl p-6 md:p-8 max-w-2xl mx-auto animate-fade-in">
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent 
+                      flex items-center justify-center shadow-glow">
+          <TrendingUp className="w-6 h-6 text-primary-foreground" />
         </div>
         <div>
-          <Label htmlFor="monthly">Monthly Investment Amount</Label>
+          <h2 className="text-xl font-display font-bold text-gradient">SIP Calculator</h2>
+          <p className="text-sm text-muted-foreground">Calculate investment returns</p>
+        </div>
+      </div>
+
+      <form onSubmit={e => { e.preventDefault(); triggerAnim(); }} autoComplete="off" className="space-y-5">
+        {/* Currency Selection */}
+        <div className="flex flex-wrap gap-2">
+          {currencyOptions.map(opt => (
+            <button
+              key={opt.value}
+              type="button"
+              className={cn(
+                "px-4 py-2 rounded-xl text-sm font-medium transition-all touch-target",
+                currency === opt.value 
+                  ? "bg-primary text-primary-foreground shadow-glow" 
+                  : "glass-button hover:bg-primary/10"
+              )}
+              onClick={() => setCurrency(opt.value)}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Monthly Investment */}
+        <div className="space-y-2">
+          <Label htmlFor="monthly" className="text-base font-medium">Monthly Investment</Label>
           <Input
             id="monthly"
             type="text"
@@ -151,12 +125,15 @@ export default function SIPCalculator() {
             placeholder="e.g. 5,000"
             value={monthly}
             onChange={e => { setMonthly(e.target.value.replace(/[^0-9.]/g, "")); setTouched(true); }}
-            className="rounded-2xl px-4 py-3 text-lg bg-[#FFF9EC] dark:bg-[#181d16] border-[#dde28f] focus:ring-[#00B86B]"
-            required
+            className="glass-button border-border/50 h-12 text-lg focus:ring-2 focus:ring-primary/30"
           />
         </div>
-        <div>
-          <Label htmlFor="rate">Expected Annual Return Rate <span className="font-normal text-xs">(%)</span></Label>
+
+        {/* Expected Return */}
+        <div className="space-y-2">
+          <Label htmlFor="rate" className="text-base font-medium">
+            Expected Return <span className="text-muted-foreground text-sm">(% per year)</span>
+          </Label>
           <Input
             id="rate"
             type="text"
@@ -164,31 +141,27 @@ export default function SIPCalculator() {
             placeholder="e.g. 12"
             value={rate}
             onChange={e => { setRate(e.target.value.replace(/[^0-9.]/g, "")); setTouched(true); }}
-            className="rounded-2xl px-4 py-3 text-lg bg-[#FFF9EC] dark:bg-[#181d16] border-[#dde28f] focus:ring-[#00B86B]"
-            required
+            className="glass-button border-border/50 h-12 text-lg focus:ring-2 focus:ring-primary/30"
           />
         </div>
-        <div className="flex items-end gap-2">
-          <div className="flex-1">
-            <Label htmlFor="term">Investment Tenure</Label>
+
+        {/* Investment Period */}
+        <div className="space-y-2">
+          <Label htmlFor="term" className="text-base font-medium">Investment Period</Label>
+          <div className="flex gap-3">
             <Input
               id="term"
               type="text"
               inputMode="decimal"
               placeholder={termUnit === "years" ? "e.g. 10" : "e.g. 120"}
               value={term}
-              onChange={e => { setTerm(e.target.value.replace(/[^0-9.]/g, "")); setTouched(true); }}
-              className="rounded-2xl px-4 py-3 text-lg bg-[#FFF9EC] dark:bg-[#181d16] border-[#dde28f] focus:ring-[#00B86B]"
-              required
+              onChange={e => { setTerm(e.target.value.replace(/[^0-9]/g, "")); setTouched(true); }}
+              className="glass-button border-border/50 h-12 text-lg focus:ring-2 focus:ring-primary/30 flex-1"
             />
-          </div>
-          <div>
-            <Label className="sr-only">Tenure Unit</Label>
             <select
-              className="rounded-2xl border border-[#ffe066] bg-[#fff9e2] dark:bg-[#232300] text-[#5C6C32] px-2 py-2 focus:ring-[#00B86B]"
+              className="glass-button border-border/50 h-12 px-4 rounded-xl text-foreground focus:ring-2 focus:ring-primary/30"
               value={termUnit}
               onChange={e => setTermUnit(e.target.value)}
-              aria-label="Tenure Unit"
             >
               {termUnits.map(opt => (
                 <option key={opt.value} value={opt.value}>{opt.label}</option>
@@ -196,94 +169,85 @@ export default function SIPCalculator() {
             </select>
           </div>
         </div>
-        {error && <span className="text-sm text-red-500 -mt-3">{error}</span>}
-        <div className="flex gap-3 mt-1">
+
+        {error && <p className="text-sm text-destructive">{error}</p>}
+
+        {/* Actions */}
+        <div className="flex flex-wrap gap-3 pt-2">
           <button
             type="submit"
-            className="btn-pineapple rounded-2xl shadow font-medium px-6 py-2 transition-all hover-scale"
-            onClick={triggerAnim}
-            disabled={!!error}
-          >Calculate</button>
+            className="btn-gradient flex items-center gap-2 touch-target"
+            disabled={!!error || !monthly || !rate || !term}
+          >
+            <Sparkles className="w-4 h-4" />
+            Calculate
+          </button>
           <button
             type="button"
             onClick={handleReset}
-            className="bg-[#FFD600]/70 hover:bg-[#F8E474] dark:bg-[#3B420F] dark:text-white rounded-2xl px-6 py-2 font-medium shadow transition-all hover-scale flex items-center gap-2 ml-2"
+            className="glass-button px-5 py-2.5 rounded-xl font-medium flex items-center gap-2 
+                     hover:bg-muted/50 transition-colors touch-target"
           >
-            <RefreshCcw className="h-5" /> Reset
+            <RefreshCcw className="w-4 h-4" />
+            Reset
           </button>
-          <button
-            type="button"
-            onClick={handlePrint}
-            className="bg-[#fff9e2] hover:bg-[#fff6be] text-[#8e9800] rounded-2xl px-4 py-2 shadow flex items-center gap-2 hover-scale focus:outline-none dark:bg-[#222610] ml-2"
-          >
-            <Printer className="h-5" /> Print
+          <button type="button" onClick={handlePrint} className="glass-button px-4 py-2.5 rounded-xl touch-target" aria-label="Print">
+            <Printer className="w-4 h-4" />
           </button>
-          <button
-            type="button"
-            onClick={handleShare}
-            className="bg-[#d9fffa]/80 rounded-2xl px-4 py-2 text-[#019b70] ml-2 shadow hover:bg-[#acffe2] flex items-center gap-2 hover-scale transition-all"
-          >
-            <Share2 className="h-5" /> Share
+          <button type="button" onClick={handleShare} className="glass-button px-4 py-2.5 rounded-xl text-primary touch-target" aria-label="Share">
+            <Share2 className="w-4 h-4" />
           </button>
         </div>
       </form>
-      <div className="h-3" />
+
+      {/* Results */}
       {sipResult && !error && (
-        <div
-          className={cn(
-            "mt-6 text-lg font-semibold text-[#3B4D17] dark:text-[#F9FFCA] bg-[#FAF9E3] dark:bg-[#222610] p-5 rounded-2xl shadow animate-fade-in transition-all",
-            anim && "ring-4 ring-[#00B86B]/40"
-          )}
-        >
-          <div className="mb-3 flex items-center gap-2">
-            <span className="text-lg font-bold text-[#00B86B] dark:text-[#FFE066]">SIP Result:</span>
+        <div className={cn(
+          "mt-8 glass-hero rounded-2xl p-6 animate-scale-in",
+          anim && "ring-2 ring-primary/50 shadow-glow"
+        )}>
+          <div className="flex items-center gap-2 mb-4">
+            <PiggyBank className="w-5 h-5 text-primary" />
+            <span className="text-lg font-display font-bold text-gradient">Investment Result</span>
           </div>
-          <ul className="text-base space-y-1">
-            <li><b>Total Maturity Value:</b> {formatCurrency(sipResult.maturity, currency)}</li>
-            <li><b>Total Invested Amount:</b> {formatCurrency(sipResult.invested, currency)}</li>
-            <li><b>Total Gains:</b> {formatCurrency(sipResult.gain, currency)}</li>
-            <li>
-              <b>Breakup:</b> {formatCurrency(sipResult.invested, currency)} (Invested) + {formatCurrency(sipResult.gain, currency)} (Gains)
-            </li>
-          </ul>
-          <div className="text-sm mt-3 text-[#019b70] dark:text-[#eaf28a]">
-            <b>Tip:</b> This calculation assumes end-of-period monthly SIP and annual compounding.
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+            <div className="glass-card rounded-xl p-4 text-center">
+              <div className="text-2xl md:text-3xl font-display font-bold text-gradient">
+                {formatCurrency(sipResult.maturity, currency)}
+              </div>
+              <div className="text-sm text-muted-foreground">Maturity Value</div>
+            </div>
+            <div className="glass-card rounded-xl p-4 text-center">
+              <div className="text-xl md:text-2xl font-display font-bold text-foreground">
+                {formatCurrency(sipResult.invested, currency)}
+              </div>
+              <div className="text-sm text-muted-foreground">Total Invested</div>
+            </div>
+            <div className="glass-card rounded-xl p-4 text-center">
+              <div className="text-xl md:text-2xl font-display font-bold text-accent">
+                {formatCurrency(sipResult.gain, currency)}
+              </div>
+              <div className="text-sm text-muted-foreground">Total Returns</div>
+            </div>
+          </div>
+
+          <div className="text-sm text-muted-foreground text-center">
+            Investment: {formatCurrency(sipResult.invested, currency)} + Returns: {formatCurrency(sipResult.gain, currency)}
           </div>
         </div>
       )}
+
       {!sipResult && touched && !error && (
-        <div className="mt-6 bg-[#fffcdb] dark:bg-[#39331d] rounded-2xl p-5 text-[#A8982D] text-base shadow-md">
-          Enter values above to get your SIP result instantly!
+        <div className="mt-6 glass-button rounded-2xl p-6 text-center">
+          <TrendingUp className="w-10 h-10 mx-auto text-muted-foreground mb-2" />
+          <p className="text-muted-foreground">Enter investment details to calculate returns</p>
         </div>
       )}
-      {/* How it Works */}
-      <section className="mt-8 mb-4">
-        <h2 className="font-semibold text-lg mb-1 text-[#A8982D] dark:text-[#FFE066]" id="how-it-works">How does the SIP Calculator work?</h2>
-        <p className="text-base text-[#4A5B1C] dark:text-[#f0f097] mb-1">
-          This calculator helps you estimate the wealth you can accumulate by making regular monthly investments (SIP) in mutual funds, factoring expected returns and compounding. Try different values to see the impact instantly!
-        </p>
-        <p className="text-sm text-[#84865C]">Press <b>Calculate</b> for confirmation, use <b>Reset</b>, <b>Print</b> or <b>Share</b> for more options!</p>
-      </section>
-      {/* Formula/Explanation */}
-      <section className="mb-4">
-        <h2 className="font-semibold text-lg mb-1 text-[#A8982D] dark:text-[#FFE066]">SIP Calculation Formula</h2>
-        <div className="text-base text-[#4A5B1C] dark:text-[#f0f097]">
-          SIP Maturity = P × [ ( (1 + r)<sup>n</sup> – 1 ) / r ] × (1 + r)<br />
-          <b>P</b> = Monthly Investment, <b>r</b> = Monthly Interest Rate, <b>n</b> = Number of Months.
-        </div>
-      </section>
-      {/* FAQ Section */}
-      <section>
-        <h2 className="font-semibold text-lg mb-2 text-[#A8982D] dark:text-[#FFE066]">Frequently Asked Questions</h2>
-        <ul className="text-base text-[#5C6C32] dark:text-[#ecfccb] space-y-2">
-          {FAQS.map(({ q, a }) => (
-            <li key={q}><b>Q:</b> {q} <br /><b>A:</b> {a}</li>
-          ))}
-        </ul>
-      </section>
-      <div className="mt-6 text-xs text-[#A96907] dark:text-[#ffe066]">
-        <b>Disclaimer:</b> SIP calculator is an estimation tool. Actual returns may vary. Consult your fund provider for details.
-      </div>
+
+      <p className="mt-6 text-xs text-muted-foreground text-center">
+        <strong>Disclaimer:</strong> SIP returns are estimates. Actual returns may vary based on market conditions.
+      </p>
     </div>
   );
 }

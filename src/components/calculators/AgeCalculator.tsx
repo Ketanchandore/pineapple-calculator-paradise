@@ -1,9 +1,8 @@
-
 import React, { useState, useEffect } from "react";
 import { toast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Printer, Share2, RefreshCcw } from "lucide-react";
+import { Printer, Share2, RefreshCcw, Calendar, Clock, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type AgeResult = {
@@ -56,21 +55,6 @@ function computeAge(dobString: string): AgeResult | null {
   };
 }
 
-const FAQ_DATA = [
-  {
-    q: "Can I use this for any date?",
-    a: "Yes! The Age Calculator works for any valid date, past or future, and gives you the exact difference."
-  },
-  {
-    q: "Why does my age change later in the day?",
-    a: "The age calculation is to the exact second, so after your birthday on the current day, your displayed age may update."
-  },
-  {
-    q: "How do I print or share my age result?",
-    a: "Use the Print or Share buttons below the result. You can directly print, or copy/share the result with a link."
-  }
-];
-
 const AgeCalculator = () => {
   const [dob, setDob] = useState<string>("");
   const [touched, setTouched] = useState(false);
@@ -93,7 +77,6 @@ const AgeCalculator = () => {
     setResult(computeAge(dob));
   }, [dob]);
 
-  // For highlight animation on calculation
   const handleCalcAnim = () => {
     setAnim(true);
     setTimeout(() => setAnim(false), 800);
@@ -106,131 +89,162 @@ const AgeCalculator = () => {
     setResult(null);
   };
 
-  const handlePrint = () => {
-    window.print();
-  };
+  const handlePrint = () => window.print();
 
   const handleShare = () => {
-    const url = window.location.href;
-    navigator.clipboard.writeText(url);
+    navigator.clipboard.writeText(window.location.href);
     toast({ title: "Link copied!", description: "Share this calculator with friends." });
   };
 
   return (
-    <div className="bg-white dark:bg-[#242d1e] rounded-2xl shadow-2xl border border-[#ffe066] p-6 max-w-xl mx-auto animate-fade-in">
-      <h2 className="text-xl font-semibold mb-3 text-[#00B86B] dark:text-[#FFE066]">Online Age Calculator</h2>
+    <div className="glass-card rounded-2xl p-6 md:p-8 max-w-2xl mx-auto animate-fade-in">
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-6">
+        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-accent 
+                      flex items-center justify-center shadow-glow">
+          <Calendar className="w-6 h-6 text-primary-foreground" />
+        </div>
+        <div>
+          <h2 className="text-xl font-display font-bold text-gradient">Online Age Calculator</h2>
+          <p className="text-sm text-muted-foreground">Calculate your exact age instantly</p>
+        </div>
+      </div>
+
+      {/* Form */}
       <form
-        className="flex flex-col gap-5"
+        className="space-y-5"
         onSubmit={e => { e.preventDefault(); handleCalcAnim(); }}
         autoComplete="off"
       >
-        <Label htmlFor="dob" className="text-base mb-1">Enter your Date of Birth:</Label>
-        <Input
-          id="dob"
-          type="date"
-          value={dob}
-          onChange={e => { setDob(e.target.value); setTouched(true); }}
-          onBlur={() => setTouched(true)}
-          required
-          placeholder="YYYY-MM-DD"
-          aria-invalid={!!error}
-          className={cn("border rounded-2xl px-4 py-3 text-lg bg-[#FFF9EC] dark:bg-[#222610] border-[#dde28f] focus:outline-none focus:ring-2 focus:ring-[#00B86B] w-full transition-all", error && "border-red-400")}
-        />
-        {error && <span className="text-sm text-red-500 -mt-3">{error}</span>}
-        <div className="flex gap-3 mt-1">
+        <div className="space-y-2">
+          <Label htmlFor="dob" className="text-base font-medium text-foreground">
+            Enter your Date of Birth
+          </Label>
+          <Input
+            id="dob"
+            type="date"
+            value={dob}
+            onChange={e => { setDob(e.target.value); setTouched(true); }}
+            onBlur={() => setTouched(true)}
+            required
+            placeholder="YYYY-MM-DD"
+            aria-invalid={!!error}
+            className={cn(
+              "glass-button border-border/50 h-12 text-lg",
+              "focus:ring-2 focus:ring-primary/30 focus:border-primary",
+              error && "border-destructive"
+            )}
+          />
+          {error && <p className="text-sm text-destructive">{error}</p>}
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-wrap gap-3">
           <button
             type="submit"
-            className="btn-pineapple rounded-2xl shadow font-medium px-6 py-2 transition-all hover-scale"
+            className="btn-gradient flex items-center gap-2 touch-target"
             onClick={handleCalcAnim}
             disabled={!dob || !!error}
-          >Calculate</button>
+          >
+            <Sparkles className="w-4 h-4" />
+            Calculate
+          </button>
           <button
             type="button"
             onClick={handleReset}
-            className="bg-[#FFD600]/70 hover:bg-[#F8E474] dark:bg-[#3B420F] dark:text-white rounded-2xl px-6 py-2 font-medium shadow transition-all hover-scale flex items-center gap-2 ml-2"
+            className="glass-button px-5 py-2.5 rounded-xl font-medium flex items-center gap-2 
+                     hover:bg-muted/50 transition-colors touch-target"
           >
-            <RefreshCcw className="h-5" /> Reset
+            <RefreshCcw className="w-4 h-4" />
+            Reset
           </button>
           <button
             type="button"
             onClick={handlePrint}
-            className="bg-[#fff9e2] hover:bg-[#fff6be] text-[#8e9800] rounded-2xl px-4 py-2 shadow flex items-center gap-2 hover-scale focus:outline-none dark:bg-[#222610] ml-2"
+            className="glass-button px-4 py-2.5 rounded-xl flex items-center gap-2 
+                     hover:bg-muted/50 transition-colors touch-target"
           >
-            <Printer className="h-5" /> Print
+            <Printer className="w-4 h-4" />
           </button>
           <button
             type="button"
             onClick={handleShare}
-            className="bg-[#d9fffa]/80 rounded-2xl px-4 py-2 text-[#019b70] ml-2 shadow hover:bg-[#acffe2] flex items-center gap-2 hover-scale transition-all"
+            className="glass-button px-4 py-2.5 rounded-xl flex items-center gap-2 
+                     text-primary hover:bg-primary/10 transition-colors touch-target"
           >
-            <Share2 className="h-5" /> Share
+            <Share2 className="w-4 h-4" />
           </button>
         </div>
       </form>
 
-      <div className="h-3" />
-      {/* Age Results */}
+      {/* Results */}
       {result && !error && (
         <div
-          className={cn("mt-6 text-lg font-semibold text-[#3B4D17] dark:text-[#F9FFCA] bg-[#FAF9E3] dark:bg-[#222610] p-5 rounded-2xl shadow animate-fade-in transition-all", anim && "ring-4 ring-[#00B86B]/40")}
-          tabIndex={0}
+          className={cn(
+            "mt-8 glass-hero rounded-2xl p-6 animate-scale-in",
+            anim && "ring-2 ring-primary/50 shadow-glow"
+          )}
         >
-          <div className="mb-3 flex items-center gap-2">
-            <span className="text-lg font-bold text-[#00B86B] dark:text-[#FFE066]">Your Age:</span>
+          <div className="flex items-center gap-2 mb-4">
+            <Clock className="w-5 h-5 text-primary" />
+            <span className="text-lg font-display font-bold text-gradient">Your Age</span>
           </div>
-          <ul className="text-base space-y-1">
-            <li><b>Years:</b> {result.years}</li>
-            <li><b>Months:</b> {result.months}</li>
-            <li><b>Days:</b> {result.days}</li>
-            <li><b>Weeks (rounded):</b> {result.weeks}</li>
-            <li><b>Total Days:</b> {result.totalDays.toLocaleString()}</li>
-            <li><b>Total Hours:</b> {result.totalHours.toLocaleString()}</li>
-            <li><b>Total Minutes:</b> {result.totalMinutes.toLocaleString()}</li>
-            <li><b>Total Seconds:</b> {result.totalSeconds.toLocaleString()}</li>
-          </ul>
-          <div className="text-sm mt-3 text-[#019b70] dark:text-[#eaf28a]">
-            <b>Tip:</b> These values are precise up to this very second!
+          
+          {/* Age Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+            <ResultCard label="Years" value={result.years} />
+            <ResultCard label="Months" value={result.months} />
+            <ResultCard label="Days" value={result.days} />
+            <ResultCard label="Weeks" value={result.weeks} />
           </div>
+
+          {/* Detailed Stats */}
+          <div className="grid grid-cols-2 gap-3 pt-4 border-t border-border/50">
+            <div className="text-sm">
+              <span className="text-muted-foreground">Total Days:</span>
+              <span className="ml-2 font-semibold text-foreground">{result.totalDays.toLocaleString()}</span>
+            </div>
+            <div className="text-sm">
+              <span className="text-muted-foreground">Total Hours:</span>
+              <span className="ml-2 font-semibold text-foreground">{result.totalHours.toLocaleString()}</span>
+            </div>
+            <div className="text-sm">
+              <span className="text-muted-foreground">Total Minutes:</span>
+              <span className="ml-2 font-semibold text-foreground">{result.totalMinutes.toLocaleString()}</span>
+            </div>
+            <div className="text-sm">
+              <span className="text-muted-foreground">Total Seconds:</span>
+              <span className="ml-2 font-semibold text-foreground">{result.totalSeconds.toLocaleString()}</span>
+            </div>
+          </div>
+
+          <p className="text-xs text-muted-foreground mt-4 text-center">
+            ✨ Values are precise up to this very second!
+          </p>
         </div>
       )}
+
+      {/* Empty State */}
       {!result && touched && !error && (
-        <div className="mt-6 bg-[#fffcdb] dark:bg-[#39331d] rounded-2xl p-5 text-[#A8982D] text-base shadow-md">
-          Enter your date of birth to calculate your age in detail.
+        <div className="mt-6 glass-button rounded-2xl p-6 text-center">
+          <Calendar className="w-10 h-10 mx-auto text-muted-foreground mb-2" />
+          <p className="text-muted-foreground">Enter your date of birth to see your age breakdown</p>
         </div>
       )}
 
-      {/* How it Works */}
-      <section className="mt-8 mb-4">
-        <h3 className="font-semibold text-lg mb-1 text-[#A8982D] dark:text-[#FFE066]">How does the Age Calculator work?</h3>
-        <p className="text-base text-[#4A5B1C] dark:text-[#f0f097] mb-1">
-          This calculator finds your exact age (up to the current second) from your date of birth. It shows years, months, days, weeks, total days, hours, minutes, and seconds using precise calendar math. All calculations are automatic and update instantly as you type.
-        </p>
-        <p className="text-sm text-[#84865C]">Press <b>Calculate</b> for highlight, use <b>Reset</b>, <b>Print</b> or <b>Share</b> for more options!</p>
-      </section>
-
-      {/* Formula/Explanation */}
-      <section className="mb-4">
-        <h3 className="font-semibold text-lg mb-1 text-[#A8982D] dark:text-[#FFE066]">Age Calculation Formula</h3>
-        <div className="text-base text-[#4A5B1C] dark:text-[#f0f097]">
-          <b>Age</b> = Current Date − Date of Birth. <br />
-          Calendar-aware calculation is used to break down into years, months, days.
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section>
-        <h3 className="font-semibold text-lg mb-2 text-[#A8982D] dark:text-[#FFE066]">Frequently Asked Questions</h3>
-        <ul className="text-base text-[#5C6C32] dark:text-[#ecfccb] space-y-1">
-          {FAQ_DATA.map(({ q, a }) => (
-            <li key={q}><b>Q:</b> {q} <br /><b>A:</b> {a}</li>
-          ))}
-        </ul>
-      </section>
-      <div className="mt-6 text-xs text-[#A96907] dark:text-[#ffe066]">
-        <b>Disclaimer:</b> For general use only – not medical advice.
-      </div>
+      {/* Disclaimer */}
+      <p className="mt-6 text-xs text-muted-foreground text-center">
+        <strong>Disclaimer:</strong> For general use only – not medical advice.
+      </p>
     </div>
   );
 };
+
+const ResultCard: React.FC<{ label: string; value: number }> = ({ label, value }) => (
+  <div className="glass-card rounded-xl p-4 text-center">
+    <div className="text-2xl md:text-3xl font-display font-bold text-gradient">{value}</div>
+    <div className="text-sm text-muted-foreground">{label}</div>
+  </div>
+);
 
 export default AgeCalculator;

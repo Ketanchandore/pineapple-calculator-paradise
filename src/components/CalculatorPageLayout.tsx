@@ -85,21 +85,34 @@ export default function CalculatorPageLayout({
         faqs={faqItems}
       />
 
-      <div className="min-h-screen flex flex-col bg-background">
+      <div className="min-h-screen flex flex-col relative">
+        {/* Floating Background Orbs */}
+        <div className="floating-orb orb-1" aria-hidden="true" />
+        <div className="floating-orb orb-2" aria-hidden="true" />
+        
         <Header />
-        <main className="flex flex-row flex-1 w-full max-w-[1600px] mx-auto">
+        <main className="flex flex-row flex-1 w-full max-w-[1700px] mx-auto">
           <Sidebar />
-          <section className="flex-1 px-6 md:px-8 py-6 md:py-8">
-            <BreadcrumbNavigation />
-            <header className="mb-6">
-              <h1 className="text-3xl md:text-4xl font-display font-extrabold text-foreground mb-2">
+          <section className="flex-1 px-4 md:px-8 py-6 md:py-8">
+            {/* Breadcrumb in glass card */}
+            <div className="mb-6">
+              <BreadcrumbNavigation />
+            </div>
+            
+            {/* Page Header */}
+            <header className="glass-hero rounded-2xl p-6 md:p-8 mb-8 animate-fade-in">
+              <h1 className="text-2xl md:text-4xl font-display font-extrabold text-gradient mb-3">
                 {pageTitle}
               </h1>
-              <p className="text-base md:text-lg text-muted-foreground max-w-3xl">
+              <p className="text-base md:text-lg text-muted-foreground max-w-3xl leading-relaxed">
                 {finalDescription}
               </p>
             </header>
-            {children}
+            
+            {/* Main Content */}
+            <div className="animate-slide-up">
+              {children}
+            </div>
           </section>
         </main>
         <Footer />

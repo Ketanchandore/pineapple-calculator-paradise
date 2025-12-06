@@ -32,7 +32,13 @@ const BreadcrumbNavigation = () => {
     'contact': 'Contact',
     'privacy-policy': 'Privacy Policy',
     'terms-of-service': 'Terms of Service',
-    'disclaimer': 'Disclaimer'
+    'disclaimer': 'Disclaimer',
+    'calculator-guide': 'Calculator Guide',
+    'compare-calculators': 'Compare Calculators',
+    'blog': 'Blog',
+    'finance-calculators': 'Finance Calculators',
+    'health-calculators': 'Health Calculators',
+    'math-calculators': 'Math Calculators',
   };
 
   // Don't show breadcrumbs on home page
@@ -47,7 +53,7 @@ const BreadcrumbNavigation = () => {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://pineapplehub.com/"
+          "item": "https://pineapple-calculator-paradise.lovable.app/"
         }
       ]
     };
@@ -60,7 +66,7 @@ const BreadcrumbNavigation = () => {
         "@type": "ListItem",
         "position": index + 2,
         "name": displayName,
-        "item": `https://pineapplehub.com${routeTo}`
+        "item": `https://pineapple-calculator-paradise.lovable.app${routeTo}`
       });
     });
 
@@ -75,10 +81,10 @@ const BreadcrumbNavigation = () => {
           __html: JSON.stringify(generateStructuredData())
         }}
       />
-      <nav className="flex items-center space-x-2 text-sm text-muted-foreground mb-6 bg-card px-4 py-2 rounded-lg border">
+      <nav className="flex items-center flex-wrap gap-2 text-sm glass-button px-4 py-2.5 rounded-xl">
         <Link
           to="/"
-          className="flex items-center hover:text-primary transition-colors"
+          className="flex items-center text-muted-foreground hover:text-primary transition-colors touch-target"
           aria-label="Home"
         >
           <Home className="h-4 w-4" />
@@ -90,8 +96,8 @@ const BreadcrumbNavigation = () => {
           const displayName = breadcrumbNameMap[name] || name.charAt(0).toUpperCase() + name.slice(1);
 
           return (
-            <div key={name} className="flex items-center space-x-2">
-              <ChevronRight className="h-4 w-4" />
+            <div key={name} className="flex items-center gap-2">
+              <ChevronRight className="h-4 w-4 text-muted-foreground/50" />
               {isLast ? (
                 <span className="text-foreground font-medium" aria-current="page">
                   {displayName}
@@ -99,7 +105,7 @@ const BreadcrumbNavigation = () => {
               ) : (
                 <Link
                   to={routeTo}
-                  className="hover:text-primary transition-colors"
+                  className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   {displayName}
                 </Link>
