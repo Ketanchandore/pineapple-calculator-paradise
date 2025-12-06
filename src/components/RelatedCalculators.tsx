@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { LucideIcon } from "lucide-react";
-import { ArrowRight } from "lucide-react";
+import { LucideIcon, ArrowRight } from "lucide-react";
 
 interface RelatedCalculator {
   title: string;
@@ -17,31 +15,36 @@ interface RelatedCalculatorsProps {
 
 export const RelatedCalculators = ({ calculators }: RelatedCalculatorsProps) => {
   return (
-    <section className="mt-12">
-      <h2 className="text-3xl font-bold mb-6">Related Calculators</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <section className="mt-12 animate-fade-in">
+      <h2 className="text-2xl md:text-3xl font-display font-bold text-gradient mb-6">
+        Related Calculators
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
         {calculators.map((calc, index) => (
           <Link 
             key={index} 
             to={calc.link}
-            className="group"
+            className="group glass-card rounded-2xl p-5 transition-all duration-300 
+                     hover:shadow-glow focus:ring-2 focus:ring-primary"
+            style={{ animationDelay: `${index * 100}ms` }}
           >
-            <Card className="h-full transition-all duration-300 hover:shadow-lg hover:scale-105 hover:border-primary/50">
-              <CardHeader>
-                <div className="flex items-start justify-between">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
-                    <calc.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
-                </div>
-                <CardTitle className="text-lg group-hover:text-primary transition-colors">
-                  {calc.title}
-                </CardTitle>
-                <CardDescription className="text-sm">
-                  {calc.description}
-                </CardDescription>
-              </CardHeader>
-            </Card>
+            <div className="flex items-start justify-between mb-4">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 
+                            flex items-center justify-center group-hover:scale-110 
+                            group-hover:shadow-glow transition-all">
+                <calc.icon className="w-6 h-6 text-primary group-hover:text-accent transition-colors" />
+              </div>
+              <ArrowRight className="w-5 h-5 text-muted-foreground opacity-0 -translate-x-2
+                                   group-hover:opacity-100 group-hover:translate-x-0 
+                                   group-hover:text-primary transition-all" />
+            </div>
+            <h3 className="text-lg font-display font-semibold text-foreground 
+                         group-hover:text-gradient transition-all mb-2">
+              {calc.title}
+            </h3>
+            <p className="text-sm text-muted-foreground line-clamp-2">
+              {calc.description}
+            </p>
           </Link>
         ))}
       </div>
