@@ -1,16 +1,7 @@
 import { SEOHead } from "@/components/SEOHead";
-import { SEOEnhancer } from "@/components/SEOEnhancer";
 import { AdvancedSEO } from "@/components/AdvancedSEO";
 import JsonLdStructuredData from "@/components/JsonLdStructuredData";
-import { SEODominator } from "@/components/SEODominator";
-import { ContentOptimizer } from "@/components/ContentOptimizer";
-import { TrafficBooster } from "@/components/TrafficBooster";
-import { UltimateSEO } from "@/components/UltimateSEO";
-import { TrafficMagnet } from "@/components/TrafficMagnet";
 import { ViralTrafficBooster } from "@/components/ViralTrafficBooster";
-import { SocialProofBanner } from "@/components/SocialProofBanner";
-import { ClickbaitCTASection } from "@/components/ClickbaitCTASection";
-import { ShareableContentSection } from "@/components/ShareableContentSection";
 import HeroSection from "@/components/HeroSection";
 import CalculatorGrid from "@/components/CalculatorGrid";
 import Header from "@/components/Header";
@@ -20,32 +11,31 @@ const Index = () => {
   return (
     <>
       <SEOHead
-        title="🇮🇳 #1 Free Calculator Online India | EMI, SIP, BMI, GST, Tax Calculator"
-        description="India's most trusted FREE calculator website! 25+ tools - EMI Calculator, SIP Calculator, BMI Calculator, GST Calculator, Income Tax Calculator, Home Loan, Age Calculator. 15M+ users. Instant accurate results! 100% Free, No registration."
-        keywords="calculator online india, free calculator, calculator app india, EMI calculator, SIP calculator, BMI calculator, GST calculator india, income tax calculator india, home loan calculator, age calculator, percentage calculator, loan calculator india, FD calculator, compound interest calculator, calorie calculator, pregnancy calculator, scientific calculator, date calculator, mortgage calculator india, online calculator free india"
+        title="Free Online Calculator | EMI, Mortgage, SIP, BMI Calculator - USA, UK, Australia"
+        description="World's #1 FREE calculator tools! 50+ professional calculators for EMI, Mortgage, SIP, BMI, Compound Interest, Tax, Loan. Trusted by 15M+ users in USA, UK, Australia, Canada & 150+ countries. Instant accurate results!"
+        keywords="free online calculator, calculator app, EMI calculator USA, mortgage calculator UK, SIP calculator, BMI calculator Australia, compound interest calculator, tax calculator Canada, loan calculator, percentage calculator, age calculator, date calculator, free calculator tools worldwide"
         canonicalUrl="https://pineapple-calculator-paradise.lovable.app/"
       />
-      <UltimateSEO page="home" />
       <AdvancedSEO 
-        title="🚀 Free Calculator Online India | EMI, SIP, BMI Calculator"
-        description="🇮🇳 India's #1 FREE Calculator App! 50+ Tools Used by 15M+ People"
-        keywords="calculator online india, free calculator app, EMI calculator, SIP calculator, BMI calculator"
+        title="Free Online Calculator | EMI, Mortgage, SIP, BMI Calculator"
+        description="World's #1 FREE Calculator Suite - 50+ Tools for Finance, Health & Math"
+        keywords="calculator, free calculator, online calculator, EMI calculator, mortgage calculator, BMI calculator"
       />
-      <SEOEnhancer page="home" />
-      <SEODominator page="home" />
-      <ContentOptimizer pageTi="Free Online Calculator India" category="general" />
       <JsonLdStructuredData 
-        pageTitle="🚀 Free Calculator Online India | EMI, SIP, BMI Calculator - PineappleHub"
-        description="🇮🇳 India's #1 FREE Calculator App! 50+ Tools: EMI Calculator, SIP Calculator, BMI Calculator. Used by 15M+ people. Mobile-friendly, instant results!"
+        pageTitle="Free Online Calculator - EMI, Mortgage, SIP, BMI Calculator | PineappleHub"
+        description="World's #1 FREE Calculator Suite! 50+ professional calculators for EMI, Mortgage, SIP, BMI. Trusted by 15M+ users in USA, UK, Australia & worldwide."
       />
       <ViralTrafficBooster />
-      <div className="min-h-screen flex flex-col bg-background">
+      
+      <div className="min-h-screen flex flex-col relative">
+        {/* Floating Background Orbs */}
+        <div className="floating-orb orb-1" aria-hidden="true" />
+        <div className="floating-orb orb-2" aria-hidden="true" />
+        
         <Header />
         <main className="flex-1">
           <HeroSection />
           <CalculatorGrid />
-          <ClickbaitCTASection />
-          <ShareableContentSection />
         </main>
         <Footer />
       </div>
