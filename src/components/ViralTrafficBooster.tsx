@@ -2,161 +2,177 @@ import { useEffect } from 'react';
 
 export const ViralTrafficBooster = () => {
   useEffect(() => {
-    // Add viral meta tags that actually get traffic
-    const viralMetas = [
-      // Clickbait titles that work
-      { property: 'og:title', content: '💥 This FREE Calculator Saved Me ₹50,000! Indians Are Going Crazy!' },
-      { property: 'og:description', content: '🔥 15 Million Indians use this SECRET calculator to save money on EMI, SIP, Loans. Banks HATE this trick! Try it FREE now 👆' },
-      
-      // Twitter viral content
-      { name: 'twitter:title', content: '🚨 Banks DON\'T Want You to Know About This FREE Calculator' },
-      { name: 'twitter:description', content: '💰 Save ₹1000s on EMI! 15M+ Indians already using this. Your turn! 🇮🇳' },
-      
-      // WhatsApp/SMS sharing optimization
-      { property: 'og:image', content: 'https://i.imgur.com/viral-calculator.jpg' },
+    const baseUrl = 'https://pineapple-calculator-paradise.lovable.app';
+    
+    // Clean professional meta tags for global SEO
+    const seoMetas = [
+      // Professional Open Graph tags
+      { property: 'og:title', content: 'Free Online Calculator Tools | EMI, SIP, BMI, Mortgage Calculator' },
+      { property: 'og:description', content: 'Free professional calculators trusted by millions worldwide. Calculate EMI, SIP, BMI, Mortgage, Compound Interest, Tax & more. 50+ accurate tools.' },
+      { property: 'og:image', content: `${baseUrl}/og-image.jpg` },
       { property: 'og:image:width', content: '1200' },
       { property: 'og:image:height', content: '630' },
+      { property: 'og:image:alt', content: 'Free Online Calculator Tools - PineappleHub' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'PineappleHub' },
       
-      // Mobile app-like experience
+      // Twitter optimization
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: 'Free Online Calculator Tools | EMI, SIP, BMI Calculator' },
+      { name: 'twitter:description', content: 'Professional calculators for finance, health & math. Free, fast & accurate.' },
+      { name: 'twitter:image', content: `${baseUrl}/og-image.jpg` },
+      
+      // Mobile PWA
       { name: 'mobile-web-app-capable', content: 'yes' },
+      { name: 'apple-mobile-web-app-capable', content: 'yes' },
       { name: 'apple-mobile-web-app-status-bar-style', content: 'default' },
-      { name: 'theme-color', content: '#4F46E5' },
+      { name: 'theme-color', content: '#3b82f6' },
       
-      // Trending keywords that Indians actually search
-      { name: 'keywords', content: 'free calculator, calculator online, EMI calculator, SIP calculator, loan calculator, money saving calculator, financial calculator india, calculator app, online calculator free, best calculator, calculator tools, EMI कैलकुलेटर, SIP कैलकुलेटर, loan कैलकुलेटर, calculator hindi, paise bachane wala calculator, nivesh calculator, किस्त calculator' },
+      // Global targeting keywords (clean, no spammy content)
+      { name: 'keywords', content: 'free calculator, online calculator, EMI calculator, SIP calculator, BMI calculator, mortgage calculator USA, loan calculator UK, compound interest calculator, percentage calculator, tax calculator Australia, age calculator, date calculator, calorie calculator, home loan calculator, FD calculator, scientific calculator, financial calculator, health calculator' },
       
-      // News-style headlines for Google News
-      { name: 'news_keywords', content: 'calculator app, financial tools, money saving, EMI calculation, SIP investment, loan planning, tax saving, financial planning India' },
+      // International geo targeting
+      { name: 'geo.region', content: 'US' },
+      { name: 'geo.country', content: 'US' },
       
-      // Location-based targeting for local traffic
-      { name: 'geo.region', content: 'IN-DL' }, // Delhi
-      { name: 'geo.region', content: 'IN-MH' }, // Mumbai  
-      { name: 'geo.region', content: 'IN-KA' }, // Bangalore
-      { name: 'geo.region', content: 'IN-TN' }, // Chennai
-      { name: 'geo.region', content: 'IN-WB' }, // Kolkata
-      { name: 'geo.region', content: 'IN-GJ' }, // Gujarat
-      { name: 'geo.region', content: 'IN-RJ' }, // Rajasthan
-      { name: 'geo.region', content: 'IN-UP' }, // UP
-      { name: 'geo.region', content: 'IN-TG' }, // Telangana
-      
-      // Voice search optimization
-      { name: 'speakable', content: 'true' },
+      // Content language
+      { httpEquiv: 'content-language', content: 'en' },
     ];
 
-    viralMetas.forEach(meta => {
-      const existing = document.querySelector(`meta[${meta.name ? 'name' : 'property'}="${meta.name || meta.property}"]`);
-      if (existing) existing.remove();
+    seoMetas.forEach(meta => {
+      const selector = meta.name ? `meta[name="${meta.name}"]` : 
+                       meta.property ? `meta[property="${meta.property}"]` :
+                       meta.httpEquiv ? `meta[http-equiv="${meta.httpEquiv}"]` : null;
+      
+      if (selector) {
+        const existing = document.querySelector(selector);
+        if (existing) existing.remove();
+      }
       
       const metaTag = document.createElement('meta');
       if (meta.name) metaTag.setAttribute('name', meta.name);
       if (meta.property) metaTag.setAttribute('property', meta.property);
+      if (meta.httpEquiv) metaTag.setAttribute('http-equiv', meta.httpEquiv);
       metaTag.setAttribute('content', meta.content);
-      metaTag.setAttribute('data-viral-seo', 'true');
+      metaTag.setAttribute('data-seo', 'true');
       document.head.appendChild(metaTag);
     });
 
-    // Add trending structured data for viral sharing
-    const viralSchema = {
+    // Only WebSite schema with SearchAction for sitelinks (no Product schema!)
+    const websiteSchema = {
       "@context": "https://schema.org",
-      "@graph": [
+      "@type": "WebSite",
+      "@id": `${baseUrl}/#website`,
+      "name": "PineappleHub - Free Online Calculator Tools",
+      "url": baseUrl,
+      "description": "Free professional calculator tools for finance, health, and math. EMI, SIP, BMI, Mortgage, Compound Interest calculators used by millions worldwide.",
+      "inLanguage": "en",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${baseUrl}/search?q={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      }
+    };
+
+    const script1 = document.createElement('script');
+    script1.type = 'application/ld+json';
+    script1.setAttribute('data-seo', 'true');
+    script1.textContent = JSON.stringify(websiteSchema);
+    document.head.appendChild(script1);
+
+    // Organization schema (clean, professional)
+    const organizationSchema = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": `${baseUrl}/#organization`,
+      "name": "PineappleHub",
+      "url": baseUrl,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${baseUrl}/og-image.jpg`,
+        "width": 1200,
+        "height": 630
+      },
+      "description": "Free professional calculator tools for finance, health, and mathematics.",
+      "foundingDate": "2024",
+      "areaServed": "Worldwide"
+    };
+
+    const script2 = document.createElement('script');
+    script2.type = 'application/ld+json';
+    script2.setAttribute('data-seo', 'true');
+    script2.textContent = JSON.stringify(organizationSchema);
+    document.head.appendChild(script2);
+
+    // ItemList for calculator collection (good for Google rich results)
+    const itemListSchema = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Free Online Calculator Tools",
+      "description": "Collection of 50+ free professional calculators",
+      "numberOfItems": 50,
+      "itemListElement": [
         {
-          "@type": "WebSite",
-          "name": "🔥 India's #1 FREE Calculator - Save Money Like a Pro!",
-          "description": "💥 Secret calculator used by 15M+ Indians to save ₹1000s on EMI, SIP, Loans. Banks hate this trick! Try FREE now 👆",
-          "url": "https://pineapple-calculator-paradise.lovable.app/",
-          "potentialAction": {
-            "@type": "SearchAction",
-            "target": "https://pineapple-calculator-paradise.lovable.app/?q={search_term_string}",
-            "query-input": "required name=search_term_string"
-          },
-          "sameAs": [
-            "https://www.facebook.com/CalculatorHub",
-            "https://www.instagram.com/calculatorhub_india",
-            "https://twitter.com/CalculatorHub_IN",
-            "https://www.youtube.com/c/CalculatorHubIndia"
-          ]
+          "@type": "ListItem",
+          "position": 1,
+          "name": "EMI Calculator",
+          "url": `${baseUrl}/calculators/emi`
         },
         {
-          "@type": "Article",
-          "headline": "💰 How This FREE Calculator Helped 15 Million Indians Save Money",
-          "description": "🔥 Discover the secret calculator that's helping Indians save thousands on EMI, SIP, and loans. Banks don't want you to know this trick!",
-          "author": {
-            "@type": "Organization",
-            "name": "PineappleHub Financial Experts"
-          },
-          "publisher": {
-            "@type": "Organization", 
-            "name": "PineappleHub",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://pineapple-calculator-paradise.lovable.app/logo.png"
-            }
-          },
-          "datePublished": "2024-01-01T00:00:00Z",
-          "dateModified": "2024-12-01T00:00:00Z",
-          "mainEntityOfPage": "https://pineapple-calculator-paradise.lovable.app/",
-          "image": "https://pineapple-calculator-paradise.lovable.app/viral-image.jpg"
+          "@type": "ListItem",
+          "position": 2,
+          "name": "SIP Calculator",
+          "url": `${baseUrl}/calculators/sip`
         },
         {
-          "@type": "Product",
-          "name": "Free Calculator Suite - PineappleHub",
-          "description": "🚀 Complete suite of 50+ free calculators for EMI, SIP, BMI, Loan, GST calculations. Used by 15M+ Indians daily!",
-          "image": "https://pineapple-calculator-paradise.lovable.app/og-image.jpg",
-          "brand": {
-            "@type": "Brand",
-            "name": "PineappleHub"
-          },
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "INR",
-            "availability": "https://schema.org/InStock",
-            "priceValidUntil": "2025-12-31"
-          },
-          "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "4.9",
-            "reviewCount": "250000",
-            "bestRating": "5",
-            "worstRating": "1"
-          },
-          "review": [
-            {
-              "@type": "Review",
-              "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": "5"
-              },
-              "author": {
-                "@type": "Person",
-                "name": "Priya Sharma"
-              },
-              "reviewBody": "Amazing calculator! Saved ₹15,000 on my home loan EMI calculation. Super accurate and fast!"
-            },
-            {
-              "@type": "Review", 
-              "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": "5"
-              },
-              "author": {
-                "@type": "Person",
-                "name": "Rahul Gupta"
-              },
-              "reviewBody": "Best SIP calculator ever! Helped me plan my investments perfectly. Highly recommended!"
-            }
-          ]
+          "@type": "ListItem",
+          "position": 3,
+          "name": "BMI Calculator",
+          "url": `${baseUrl}/calculators/bmi`
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "Mortgage Calculator",
+          "url": `${baseUrl}/calculators/mortgage`
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Compound Interest Calculator",
+          "url": `${baseUrl}/calculators/compound-interest`
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "Age Calculator",
+          "url": `${baseUrl}/calculators/age`
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "name": "Percentage Calculator",
+          "url": `${baseUrl}/calculators/percentage`
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "name": "Loan Calculator",
+          "url": `${baseUrl}/calculators/loan`
         }
       ]
     };
 
-    const script = document.createElement('script');
-    script.type = 'application/ld+json';
-    script.setAttribute('data-viral-seo', 'true');
-    script.textContent = JSON.stringify(viralSchema);
-    document.head.appendChild(script);
+    const script3 = document.createElement('script');
+    script3.type = 'application/ld+json';
+    script3.setAttribute('data-seo', 'true');
+    script3.textContent = JSON.stringify(itemListSchema);
+    document.head.appendChild(script3);
 
-    // Add breadcrumb schema for better navigation
+    // Breadcrumb for homepage
     const breadcrumbSchema = {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
@@ -165,76 +181,28 @@ export const ViralTrafficBooster = () => {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://pineapple-calculator-paradise.lovable.app/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Free Calculators",
-          "item": "https://pineapple-calculator-paradise.lovable.app/calculators"
+          "item": baseUrl
         }
       ]
     };
 
-    const breadcrumbScript = document.createElement('script');
-    breadcrumbScript.type = 'application/ld+json';
-    breadcrumbScript.setAttribute('data-viral-seo', 'true');
-    breadcrumbScript.textContent = JSON.stringify(breadcrumbSchema);
-    document.head.appendChild(breadcrumbScript);
+    const script4 = document.createElement('script');
+    script4.type = 'application/ld+json';
+    script4.setAttribute('data-seo', 'true');
+    script4.textContent = JSON.stringify(breadcrumbSchema);
+    document.head.appendChild(script4);
 
-    // Track viral sharing capability
+    // Track share capability
     if (navigator.share) {
       document.body.setAttribute('data-share-capable', 'true');
     }
 
     // Cleanup
     return () => {
-      const elements = document.querySelectorAll('[data-viral-seo]');
+      const elements = document.querySelectorAll('[data-seo]');
       elements.forEach(el => el.remove());
     };
   }, []);
 
-  return (
-    <>
-      {/* Hidden viral content for SEO crawlers */}
-      <div style={{ 
-        position: 'absolute', 
-        left: '-9999px', 
-        top: '-9999px',
-        width: '1px',
-        height: '1px',
-        overflow: 'hidden'
-      }}>
-        <h1>🔥 FREE Calculator That Saved 15 Million Indians ₹1000s - Banks Hate This Trick!</h1>
-        <h2>💰 Secret Money-Saving Calculator Used by Smart Indians</h2>
-        <p>🚨 Attention Indians! Discover the FREE calculator that's helping 15+ million people save thousands of rupees on EMI, SIP, loans, and taxes. Banks don't want you to know about this powerful tool!</p>
-        
-        <h3>🎯 Why 15 Million Indians Trust Our Calculator:</h3>
-        <ul>
-          <li>✅ 100% FREE - No hidden charges, no registration</li>
-          <li>✅ Save ₹1000s on EMI calculations</li>
-          <li>✅ Maximize SIP returns with accurate calculations</li>
-          <li>✅ Get loan approval faster with proper planning</li>
-          <li>✅ Calculate GST and save on taxes</li>
-          <li>✅ Mobile-friendly - works on any phone</li>
-          <li>✅ Instant results - no waiting</li>
-          <li>✅ Bank-level accuracy guaranteed</li>
-        </ul>
-        
-        <h3>🔥 Trending Calculator Searches in India 2024:</h3>
-        <p>calculator online free, EMI calculator, SIP calculator, loan calculator, BMI calculator, GST calculator, income tax calculator, percentage calculator, age calculator, compound interest calculator, home loan calculator, FD calculator, scientific calculator, calorie calculator, BMR calculator, pregnancy calculator, mutual fund calculator, NPS calculator, SWP calculator, mortgage calculator, date calculator, days calculator, currency calculator, fertilizer calculator, ecommerce calculator</p>
-        
-        <h3>🇮🇳 Popular in Your City:</h3>
-        <p>Delhi, Mumbai, Bangalore, Chennai, Kolkata, Hyderabad, Pune, Ahmedabad, Jaipur, Surat, Lucknow, Kanpur, Nagpur, Indore, Thane, Bhopal, Visakhapatnam, Pimpri, Patna, Vadodara, Ludhiana, Agra, Nashik, Faridabad, Meerut, Rajkot, Kalyan, Vasai, Varanasi, Srinagar, Aurangabad, Dhanbad, Amritsar, Navi Mumbai, Allahabad, Ranchi, Howrah, Coimbatore, Jabalpur, Gwalior, Vijayawada, Jodhpur, Madurai, Raipur, Kota, Chandigarh, Guwahati</p>
-        
-        <h3>💡 Pro Tips from Financial Experts:</h3>
-        <p>Smart Indians are using our EMI calculator before taking any loan to negotiate better rates with banks. Our SIP calculator helps plan retirement corpus accurately. BMI calculator keeps you healthy while our GST calculator saves tax money.</p>
-        
-        <h3>🎉 Success Stories:</h3>
-        <p>"Saved ₹50,000 on home loan using EMI calculator!" - Priya from Delhi</p>
-        <p>"SIP calculator helped me become crorepati!" - Rahul from Mumbai</p>
-        <p>"Best free calculator app in India!" - Anjali from Bangalore</p>
-      </div>
-    </>
-  );
+  return null;
 };
