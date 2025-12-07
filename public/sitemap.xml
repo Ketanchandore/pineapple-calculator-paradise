@@ -1,230 +1,283 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Main Page -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage - Highest Priority -->
   <url>
     <loc>https://pineapple-calculator-paradise.lovable.app/</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <changefreq>weekly</changefreq>
-    <lastmod>2025-01-21</lastmod>
+    <image:image>
+      <image:loc>https://pineapple-calculator-paradise.lovable.app/og-image.jpg</image:loc>
+      <image:title>Free Online Calculator Tools</image:title>
+    </image:image>
   </url>
   
-  <!-- High Priority Calculator Pages -->
-  <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/bmi</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
-  </url>
+  <!-- High Priority Finance Calculators -->
   <url>
     <loc>https://pineapple-calculator-paradise.lovable.app/calculators/emi</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
-  </url>
-  <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/sip</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
-  </url>
-  <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/age</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
-  </url>
-  <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/percentage</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
-  </url>
-  <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/home-loan</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
-  </url>
-  <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/gst</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
-  </url>
-  <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/compound-interest</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
   </url>
   
-  <!-- Finance Calculators -->
   <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/loan</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/sip</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
-  <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/fd</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
-  </url>
-  <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/income-tax</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
-  </url>
-  <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/mutual-fund</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
-  </url>
-  <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/nps</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
-  </url>
-  <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/swp</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
-  </url>
-  <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/home-loan-emi</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
-  </url>
+  
   <url>
     <loc>https://pineapple-calculator-paradise.lovable.app/calculators/mortgage</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/compound-interest</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/loan</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/home-loan</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/home-loan-emi</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/fd</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/mutual-fund</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/nps</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/swp</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/gst</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/income-tax</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
   
   <!-- Health Calculators -->
   <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/calorie</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/bmi</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
+  
   <url>
     <loc>https://pineapple-calculator-paradise.lovable.app/calculators/bmr</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
   </url>
+  
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/calorie</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
   <url>
     <loc>https://pineapple-calculator-paradise.lovable.app/calculators/pregnancy</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
   </url>
   
-  <!-- Utility Calculators -->
+  <!-- Math & Utility Calculators -->
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/percentage</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/age</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
   <url>
     <loc>https://pineapple-calculator-paradise.lovable.app/calculators/date</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
-  </url>
-  <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/days</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
-  </url>
-  <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/scientific</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
-  </url>
-  <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/currency</loc>
-    <priority>0.8</priority>
-    <changefreq>daily</changefreq>
-    <lastmod>2025-01-21</lastmod>
   </url>
   
-  <!-- Other Calculators -->
   <url>
-    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/ecommerce</loc>
-    <priority>0.7</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/days</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
+  
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/scientific</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/currency</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
   <url>
     <loc>https://pineapple-calculator-paradise.lovable.app/calculators/fertilizer</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/calculators/ecommerce</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   
   <!-- Category Pages -->
   <url>
     <loc>https://pineapple-calculator-paradise.lovable.app/finance-calculators</loc>
-    <priority>0.7</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
+  
   <url>
     <loc>https://pineapple-calculator-paradise.lovable.app/health-calculators</loc>
-    <priority>0.7</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>
+  
   <url>
     <loc>https://pineapple-calculator-paradise.lovable.app/math-calculators</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- SEO Pages -->
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/guide</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/blog</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://pineapple-calculator-paradise.lovable.app/compare</loc>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   
   <!-- Info Pages -->
   <url>
     <loc>https://pineapple-calculator-paradise.lovable.app/about</loc>
-    <priority>0.6</priority>
+    <lastmod>2024-12-07</lastmod>
     <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
+    <priority>0.6</priority>
   </url>
+  
   <url>
     <loc>https://pineapple-calculator-paradise.lovable.app/contact</loc>
-    <priority>0.6</priority>
+    <lastmod>2024-12-07</lastmod>
     <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
+    <priority>0.6</priority>
   </url>
+  
   <url>
     <loc>https://pineapple-calculator-paradise.lovable.app/sitemap</loc>
-    <priority>0.6</priority>
-    <changefreq>monthly</changefreq>
-    <lastmod>2025-01-21</lastmod>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
   </url>
   
   <!-- Legal Pages -->
   <url>
     <loc>https://pineapple-calculator-paradise.lovable.app/privacy-policy</loc>
-    <priority>0.5</priority>
-    <changefreq>yearly</changefreq>
-    <lastmod>2025-01-21</lastmod>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
+  
   <url>
     <loc>https://pineapple-calculator-paradise.lovable.app/terms-of-service</loc>
-    <priority>0.5</priority>
-    <changefreq>yearly</changefreq>
-    <lastmod>2025-01-21</lastmod>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
+  
   <url>
     <loc>https://pineapple-calculator-paradise.lovable.app/disclaimer</loc>
-    <priority>0.5</priority>
-    <changefreq>yearly</changefreq>
-    <lastmod>2025-01-21</lastmod>
+    <lastmod>2024-12-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
+
 </urlset>

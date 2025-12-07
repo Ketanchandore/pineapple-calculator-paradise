@@ -1,5 +1,4 @@
 import { SEOHead } from "@/components/SEOHead";
-import { AdvancedSEO } from "@/components/AdvancedSEO";
 import JsonLdStructuredData from "@/components/JsonLdStructuredData";
 import { ViralTrafficBooster } from "@/components/ViralTrafficBooster";
 import HeroSection from "@/components/HeroSection";
@@ -11,19 +10,14 @@ const Index = () => {
   return (
     <>
       <SEOHead
-        title="Free Online Calculator | EMI, Mortgage, SIP, BMI Calculator - USA, UK, Australia"
-        description="World's #1 FREE calculator tools! 50+ professional calculators for EMI, Mortgage, SIP, BMI, Compound Interest, Tax, Loan. Trusted by 15M+ users in USA, UK, Australia, Canada & 150+ countries. Instant accurate results!"
-        keywords="free online calculator, calculator app, EMI calculator USA, mortgage calculator UK, SIP calculator, BMI calculator Australia, compound interest calculator, tax calculator Canada, loan calculator, percentage calculator, age calculator, date calculator, free calculator tools worldwide"
+        title="Free Online Calculator | EMI, SIP, BMI, Mortgage Calculator"
+        description="Free professional calculator tools trusted by millions worldwide. 50+ calculators for EMI, SIP, BMI, Mortgage, Compound Interest, Loan, Tax & more. Instant accurate results!"
+        keywords="free online calculator, calculator app, EMI calculator, mortgage calculator, SIP calculator, BMI calculator, compound interest calculator, tax calculator, loan calculator, percentage calculator, age calculator, scientific calculator, calorie calculator"
         canonicalUrl="https://pineapple-calculator-paradise.lovable.app/"
       />
-      <AdvancedSEO 
-        title="Free Online Calculator | EMI, Mortgage, SIP, BMI Calculator"
-        description="World's #1 FREE Calculator Suite - 50+ Tools for Finance, Health & Math"
-        keywords="calculator, free calculator, online calculator, EMI calculator, mortgage calculator, BMI calculator"
-      />
       <JsonLdStructuredData 
-        pageTitle="Free Online Calculator - EMI, Mortgage, SIP, BMI Calculator | PineappleHub"
-        description="World's #1 FREE Calculator Suite! 50+ professional calculators for EMI, Mortgage, SIP, BMI. Trusted by 15M+ users in USA, UK, Australia & worldwide."
+        pageTitle="Free Online Calculator | EMI, SIP, BMI, Mortgage Calculator - PineappleHub"
+        description="Free professional calculator tools trusted by millions worldwide. 50+ calculators for EMI, SIP, BMI, Mortgage, Compound Interest & more."
       />
       <ViralTrafficBooster />
       
